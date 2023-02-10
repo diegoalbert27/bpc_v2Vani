@@ -16,7 +16,11 @@ class AuthController extends baseController
 
     public function Index()
     {
-        $this->authentication($this->authentication->isAuth());
+        if ($this->authentication->isAuth()) {
+            $this->redirect('dashboard');
+        }
+
+        $this->redirect('auth', 'login');
     }
 
     public function Login()
