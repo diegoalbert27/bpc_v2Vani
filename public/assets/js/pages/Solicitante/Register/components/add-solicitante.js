@@ -1,32 +1,38 @@
-export default class AddDataContact {
+export default class AddSolicitante {
     constructor() {
-        this.btn = document.getElementById('add-data-contact')
+        this.btn = document.getElementById('add-solicitante')
 
-        this.phone = document.getElementById('phone')
-        this.email = document.getElementById('email')
-        this.address = document.getElementById('address')
+        this.ocupacion = document.getElementById('ocupacion')
+        this.nameOcupacion = document.getElementById('nameOcupacion')
+        this.phoneOcupacion = document.getElementById('phoneOcupacion')
+        this.addressOcupacion = document.getElementById('addressOcupacion')
 
         this.inputs = [
-            this.phone,
-            this.email,
-            this.address,
+            this.nameOcupacion,
+            this.phoneOcupacion,
+            this.addressOcupacion,
         ]
 
         this.patterns = {
-            phone: /^\d{7,14}$/,
-            email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-            address: /[a-zA-ZÀ-ÿ0-9\s_.,+-]/,
+            nameOcupacion: /[a-zA-ZÀ-ÿ0-9\s_.,+-]/,
+            phoneOcupacion: /^\d{7,14}$/,
+            addressOcupacion: /[a-zA-ZÀ-ÿ0-9\s_.,+-]/,
         }
     }
 
     onClick(callback) {
         this.btn.onclick = (e) => {
-            if (this.validateInputs(this.inputs)) return
+            if (this.ocupacion.value !== 'Ninguno') {
+                if (this.validateInputs(this.inputs)) return
+            }
+
+            this.inputsPassed(this.inputs)
 
             callback(
-                this.phone.value,
-                this.email.value,
-                this.address.value,
+                this.ocupacion.value,
+                this.nameOcupacion.value,
+                this.phoneOcupacion.value,
+                this.addressOcupacion.value
             )
         }
     }
@@ -39,7 +45,12 @@ export default class AddDataContact {
                     return
                 }
 
-                this.inputNotPassed(input)
+                if (this.ocupacion.value !== 'Ninguno') {
+                    this.inputNotPassed(input)
+                    return
+                }
+
+                this.inputPassed(input)
             }
         }
     }
@@ -52,7 +63,12 @@ export default class AddDataContact {
                     return
                 }
 
-                this.inputNotPassed(input)
+                if (this.ocupacion.value !== 'Ninguno') {
+                    this.inputNotPassed(input)
+                    return
+                }
+
+                this.inputPassed(input)
             }
         }
     }
@@ -72,6 +88,12 @@ export default class AddDataContact {
         }
 
         return someEmpty
+    }
+
+    inputsPassed(inputs) {
+        for (const input of inputs) {
+            this.inputPassed(input)
+        }
     }
 
     isCorrectInput(input) {

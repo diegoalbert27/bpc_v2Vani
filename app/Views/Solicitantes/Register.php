@@ -112,7 +112,7 @@
             <div class="card-body">
                 <div class="row p-2 mb-3">
                     <div class="col-md-6 col-sm-12 mb-3">
-                        <label class="form-label" for="phone">Ocupación:</label>
+                        <label class="form-label" for="ocupacion">Ocupación:</label>
                         <select class="form-control" name="ocupacion" id="ocupacion">
                             <option value="Ninguno">Ninguno</option>
                             <option value="Trabajador">Trabajador</option>
@@ -122,6 +122,9 @@
                     <div class="col-md-6 col-sm-12 mb-3">
                         <label class="form-label" for="nameOcupacion">Nombre del lugar de estudio o trabajo:</label>
                         <input class="form-control" type="text" id="nameOcupacion" name="nameOcupacion"">
+                        <div class="text-danger pt-1 d-none" id="valid-nameOcupacion">
+                            El nombre de la ocupación es requerido
+                        </div>
                     </div>
                 </div>
 
@@ -129,16 +132,22 @@
                     <div class="col-md-6 col-sm-12 mb-3">
                         <label class="form-label" for="phoneOcupacion">Teléfono:</label>
                         <input class="form-control" type="tel" id="phoneOcupacion" name="phoneOcupacion">
+                        <div class="text-danger pt-1 d-none" id="valid-phoneOcupacion">
+                            El numéro de contacto de la ocupación es requerido
+                        </div>
                     </div>
                     <div class="col-md-6 col-sm-12 mb-3">
                         <label class="form-label" for="addressOcupacion">Dirección:</label>
                         <input class="form-control" type="text" id="addressOcupacion" name="addressOcupacion">
+                        <div class="text-danger pt-1 d-none" id="valid-addressOcupacion">
+                            La dirección de la ocupación es requerido
+                        </div>
                     </div>
                 </div>
 
                 <div class="p-2 text-end">
                     <button class="btn btn-link" type="button" id="back-data-ocupacion">Volver</button>
-                    <button class="btn btn-primary" type="button">Agregar Registro</button>
+                    <button class="btn btn-primary" type="button" id="add-solicitante">Agregar Registro</button>
                 </div>
             </div>
         </div>

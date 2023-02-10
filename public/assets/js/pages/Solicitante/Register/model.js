@@ -24,4 +24,13 @@ export default class Model {
 
         return this.data
     }
+
+    addDataOcupacion({ ocupacion, nameOcupacion, phoneOcupacion, addressOcupacion }) {
+        this.data.ocupacion = ocupacion
+        this.data.nameOcupacion = nameOcupacion
+        this.data.phoneOcupacion = phoneOcupacion
+        this.data.addressOcupacion = addressOcupacion
+
+        return this.data
+    }
 }

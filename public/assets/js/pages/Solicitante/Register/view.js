@@ -1,5 +1,6 @@
 import AddDataPersonal from './components/add-data-personal.js';
 import AddDataContact from './components/add-data-contact.js';
+import AddSolicitante from './components/add-solicitante.js';
 import BackDataContact from './components/back-data-contact.js';
 import BackDataOcupacion from './components/back-data-ocupacion.js';
 
@@ -13,6 +14,7 @@ export default class View {
 
         this.addDataPersonalForm = new AddDataPersonal()
         this.addDataContactForm = new AddDataContact()
+        this.addSolicitanteForm = new AddSolicitante()
 
         this.backDataContactForm = new BackDataContact()
         this.backDataOcupacionForm = new BackDataOcupacion()
@@ -40,6 +42,16 @@ export default class View {
 
         this.addDataContactForm.onBlur()
         this.addDataContactForm.onKeyup()
+
+        this.addSolicitanteForm.onClick((
+            ocupacion,
+            nameOcupacion,
+            phoneOcupacion,
+            addressOcupacion
+        ) => this.addSolicitante({ ocupacion, nameOcupacion, phoneOcupacion, addressOcupacion }))
+
+        this.addSolicitanteForm.onBlur()
+        this.addSolicitanteForm.onKeyup()
 
         this.backDataContactForm.onClick(() => this.backDataContact())
         this.backDataOcupacionForm.onClick(() => this.backDataOcupacion())
@@ -74,6 +86,12 @@ export default class View {
         this.barOcupacion.classList.add('shadow')
         this.barOcupacion.classList.add('text-light')
         this.barOcupacion.classList.add('rounded-end')
+    }
+
+    addSolicitante(dataOcupacion) {
+        this.model.addDataOcupacion(dataOcupacion)
+
+        console.log(this.model.getData())
     }
 
     backDataContact() {
