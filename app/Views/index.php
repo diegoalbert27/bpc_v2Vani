@@ -120,6 +120,8 @@
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/datatables.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <?php
         if (isset($_GET['controller']) && isset($_GET['action'])) {
             $controller = ucwords($_GET['controller']);
