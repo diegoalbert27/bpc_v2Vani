@@ -341,7 +341,7 @@ class UserController extends baseController
             }
         }
 
-        $this->redirect('user', 'index', 'success', "El usuarios ha sido registrado exitosamente");
+        $this->redirect('user', 'index', 'success', "El usuario ha sido registrado exitosamente");
     }
 
     public function EditQuestionForm()
