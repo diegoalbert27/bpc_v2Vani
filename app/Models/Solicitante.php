@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Core\baseModel;
 
-class Solictante extends baseModel
+class Solicitante extends baseModel
 {
     private $id_sol;
     private $carnet;

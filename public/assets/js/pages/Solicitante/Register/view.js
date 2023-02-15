@@ -23,6 +23,9 @@ export default class View {
         this.barContact = document.getElementById('barContact')
         this.barOcupacion = document.getElementById('barOcupacion')
 
+        this.cardTerminado = document.getElementById('registroTerminado')
+        this.registerForm = document.getElementById('registerForm')
+
         this.addDataPersonalForm.onClick((
             nombres,
             apellidos,
@@ -88,10 +91,15 @@ export default class View {
         this.barOcupacion.classList.add('rounded-end')
     }
 
-    addSolicitante(dataOcupacion) {
+    async addSolicitante(dataOcupacion) {
         this.model.addDataOcupacion(dataOcupacion)
+        const result = await this.model.addData()
 
-        console.log(this.model.getData())
+        if (result.status === true) {
+            this.registerForm.classList.add('d-none')
+            this.cardTerminado.classList.remove('d-none')
+            return
+        }
     }
 
     backDataContact() {

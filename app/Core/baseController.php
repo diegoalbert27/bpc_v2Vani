@@ -55,4 +55,9 @@ class baseController
             $this->redirect('auth', 'login');
         }
     }
+
+    public function json($response)
+    {
+        echo json_encode($response);
+    }
 }

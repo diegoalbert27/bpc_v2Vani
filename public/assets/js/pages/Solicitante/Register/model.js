@@ -1,10 +1,18 @@
+import SolicitanteApi from "../api/solicitante-api.js"
+
 export default class Model {
     constructor() {
         this.data = {}
+        this.service = new SolicitanteApi()
     }
 
     getData() {
         return this.data
+    }
+
+    async addData() {
+        const response = await this.service.add(this.data)
+        return response.data
     }
 
     addDataPersonal({ nombres, apellidos, cedula, edad, sexo }) {

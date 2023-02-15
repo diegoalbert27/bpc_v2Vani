@@ -1,6 +1,7 @@
 export default class AddSolicitante {
     constructor() {
         this.btn = document.getElementById('add-solicitante')
+        this.btnBackDataOcupacion = document.getElementById('back-data-ocupacion')
 
         this.ocupacion = document.getElementById('ocupacion')
         this.nameOcupacion = document.getElementById('nameOcupacion')
@@ -22,6 +23,9 @@ export default class AddSolicitante {
 
     onClick(callback) {
         this.btn.onclick = (e) => {
+            this.btn.disabled = true
+            this.btnBackDataOcupacion.disabled = true
+
             if (this.ocupacion.value !== 'Ninguno') {
                 if (this.validateInputs(this.inputs)) return
             }
