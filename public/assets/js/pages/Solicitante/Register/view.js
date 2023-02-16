@@ -3,6 +3,7 @@ import AddDataContact from './components/add-data-contact.js';
 import AddSolicitante from './components/add-solicitante.js';
 import BackDataContact from './components/back-data-contact.js';
 import BackDataOcupacion from './components/back-data-ocupacion.js';
+import Alert from './components/alert.js';
 
 export default class View {
     constructor() {
@@ -19,12 +20,17 @@ export default class View {
         this.backDataContactForm = new BackDataContact()
         this.backDataOcupacionForm = new BackDataOcupacion()
 
+        this.alert = new Alert('alert')
+
         this.barDatePersonal = document.getElementById('barDatePersonal')
         this.barContact = document.getElementById('barContact')
         this.barOcupacion = document.getElementById('barOcupacion')
 
         this.cardTerminado = document.getElementById('registroTerminado')
         this.registerForm = document.getElementById('registerForm')
+
+        this.btn = document.getElementById('add-solicitante')
+        this.btnBackDataOcupacion = document.getElementById('back-data-ocupacion')
 
         this.addDataPersonalForm.onClick((
             nombres,
@@ -95,11 +101,17 @@ export default class View {
         this.model.addDataOcupacion(dataOcupacion)
         const result = await this.model.addData()
 
-        if (result.status === true) {
-            this.registerForm.classList.add('d-none')
-            this.cardTerminado.classList.remove('d-none')
+        if (result.status === false) {
+            this.alert.show(result.message)
+
+            this.btn.disabled = false
+            this.btnBackDataOcupacion.disabled = false
             return
         }
+
+        this.alert.hide()
+        this.registerForm.classList.add('d-none')
+        this.cardTerminado.classList.remove('d-none')
     }
 
     backDataContact() {

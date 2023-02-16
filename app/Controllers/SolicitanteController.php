@@ -78,6 +78,22 @@ class SolicitanteController extends baseController
         $address_ocupacion = $_POST['addressOcupacion'];
 
         $solicitante_model = new Solicitante();
+
+        if ( $solicitante_model->getByOne('ced_sol', $cedula) ) {
+            $response->message = "Cedula '{$cedula}' no se encuentra disponible";
+            return $this->json($response);
+        }
+
+        if ( $solicitante_model->getByOne('tlf_sol', $phone) ) {
+            $response->message = "'El contacto {$phone}' no se encuentra disponible";
+            return $this->json($response);
+        }
+
+        if ( $solicitante_model->getByOne('corr_sol', $email) ) {
+            $response->message = "El correo electronico '{$email}' no se encuentra disponible";
+            return $this->json($response);
+        }
+
         $all_solicitantes = $solicitante_model->getAll();
         $carnet = count($all_solicitantes) + 1000;
 

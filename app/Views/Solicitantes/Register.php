@@ -1,5 +1,10 @@
 <?php echo $helpers->getHeader('Registrar nuevo solicitante', 'Solicitantes/Registro') ?>
 
+<div class="alert alert-danger alert-dismissible fade show mt-3 d-none" id="alert" role="alert">
+    <span></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 <div class="row mt-4">
     <div id="registerForm">
         <div class="col-md-12 col-sm-12 mb-4">
