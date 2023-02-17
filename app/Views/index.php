@@ -50,6 +50,23 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="#consultasSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between">
+                        <span>Consultas</span>
+                        <span class="fal fa-plus"></span>
+                    </a>
+                    <ul class="collapse list-unstyled mt-1" id="consultasSubmenu">
+                        <li>
+                            <a href="<?php echo $helpers->generateUrl('solicitante', 'index') ?>">Solicitantes</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Home 3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a href="#">About</a>
                 </li>
                 <li>

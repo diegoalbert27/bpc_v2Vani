@@ -13,6 +13,19 @@ class SolicitanteController extends baseController
         $this->authentication = $authentication;
     }
 
+    public function Index()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        $solicitante_model = new Solicitante();
+        $solicitantes = $solicitante_model->getAll();
+
+        $this->view('Solicitantes/Inicio', [
+            'title' => 'Solicitantes',
+            'solicitantes' => $solicitantes
+        ], true);
+    }
+
     public function Register()
     {
         $this->authentication($this->authentication->isAuth());
@@ -22,13 +35,35 @@ class SolicitanteController extends baseController
         ], true);
     }
 
-    public function Get() {
+    public function Detail()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $id_solicitante = $_GET['id'];
+
+        $solicitante_model = new Solicitante();
+        $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
+
+        $this->view('Solicitantes/Detalle', [
+            'title' => 'Informacion',
+            'solicitante' => $solicitante
+        ], true);
+    }
+
+    public function Get()
+    {
         echo json_encode([
             'body' => 'hello world'
         ]);
     }
 
-    public function Add() {
+    public function Add()
+    {
         $response = new Response(false);
 
         if (

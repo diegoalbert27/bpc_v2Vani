@@ -32,6 +32,8 @@ export default class View {
         this.btn = document.getElementById('add-solicitante')
         this.btnBackDataOcupacion = document.getElementById('back-data-ocupacion')
 
+        this.solicitanteLink = document.getElementById('solicitanteLink')
+
         this.addDataPersonalForm.onClick((
             nombres,
             apellidos,
@@ -108,6 +110,8 @@ export default class View {
             this.btnBackDataOcupacion.disabled = false
             return
         }
+
+        this.solicitanteLink.href = `?controller=solicitante&action=detail&id=${result.data.id_sol}`
 
         this.alert.hide()
         this.registerForm.classList.add('d-none')
