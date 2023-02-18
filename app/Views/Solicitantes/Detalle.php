@@ -9,6 +9,16 @@
     <div class="card-body">
         <div class="container mt-2">
             <div class="row mb-4">
+                <div class="col-md-6 col-sm-3">
+                    <div class="d-flex">
+                        <h5 class="pe-3">Informacion Personal</h5>
+                        <button class="btn btn-primary btn-sm" type="button">
+                            <span class="fas fa-pencil"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
                 <div class="col-md-4 col-sm-3">
                     <h6>Cédula:</h6>
                     <span><?php echo $solicitante->ced_sol ?></span>
@@ -23,6 +33,16 @@
                 </div>
             </div>
             <div class="row mb-4">
+                <div class="col-md-6 col-sm-3">
+                    <div class="d-flex">
+                        <h5 class="pe-3">Informacion De Contacto</h5>
+                        <button class="btn btn-primary btn-sm" type="button">
+                            <span class="fas fa-pencil"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
                 <div class="col-md-4 col-sm-3">
                     <h6>Dirección:</h6>
                     <span><?php echo $solicitante->dir_sol ?></span>
@@ -37,6 +57,16 @@
                 </div>
             </div>
             <div class="row mb-4">
+                <div class="col-md-6 col-sm-3">
+                    <div class="d-flex">
+                        <h5 class="pe-3">Informacion De Ocupacion</h5>
+                        <button class="btn btn-primary btn-sm" type="button">
+                            <span class="fas fa-pencil"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
                 <div class="col-md-4 col-sm-3">
                     <h6>Ocupación:</h6>
                     <span><?php echo $solicitante->ocup_sol ?></span>
@@ -45,15 +75,15 @@
                     <h6>Institución:</h6>
                     <span><?php echo $solicitante->nom_inst ?></span>
                 </div>
+                <div class="col-md-4 col-sm-3">
+                    <h6>Teléfono de la institución:</h6>
+                    <span><?php echo $solicitante->tel_inst ?></span>
+                </div>
             </div>
             <div class="row mb-4">
                 <div class="col-md-4 col-sm-3">
-                    <h6>Teléfono de la institución:</h6>
-                    <span><?php echo $solicitante->dir_inst ?></span>
-                </div>
-                <div class="col-md-4 col-sm-3">
                     <h6>Dirección de la institución:</h6>
-                    <span><?php echo $solicitante->tel_inst ?></span>
+                    <span><?php echo $solicitante->dir_inst ?></span>
                 </div>
             </div>
         </div>
