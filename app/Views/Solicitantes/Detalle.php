@@ -4,7 +4,18 @@
 
 <div class="card shadow mt-4">
     <div class="card-header bg-white">
-        <h5 class="m-0 fw-bold container py-1"><?php echo "{$solicitante->nom_sol} {$solicitante->ape_sol}" ?></h5>
+        <div class="d-flex">
+            <h5 class="m-0 fw-bold container py-1"><?php echo "{$solicitante->nom_sol} {$solicitante->ape_sol}" ?></h5>
+            <div class="dropdown">
+                <button class="btn btn-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="fas fa-download"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Carnet</a></li>
+                    <li><a class="dropdown-item" href="#">Historial de prestamos</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="card-body">
         <div class="container mt-2">
