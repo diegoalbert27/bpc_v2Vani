@@ -23,9 +23,9 @@
                 <div class="col-md-6 col-sm-3">
                     <div class="d-flex">
                         <h5 class="pe-3">Informacion Personal</h5>
-                        <button class="btn btn-primary btn-sm" type="button">
+                        <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('solicitante', 'formpersonal', ['id' => $solicitante->id_sol]) ?>">
                             <span class="fas fa-pencil"></span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -47,9 +47,9 @@
                 <div class="col-md-6 col-sm-3">
                     <div class="d-flex">
                         <h5 class="pe-3">Informacion De Contacto</h5>
-                        <button class="btn btn-primary btn-sm" type="button">
+                        <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('solicitante', 'formcontact', ['id' => $solicitante->id_sol]) ?>">
                             <span class="fas fa-pencil"></span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -71,9 +71,9 @@
                 <div class="col-md-6 col-sm-3">
                     <div class="d-flex">
                         <h5 class="pe-3">Informacion De Ocupacion</h5>
-                        <button class="btn btn-primary btn-sm" type="button">
+                        <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('solicitante', 'formocupacion', ['id' => $solicitante->id_sol]) ?>">
                             <span class="fas fa-pencil"></span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

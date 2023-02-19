@@ -55,13 +55,6 @@ class SolicitanteController extends baseController
         ], true);
     }
 
-    public function Get()
-    {
-        echo json_encode([
-            'body' => 'hello world'
-        ]);
-    }
-
     public function Add()
     {
         $response = new Response(false);
@@ -166,5 +159,104 @@ class SolicitanteController extends baseController
         $response->data = $solicitante_saved;
 
         return $this->json($response);
+    }
+
+    public function FormPersonal()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $id_solicitante = $_GET['id'];
+
+        $solicitante_model = new Solicitante();
+        $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
+
+        $sexos = [
+            'Masculino',
+            'Femenino',
+            'Otros'
+        ];
+
+        foreach ($sexos as $index => $sexo) {
+            if ($sexo === $solicitante->sex_sol) {
+                unset($sexos[$index]);
+                array_unshift($sexos, $sexo);
+            }
+        }
+
+        $this->view('Solicitantes/FormPersonal', [
+            'title' => 'Editar Informacion Personal',
+            'solicitante' => $solicitante,
+            'sexos' => $sexos
+        ], true);
+    }
+
+    public function EditPersonal()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_POST['id']) ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $id_solicitante = $_POST['id'];
+
+        if (
+            !isset($_POST['nombres']) &&
+            !isset($_POST['apellidos']) &&
+            !isset($_POST['cedula']) &&
+            !isset($_POST['edad']) &&
+            !isset($_POST['sexo'])
+        ) {
+            $this->redirect('solicitante', 'formpersonal', 'danger', 'Los campos enviados son requeridos', [ 'id' => $id_solicitante ]);
+            return;
+        }
+
+        if (
+            empty($_POST['nombres']) &&
+            empty($_POST['apellidos']) &&
+            empty($_POST['cedula']) &&
+            empty($_POST['edad']) &&
+            empty($_POST['sexo'])
+        ) {
+            $this->redirect('solicitante', 'formpersonal', 'danger', 'Los campos enviados son requeridos', [ 'id' => $id_solicitante ]);
+            return;
+        }
+
+        $solicitante_model = new Solicitante();
+        $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
+
+        if ( !$solicitante ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $nombres = $_POST['names'];
+        $apellidos = $_POST['lastNames'];
+        $cedula = $_POST['cedula'];
+        $edad = $_POST['edad'];
+        $sexo = $_POST['sexo'];
+
+        if ( $solicitante_model->getByOne('ced_sol', $cedula) && (int) $cedula !== $solicitante->ced_sol ) {
+            $this->redirect('solicitante', 'formpersonal', 'danger', "Cedula '{$cedula}' no se encuentra disponible", [ 'id' => $id_solicitante ]);
+            return;
+        }
+
+        $new_personal_data = [
+            'nom_sol' => $nombres,
+            'ape_sol' => $apellidos,
+            'ced_sol' => $cedula,
+            'edad_sol' => $edad,
+            'sex_sol' => $sexo,
+        ];
+
+        $solicitante_model->updatePersonalData($new_personal_data, $id_solicitante);
+
+        $this->redirect('solicitante', 'Detail', 'success', "El usuarios ha sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
     }
 }

@@ -88,6 +88,22 @@ class Solicitante extends baseModel
         $stmt->bindParam(':dir_inst', $this->dir_inst);
         $stmt->bindParam(':tel_inst', $this->tel_inst);
         $stmt->bindParam(':estado_s', $this->estado_s);
+        $stmt->bindParam(':id', $this->id_sol);
+
+        return $stmt->execute();
+    }
+
+    public function updatePersonalData(array $new_personal_data, string $id_solicitante)
+    {
+        $query = "UPDATE {$this->table} SET nom_sol = :nom_sol, ape_sol = :ape_sol, ced_sol = :ced_sol, edad_sol = :edad_sol, sex_sol = :sex_sol WHERE id_sol = :id";
+
+        $stmt = $this->database->prepare($query);
+        $stmt->bindParam(':nom_sol', $new_personal_data['nom_sol']);
+        $stmt->bindParam(':ape_sol', $new_personal_data['ape_sol']);
+        $stmt->bindParam(':ced_sol', $new_personal_data['ced_sol']);
+        $stmt->bindParam(':edad_sol', $new_personal_data['edad_sol']);
+        $stmt->bindParam(':sex_sol', $new_personal_data['sex_sol']);
+        $stmt->bindParam(':id', $id_solicitante);
 
         return $stmt->execute();
     }
