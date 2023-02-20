@@ -127,7 +127,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12 mb-3">
                             <label class="form-label" for="nameOcupacion">Nombre del lugar de estudio o trabajo:</label>
-                            <input class="form-control" type="text" id="nameOcupacion" name="nameOcupacion"">
+                            <input class="form-control" type="text" id="nameOcupacion" name="nameOcupacion">
                             <div class="text-danger pt-1 d-none" id="valid-nameOcupacion">
                                 El nombre de la ocupación es requerido
                             </div>

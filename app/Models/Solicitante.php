@@ -107,4 +107,32 @@ class Solicitante extends baseModel
 
         return $stmt->execute();
     }
+
+    public function updatePersonalContactData(array $new_personal_contact_data, string $id_solicitante)
+    {
+        $query = "UPDATE {$this->table} SET tlf_sol = :tlf_sol, corr_sol = :corr_sol, dir_sol = :dir_sol WHERE id_sol = :id";
+
+        $stmt = $this->database->prepare($query);
+        $stmt->bindParam(':corr_sol', $new_personal_contact_data['corr_sol']);
+        $stmt->bindParam(':tlf_sol', $new_personal_contact_data['tlf_sol']);
+        $stmt->bindParam(':dir_sol', $new_personal_contact_data['dir_sol']);
+        $stmt->bindParam(':id', $id_solicitante);
+
+        return $stmt->execute();
+    }
+
+    public function updatePersonalOcupacionData(array $new_personal_ocupacion_data, string $id_solicitante)
+    {
+        $query = "UPDATE {$this->table} SET ocup_sol = :ocup_sol, nom_inst = :nom_inst, dir_inst = :dir_inst, tel_inst = :tel_inst WHERE id_sol = :id";
+
+        $stmt = $this->database->prepare($query);
+
+        $stmt->bindParam(':ocup_sol', $new_personal_ocupacion_data['ocup_sol']);
+        $stmt->bindParam(':nom_inst', $new_personal_ocupacion_data['nom_inst']);
+        $stmt->bindParam(':dir_inst', $new_personal_ocupacion_data['dir_inst']);
+        $stmt->bindParam(':tel_inst', $new_personal_ocupacion_data['tel_inst']);
+        $stmt->bindParam(':id', $id_solicitante);
+
+        return $stmt->execute();
+    }
 }

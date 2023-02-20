@@ -257,6 +257,178 @@ class SolicitanteController extends baseController
 
         $solicitante_model->updatePersonalData($new_personal_data, $id_solicitante);
 
-        $this->redirect('solicitante', 'Detail', 'success', "El usuarios ha sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
+        $this->redirect('solicitante', 'Detail', 'success', "Los datos personales del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
+    }
+
+    public function FormContact()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $id_solicitante = $_GET['id'];
+
+        $solicitante_model = new Solicitante();
+        $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
+
+        $this->view('Solicitantes/FormPersonalContact', [
+            'title' => 'Editar Informacion de Contacto',
+            'solicitante' => $solicitante
+        ], true);
+    }
+
+    public function EditPersonalContact()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_POST['id']) ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $id_solicitante = $_POST['id'];
+
+        if (
+            !isset($_POST['phone']) &&
+            !isset($_POST['email']) &&
+            !isset($_POST['address'])
+        ) {
+            $this->redirect('solicitante', 'formcontact', 'danger', 'Los campos enviados son requeridos', [ 'id' => $id_solicitante ]);
+            return;
+        }
+
+        if (
+            empty($_POST['phone']) &&
+            empty($_POST['email']) &&
+            empty($_POST['address'])
+        ) {
+            $this->redirect('solicitante', 'formcontact', 'danger', 'Los campos enviados son requeridos', [ 'id' => $id_solicitante ]);
+            return;
+        }
+
+        $solicitante_model = new Solicitante();
+        $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
+
+        if ( !$solicitante ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $address = $_POST['address'];
+
+        if ( $solicitante_model->getByOne('tlf_sol', $phone) && $phone !== $solicitante->tlf_sol ) {
+            $this->redirect('solicitante', 'formcontact', 'danger', "El numero de telefono '{$phone}' no se encuentra disponible", [ 'id' => $id_solicitante ]);
+            return;
+        }
+
+        if ( $solicitante_model->getByOne('corr_sol', $email) && $email !== $solicitante->corr_sol ) {
+            $this->redirect('solicitante', 'formcontact', 'danger', "El correo electronico '{$email}' no se encuentra disponible", [ 'id' => $id_solicitante ]);
+            return;
+        }
+
+        $new_personal_contact_data = [
+            'tlf_sol' => $phone,
+            'corr_sol' => $email,
+            'dir_sol' => $address,
+        ];
+
+        $solicitante_model->updatePersonalContactData($new_personal_contact_data, $id_solicitante);
+
+        $this->redirect('solicitante', 'Detail', 'success', "Los datos de contacto del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
+    }
+
+    public function FormOcupacion()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $id_solicitante = $_GET['id'];
+
+        $solicitante_model = new Solicitante();
+        $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
+
+        $ocupaciones = [
+            'Ninguno',
+            'Trabajador',
+            'Estudiante'
+        ];
+
+        foreach ($ocupaciones as $index => $ocupacion) {
+            if ($ocupacion === $solicitante->ocup_sol) {
+                unset($ocupaciones[$index]);
+                array_unshift($ocupaciones, $ocupacion);
+            }
+        }
+
+        $this->view('Solicitantes/FormOcupacion', [
+            'title' => 'Editar Informacion de Ocupacion',
+            'solicitante' => $solicitante,
+            'ocupaciones' => $ocupaciones
+        ], true);
+    }
+
+    public function EditPersonalOcupacion()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_POST['id']) ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $id_solicitante = $_POST['id'];
+
+        if (
+            !isset($_POST['ocupacion']) &&
+            !isset($_POST['nameOcupacion']) &&
+            !isset($_POST['phoneOcupacion']) &&
+            !isset($_POST['addressOcupacion'])
+        ) {
+            $this->redirect('solicitante', 'formocupacion', 'danger', 'Los campos enviados son requeridos', [ 'id' => $id_solicitante ]);
+            return;
+        }
+
+        if (
+            empty($_POST['ocupacion']) &&
+            empty($_POST['nameOcupacion']) &&
+            empty($_POST['phoneOcupacion']) &&
+            empty($_POST['addressOcupacion'])
+        ) {
+            $this->redirect('solicitante', 'formocupacion', 'danger', 'Los campos enviados son requeridos', [ 'id' => $id_solicitante ]);
+            return;
+        }
+
+        $solicitante_model = new Solicitante();
+        $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
+
+        if ( !$solicitante ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $ocupacion = $_POST['ocupacion'];
+        $name_ocupacion = $_POST['nameOcupacion'];
+        $phone_ocupacion = $_POST['phoneOcupacion'];
+        $address_ocupacion = $_POST['addressOcupacion'];
+
+        $new_personal_ocupacion_data = [
+            'ocup_sol' => $ocupacion,
+            'nom_inst' => $name_ocupacion,
+            'tel_inst' => $phone_ocupacion,
+            'dir_inst' => $address_ocupacion,
+        ];
+
+        $solicitante_model->updatePersonalOcupacionData($new_personal_ocupacion_data, $id_solicitante);
+
+        $this->redirect('solicitante', 'Detail', 'success', "Los datos de ocupacion del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
     }
 }
