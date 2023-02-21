@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Utils\Authentication\Authentication;
+use App\Utils\Pdf\Pdf;
 use ReflectionClass;
 
 class FrontController
@@ -65,8 +66,9 @@ class FrontController
 
     private static function getServices() {
         $authentication = new Authentication();
+        $pdf = new Pdf();
 
-        return [$authentication];
+        return [$authentication, $pdf];
     }
 
     private static function getParams($reflection_parameter, $services)
@@ -76,8 +78,13 @@ class FrontController
         foreach ($services as $service) {
             $reflection_class = new ReflectionClass($service);
 
-            foreach ($reflection_parameter as $parameter) {
-                $interfaces = $reflection_class->getInterfaceNames();
+            $interfaces = $reflection_class->getInterfaceNames();
+
+            $parameter = array_filter($reflection_parameter, fn($parameter) => $parameter->getType()->getName() === $interfaces[0]);
+
+            if (count($parameter) > 0) {
+                $parameter = array_shift($parameter);
+
                 $index_of = array_search($parameter->getType()->getName(), $interfaces);
 
                 if (!$index_of) {

@@ -4,13 +4,17 @@ use App\Core\baseController;
 use App\Models\Api\Response;
 use App\Models\Solicitante;
 use App\Utils\Authentication\InterfaceAuthentication;
+use App\Utils\Pdf\InterfacePdf;
 
 class SolicitanteController extends baseController
 {
     protected $authentication;
-    public function __construct(InterfaceAuthentication $authentication)
+    protected $pdf;
+
+    public function __construct(InterfaceAuthentication $authentication, InterfacePdf $pdf)
     {
         $this->authentication = $authentication;
+        $this->pdf = $pdf;
     }
 
     public function Index()
@@ -430,5 +434,22 @@ class SolicitanteController extends baseController
         $solicitante_model->updatePersonalOcupacionData($new_personal_ocupacion_data, $id_solicitante);
 
         $this->redirect('solicitante', 'Detail', 'success', "Los datos de ocupacion del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
+    }
+
+    public function GetCarnet()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $id_solicitante = $_GET['id'];
+
+        $solicitante_model = new Solicitante();
+        $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
+
+        $this->pdf->getCarnet([ 'solicitante' => $solicitante ]);
     }
 }

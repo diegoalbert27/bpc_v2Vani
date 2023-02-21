@@ -11,7 +11,7 @@
                     <span class="fas fa-download"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Carnet</a></li>
+                    <li><a class="dropdown-item" target="_blank" href="<?php echo $helpers->generateUrl('solicitante', 'getCarnet', [ 'id' => $solicitante->id_sol ]) ?>">Carnet</a></li>
                     <li><a class="dropdown-item" href="#">Historial de prestamos</a></li>
                 </ul>
             </div>

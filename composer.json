@@ -11,5 +11,7 @@
             "email": "hinagasrodriguez@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "fpdf/fpdf": "1.85"
+    }
 }
