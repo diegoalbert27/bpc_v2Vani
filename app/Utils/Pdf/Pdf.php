@@ -99,4 +99,77 @@ class Pdf extends Fpdf implements InterfacePdf
 
         $this->Render();
     }
+
+    public function getHistorialPrestamo(array $data)
+    {
+        $this->AddPage();
+        $this->Cell(30, 10, 'PRESTAMO CIRCULANTE', 0, 0);
+        $this->Cell(50);
+
+        $this->Cell(30, 10, 'No. CARNET', 0, 0);
+        $this->Cell(10);
+
+        $this->Cell(10, 10, 'FECHA', 0, 0);
+        $this->Ln(6);
+        $this->Cell(30, 10, 'HISTORIAL', 0, 0);
+        $this->Cell(50);
+        $this->Cell(30, 10, $data['solicitante']->id_sol, 0, 0);
+        $this->Cell(10);
+        $this->Cell(10, 10, date('d/m/Y'), 0, 0, 'L');
+        $this->Ln(15);
+
+        $this->SetFont('Arial', 'B', 12);
+        $this->Cell(80);
+        $this->Cell(30, 10, 'DATOS PERSONALES DEL SOLICITANTE', 0, 0, 'C');
+        $this->Ln(15);
+
+        $this->SetFont('Arial', '', 10);
+        $this->Cell(10, 10, utf8_decode('APELLIDOS Y NOMBRE: ' . $data['solicitante']->ape_sol . ' ' . $data['solicitante']->nom_sol . '     CEDULA DE IDENTIDAD: ' . $data['solicitante']->ced_sol . '      EDAD:' . $data['solicitante']->edad_sol), 10, 0);
+        $this->Ln(7);
+
+        $this->Cell(30, 10, utf8_decode('SEXO: ' . $data['solicitante']->sex_sol . '       DIRECCION DE HABITACION: ' . $data['solicitante']->dir_sol), 0, 0);
+        $this->Ln(7);
+
+        $this->Cell(30, 10, utf8_decode('TELEFONO:' . $data['solicitante']->tlf_sol . '       CORREO ELECTRONICO: ' . $data['solicitante']->corr_sol), 0, 0);
+        $this->Ln(12);
+
+        $this->Cell(30, 10, utf8_decode('OCUPACION: ' . $data['solicitante']->ocup_sol . '       INSTITUCION O EMPRESA: ' . $data['solicitante']->nom_inst), 0, 0);
+        $this->Ln(7);
+
+        $this->Cell(30, 10, utf8_decode('TELEFONO: ' . $data['solicitante']->tel_inst . '       DIRECCION: ' . $data['solicitante']->dir_inst), 0, 0);
+        $this->Ln(12);
+
+        $this->SetFont('Arial', 'B', 10);
+        $this->Cell(30);
+        $this->Cell(30, 10, utf8_decode('FIRMA SOLICITANTE'), 0, 0);
+        $this->Cell(40);
+        $this->Cell(30, 10, utf8_decode('FUNCIONARIO'), 0, 0);
+        $this->Ln(5);
+
+        $this->Cell(100);
+        $this->SetFont('Arial', '', 10);
+        $this->Cell(30, 10, utf8_decode($data['user']->user), 0, 0);
+        $this->Ln(30);
+
+        $this->SetFillColor(232, 232, 232);
+        $this->SetFont('Arial', 'B', 12);
+
+        $this->Cell(15, 6, 'COTA', 1, 0, 'C', 1);
+        $this->Cell(60, 6, 'TITULO', 1, 0, 'C', 1);
+        $this->Cell(50, 6, 'AUTOR', 1, 0, 'C', 1);
+        $this->Cell(20, 6, 'F.E.', 1, 0, 'C', 1);
+        $this->Cell(20, 6, 'F.D.', 1, 1, 'C', 1);
+
+        $this->SetFont('Arial', '', 10);
+
+        foreach($data['historial'] as $prestamo) {
+            $this->Cell(15, 6, $prestamo->id_libro2->cota, 1, 0, 'C');
+            $this->Cell(60, 6, utf8_decode($prestamo->id_libro2->titulo), 1, 0, 'C');
+            $this->Cell(50, 6, utf8_decode($prestamo->id_libro2->autor), 1, 0, 'C');
+            $this->Cell(20, 6, $prestamo->fecha_entrega, 1, 0, 'C');
+            $this->Cell(20, 6, $prestamo->fecha_devolucion, 1, 1, 'C');
+        }
+
+        $this->Render();
+    }
 }

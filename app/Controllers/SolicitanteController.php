@@ -2,6 +2,8 @@
 
 use App\Core\baseController;
 use App\Models\Api\Response;
+use App\Models\Libro;
+use App\Models\Prestamo;
 use App\Models\Solicitante;
 use App\Utils\Authentication\InterfaceAuthentication;
 use App\Utils\Pdf\InterfacePdf;
@@ -451,5 +453,35 @@ class SolicitanteController extends baseController
         $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
 
         $this->pdf->getCarnet([ 'solicitante' => $solicitante ]);
+    }
+
+    public function getHistorialPrestamo()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('solicitante', 'index', 'danger', 'El solicitante ingresado no fue encontrado');
+            return;
+        }
+
+        $id_solicitante = $_GET['id'];
+
+        $solicitante_model = new Solicitante();
+        $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
+
+        $user = $this->authentication->getSession();
+
+        $prestamo_model = new Prestamo();
+        $prestamos_by_solicitante = $prestamo_model->getBy('numero_carnet2', $solicitante->id_sol);
+
+        $libro_model = new Libro();
+
+        foreach ($prestamos_by_solicitante as $prestamo) {
+            if ($libro = $libro_model->getByOne('id_libro', $prestamo->id_libro2)) {
+                $prestamo->id_libro2 = $libro;
+            }
+        }
+
+        $this->pdf->getHistorialPrestamo([ 'solicitante' => $solicitante, 'user' => $user, 'historial' => $prestamos_by_solicitante ]);
     }
 }
