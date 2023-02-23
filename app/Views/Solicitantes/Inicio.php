@@ -24,7 +24,7 @@
                             <td><?php echo $helpers->isEnabled($solicitante->estado_s) ?></td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-primary" href="<?php echo $helpers->generateUrl('solicitante', 'detail', [ 'id' => $solicitante->id_sol ]) ?>" type="button">
+                                    <a class="btn btn-primary" href="<?php echo $helpers->generateUrl('solicitante', 'detail', [ 'id' => $solicitante->id_sol ]) ?>">
                                         <span class="fas fa-eye"></span>
                                     </a>
                                 </div>
