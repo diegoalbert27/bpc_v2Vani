@@ -97,6 +97,9 @@
                     <span><?php echo $solicitante->dir_inst ?></span>
                 </div>
             </div>
+            <div class="text-end">
+                <a class="btn btn-link" href="<?php echo $helpers->generateUrl('solicitante', 'index') ?>">Volver</a>
+            </div>
         </div>
     </div>
 </div>

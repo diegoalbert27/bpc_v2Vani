@@ -34,6 +34,7 @@
             <input type="hidden" name="id" value="<?php echo $solicitante->id_sol ?>">
 
             <div class="p-2 text-end">
+                <a class="btn btn-link" href="<?php echo $helpers->generateUrl('solicitante', 'detail', [ 'id' => $solicitante->id_sol ]) ?>">Volver</a>
                 <button class="btn btn-primary" type="submit">Editar</button>
             </div>
         </form>
