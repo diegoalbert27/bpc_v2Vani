@@ -42,7 +42,7 @@
                             <a href="<?php echo $helpers->generateUrl('solicitante', 'register') ?>">Solicitante</a>
                         </li>
                         <li>
-                            <a href="#">Home 2</a>
+                            <a href="<?php echo $helpers->generateUrl('libro', 'register') ?>">Libros</a>
                         </li>
                         <li>
                             <a href="#">Home 3</a>
@@ -59,7 +59,7 @@
                             <a href="<?php echo $helpers->generateUrl('solicitante', 'index') ?>">Solicitantes</a>
                         </li>
                         <li>
-                            <a href="#">Home 2</a>
+                            <a href="<?php echo $helpers->generateUrl('libro', 'index') ?>">Libros</a>
                         </li>
                         <li>
                             <a href="#">Home 3</a>
