@@ -44,4 +44,17 @@ class LibroController extends baseController
             'libros' => $libros
         ], true);
     }
+
+    public function Register()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        $category_model = new Category();
+        $categories = $category_model->getAll();
+
+        $this->view('Libros/Register', [
+            'title' => 'Registrar',
+            'categories' => $categories
+        ], true);
+    }
 }
