@@ -57,4 +57,9 @@ class LibroController extends baseController
             'categories' => $categories
         ], true);
     }
+
+    public function Add()
+    {
+        echo json_encode($_POST);
+    }
 }
