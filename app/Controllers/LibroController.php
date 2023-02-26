@@ -60,6 +60,58 @@ class LibroController extends baseController
 
     public function Add()
     {
-        echo json_encode($_POST);
+        if (
+            !isset($_POST['cota']) &&
+            !isset($_POST['title']) &&
+            !isset($_POST['category']) &&
+            !isset($_POST['autor']) &&
+            !isset($_POST['state']) &&
+            !isset($_POST['sinopsis']) &&
+            !isset($_POST['cantidad_total']) &&
+            !isset($_POST['cantidad_minima'])
+        ) {
+            return $this->redirect('libro', 'register', 'danger', 'Los datos requeridos no fueron enviados');
+        }
+
+        if (
+            empty($_POST['cota']) &&
+            empty($_POST['title']) &&
+            empty($_POST['category']) &&
+            empty($_POST['autor']) &&
+            empty($_POST['state']) &&
+            empty($_POST['sinopsis']) &&
+            empty($_POST['cantidad_total']) &&
+            empty($_POST['cantidad_minima'])
+        ) {
+            return $this->redirect('libro', 'register', 'danger', 'Los datos requeridos no fueron enviados');
+        }
+
+        $cota = $_POST['cota'];
+        $title = $_POST['title'];
+        $category = $_POST['category'];
+        $autor = $_POST['autor'];
+        $state = $_POST['state'];
+        $sinopsis = $_POST['sinopsis'];
+        $cantidad_total = $_POST['cantidad_total'];
+        $cantidad_minima = $_POST['cantidad_minima'];
+
+        $new_libro = [
+            'id_libro' => null,
+            'cota' => $cota,
+            'titulo' => $title,
+            'autor' => $autor,
+            'categoria' => $category,
+            'estado_libro' => $state,
+            'sinopsis' => $sinopsis,
+            'cantidad' => null
+        ];
+
+        $libro_model = new Libro($new_libro);
+
+        if ($libro_model->getByOne('cota', $cota)) {
+            return $this->redirect('libro', 'register', 'danger', "Cota '{$cota}' no se encuentra disponible");
+        }
+
+        echo 'add...';
     }
 }
