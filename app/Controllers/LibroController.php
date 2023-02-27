@@ -92,8 +92,8 @@ class LibroController extends baseController
         $autor = $_POST['autor'];
         $state = $_POST['state'];
         $sinopsis = $_POST['sinopsis'];
-        $cantidad_total = $_POST['cantidad_total'];
-        $cantidad_minima = $_POST['cantidad_minima'];
+        $cantidad_total = (int) $_POST['cantidad_total'];
+        $cantidad_minima = (int) $_POST['cantidad_minima'];
 
         $new_libro = [
             'id_libro' => null,
@@ -106,12 +106,40 @@ class LibroController extends baseController
             'cantidad' => null
         ];
 
-        $libro_model = new Libro($new_libro);
+        $libro_model = new Libro();
 
         if ($libro_model->getByOne('cota', $cota)) {
             return $this->redirect('libro', 'register', 'danger', "Cota '{$cota}' no se encuentra disponible");
         }
 
-        echo 'add...';
+        if ($cantidad_total <= $cantidad_minima) {
+            return $this->redirect('libro', 'register', 'danger', "La cantidad total del libro no debe ser menor o igual que la cantidad minima enviada");
+        }
+
+        $inventario = [
+            'id_inv' => null,
+            'cant_inv' => $cantidad_total,
+            'total_inv' => $cantidad_total,
+            'min_inv' => $cantidad_minima,
+            'resto_inv' => 0
+        ];
+
+        $inventario_model = new Inventario($inventario);
+
+        if (!$inventario_model->save()) {
+            return $this->redirect('libro', 'register', 'danger', "Ocurrio un error al guardar el valor del inventario");
+        }
+
+        $new_libro['cantidad'] = $inventario_model->lastInsertId();
+
+        $libro_model = new Libro($new_libro);
+
+        if (!$libro_model->save()) {
+            return $this->redirect('libro', 'register', 'danger', "Ocurrio un error al guardar el libro");
+        }
+
+        $id_libro = $libro_model->lastInsertId();
+
+        $this->redirect('libro', 'detalle', 'success', 'El libro ha sido registrado satisfactoriamente', [ 'id' => $id_libro ]);
     }
 }

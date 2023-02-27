@@ -25,4 +25,31 @@ class Inventario extends baseModel
 
         parent::__construct($this->table);
     }
+
+    public function save()
+    {
+        $query = "INSERT INTO {$this->table} (cant_inv, total_inv, min_inv, resto_inv) VALUES (:cant_inv, :total_inv, :min_inv, :resto_inv)";
+
+        $stmt = $this->database->prepare($query);
+        $stmt->bindParam(':cant_inv', $this->cant_inv);
+        $stmt->bindParam(':total_inv', $this->total_inv);
+        $stmt->bindParam(':min_inv', $this->min_inv);
+        $stmt->bindParam(':resto_inv', $this->resto_inv);
+
+        return $stmt->execute();
+    }
+
+    public function update()
+    {
+        $query = "UPDATE {$this->table} SET cant_inv = :cant_inv, total_inv = :total_inv, min_inv = :min_inv, resto_inv = :resto_inv WHERE id_inv = :id_inv";
+
+        $stmt = $this->database->prepare($query);
+        $stmt->bindParam(':id_inv', $this->id_inv);
+        $stmt->bindParam(':cant_inv', $this->cant_inv);
+        $stmt->bindParam(':total_inv', $this->total_inv);
+        $stmt->bindParam(':min_inv', $this->min_inv);
+        $stmt->bindParam(':resto_inv', $this->resto_inv);
+
+        return $stmt->execute();
+    }
 }
