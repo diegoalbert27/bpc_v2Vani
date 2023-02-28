@@ -26,7 +26,7 @@
                             <td><?php echo $libro->cantidad->cant_inv ?></td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-primary" href="<?php echo $helpers->generateUrl('libro', 'detail', [ 'id' => $libro->id_libro ]) ?>">
+                                    <a class="btn btn-primary" href="<?php echo $helpers->generateUrl('libro', 'detalle', [ 'id' => $libro->id_libro ]) ?>">
                                         <span class="fas fa-eye"></span>
                                     </a>
                                 </div>

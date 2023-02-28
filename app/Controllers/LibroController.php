@@ -142,4 +142,142 @@ class LibroController extends baseController
 
         $this->redirect('libro', 'detalle', 'success', 'El libro ha sido registrado satisfactoriamente', [ 'id' => $id_libro ]);
     }
+
+    public function Detalle()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('libro', 'index', 'danger', 'El libro ingresado no fue encontrado');
+            return;
+        }
+
+        $id_libro = $_GET['id'];
+
+        $libro_model = new Libro();
+        $libro = $libro_model->getByOne('id_libro', $id_libro);
+
+        $category = new Category();
+        $libro->categoria = $category->getByOne('id', $libro->categoria);
+
+        $inventario_model = new Inventario();
+        $libro->cantidad = $inventario_model->getByOne('id_inv', $libro->cantidad);
+
+        $this->view('Libros/Detalle', [
+            'title' => 'Informacion',
+            'libro' => $libro
+        ], true);
+    }
+
+    public function EditLibro()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('libro', 'index', 'danger', 'El libro ingresado no fue encontrado');
+            return;
+        }
+
+        $id_libro = $_GET['id'];
+
+        $libro_model = new Libro();
+        $libro = $libro_model->getByOne('id_libro', $id_libro);
+
+        $category_model = new Category();
+        $categorias = $category_model->getAll();
+
+        foreach ($categorias as $index => $categoria) {
+            if ($categoria->id === $libro->categoria) {
+                unset($categorias[$index]);
+                array_unshift($categorias, $categoria);
+            }
+        }
+
+        $estado_libro = [
+            'Disponible para su lectura',
+            'Disponible para su lectura y prestamo',
+            'No disponible'
+        ];
+
+        foreach ($estado_libro as $index => $estado) {
+            if ($estado === $libro->estado_libro) {
+                unset($estado_libro[$index]);
+                array_unshift($estado_libro, $estado);
+            }
+        }
+
+        $this->view('Libros/EditLibro', [
+            'title' => 'Editar Libro',
+            'libro' => $libro,
+            'categorias' => $categorias,
+            'estado_libro' => $estado_libro
+        ], true);
+    }
+
+    public function Edit()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('libro', 'index', 'danger', 'El libro ingresado no fue encontrado');
+            return;
+        }
+
+        $id_libro = $_GET['id'];
+
+        $libro_model = new Libro();
+        $libro = $libro_model->getByOne('id_libro', $id_libro);
+
+        if (
+            !isset($_POST['cota']) &&
+            !isset($_POST['title']) &&
+            !isset($_POST['category']) &&
+            !isset($_POST['autor']) &&
+            !isset($_POST['state']) &&
+            !isset($_POST['sinopsis'])
+        ) {
+            return $this->redirect('libro', 'register', 'danger', 'Los datos requeridos no fueron enviados');
+        }
+
+        if (
+            empty($_POST['cota']) &&
+            empty($_POST['title']) &&
+            empty($_POST['category']) &&
+            empty($_POST['autor']) &&
+            empty($_POST['state']) &&
+            empty($_POST['sinopsis'])
+        ) {
+            return $this->redirect('libro', 'register', 'danger', 'Los datos requeridos no fueron enviados');
+        }
+
+        $cota = $_POST['cota'];
+        $title = $_POST['title'];
+        $category = $_POST['category'];
+        $autor = $_POST['autor'];
+        $state = $_POST['state'];
+        $sinopsis = $_POST['sinopsis'];
+
+        $edit_libro = [
+            'id_libro' => $id_libro,
+            'cota' => $cota,
+            'titulo' => $title,
+            'autor' => $autor,
+            'categoria' => $category,
+            'estado_libro' => $state,
+            'sinopsis' => $sinopsis,
+            'cantidad' => $libro->cantidad
+        ];
+
+        if ($libro_model->getByOne('cota', $cota) && $libro->cota !== $cota) {
+            return $this->redirect('libro', 'editlibro', 'danger', "Cota '{$cota}' no se encuentra disponible", [ 'id' => $id_libro ]);
+        }
+
+        $libro_model = new Libro($edit_libro);
+
+        if (!$libro_model->update()) {
+            return $this->redirect('libro', 'register', 'danger', "Ocurrio un error al editar el libro");
+        }
+
+        $this->redirect('libro', 'detalle', 'success', 'El libro ha sido actualizado satisfactoriamente', [ 'id' => $id_libro ]);
+    }
 }
