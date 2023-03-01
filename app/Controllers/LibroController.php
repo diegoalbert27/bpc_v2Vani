@@ -236,7 +236,7 @@ class LibroController extends baseController
             !isset($_POST['state']) &&
             !isset($_POST['sinopsis'])
         ) {
-            return $this->redirect('libro', 'register', 'danger', 'Los datos requeridos no fueron enviados');
+            return $this->redirect('libro', 'editlibro', 'danger', 'Los datos requeridos no fueron enviados', [ 'id' => $id_libro ]);
         }
 
         if (
@@ -247,7 +247,7 @@ class LibroController extends baseController
             empty($_POST['state']) &&
             empty($_POST['sinopsis'])
         ) {
-            return $this->redirect('libro', 'register', 'danger', 'Los datos requeridos no fueron enviados');
+            return $this->redirect('libro', 'editlibro', 'danger', 'Los datos requeridos no fueron enviados', [ 'id' => $id_libro ]);
         }
 
         $cota = $_POST['cota'];
@@ -275,9 +275,90 @@ class LibroController extends baseController
         $libro_model = new Libro($edit_libro);
 
         if (!$libro_model->update()) {
-            return $this->redirect('libro', 'register', 'danger', "Ocurrio un error al editar el libro");
+            return $this->redirect('libro', 'editlibro', 'danger', "Ocurrio un error al editar el libro", [ 'id' => $id_libro ]);
         }
 
         $this->redirect('libro', 'detalle', 'success', 'El libro ha sido actualizado satisfactoriamente', [ 'id' => $id_libro ]);
+    }
+
+    public function CantidadForm()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('libro', 'index', 'danger', 'El inventario del libro no fue encontrado');
+            return;
+        }
+
+        $id_inventario = $_GET['id'];
+
+        $inventario_model = new Inventario();
+        $inventario = $inventario_model->getByOne('id_inv', $id_inventario);
+
+        $this->view('Libros/CantidadForm', [
+            'title' => 'Editar Cantidad del Libro',
+            'inventario' => $inventario,
+        ], true);
+    }
+
+    public function EditCantidad()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('libro', 'index', 'danger', 'El inventario del libro no fue encontrado');
+            return;
+        }
+
+        $id_inventario = $_GET['id'];
+
+        $inventario_model = new Inventario();
+        $inventario = $inventario_model->getByOne('id_inv', $id_inventario);
+
+        if (
+            !isset($_POST['cantidad_actual']) &&
+            !isset($_POST['cantidad_minima']) &&
+            !isset($_POST['cantidad_total']) &&
+            !isset($_POST['cantidad_resto'])
+        ) {
+            return $this->redirect('libro', 'cantidadform', 'danger', 'Los datos requeridos no fueron enviados', [ 'id' => $id_inventario ]);
+        }
+
+        if (
+            empty($_POST['cantidad_actual']) &&
+            empty($_POST['cantidad_minima']) &&
+            empty($_POST['cantidad_total']) &&
+            empty($_POST['cantidad_resto'])
+        ) {
+            return $this->redirect('libro', 'cantidadform', 'danger', 'Los datos requeridos no fueron enviados', [ 'id' => $id_inventario ]);
+        }
+
+        $cantidad_actual = $_POST['cantidad_actual'];
+        $cantidad_minima = $_POST['cantidad_minima'];
+        $cantidad_total = $_POST['cantidad_total'];
+        $cantidad_resto = $_POST['cantidad_resto'];
+
+        if ($cantidad_total <= $cantidad_minima) {
+            return $this->redirect('libro', 'cantidadform', 'danger', "La cantidad total del libro no debe ser menor o igual que la cantidad minima enviada", [ 'id' => $id_inventario ]);
+        }
+
+        $edit_inventario = [
+            'id_inv' => $id_inventario,
+            'cant_inv' => $cantidad_actual,
+            'total_inv' => $cantidad_total,
+            'min_inv' => $cantidad_minima,
+            'resto_inv' => $cantidad_resto
+        ];
+
+        $inventario_model = new Inventario($edit_inventario);
+
+        if (!$inventario_model->update()) {
+            return $this->redirect('libro', 'cantidadform', 'danger', "Ocurrio un error al editar la cantidad del libro", [ 'id' => $id_inventario ]);
+        }
+
+        $libro_model = new Libro();
+        $libro = $libro_model->getByOne('cantidad', $id_inventario);
+
+        $this->redirect('libro', 'detalle', 'success', 'La cantidad del libro ha sido actualizado satisfactoriamente', [ 'id' => $libro->id_libro ]);
     }
 }
