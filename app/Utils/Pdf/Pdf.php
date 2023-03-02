@@ -172,4 +172,54 @@ class Pdf extends Fpdf implements InterfacePdf
 
         $this->Render();
     }
+
+    public function getReporteLibro(array $data)
+    {
+        $this->AddPage();
+        $this->Cell(5);
+        $this->Cell(30, 10, 'LIBRO', 0, 0);
+        $this->Ln(10);
+        $this->Cell(5);
+        $this->Multicell(160, 6, utf8_decode($data['libro']->titulo), 0, 'L', 0);
+        $this->Ln(6);
+
+        $this->SetFont('Arial', '', 12);
+
+        $this->Cell(5);
+        $this->Multicell(160, 7, utf8_decode($data['libro']->sinopsis), 0, 'L', 0);
+        $this->Ln(5);
+        $this->Cell(5);
+        $this->Cell(10, 10, utf8_decode('AUTOR: ' . $data['libro']->autor . '        CATEGORIA: ' . $data['libro']->categoria->name), 10, 0);
+        $this->Ln(9);
+        $this->Cell(5);
+        $this->Cell(10, 10, utf8_decode('CANTIDAD TOTAL: ' . $data['libro']->cantidad->total_inv . '          CANTIDAD ACTUAL: ' . $data['libro']->cantidad->cant_inv . '         PRESTADOS: ' . $data['libro']->cantidad->resto_inv), 10, 0);
+        $this->Ln(9);
+        $this->Cell(5);
+        $this->Cell(10, 10, utf8_decode('ESTADO: ' . $data['libro']->estado_libro), 10, 0);
+        $this->Ln(9);
+        $this->Ln(15);
+
+        $this->SetFont('Arial', 'B', 14);
+
+        $this->Cell(5);
+        $this->Cell(30, 10, 'PRESTAMOS DEL LIBRO', 0, 0);
+        $this->Ln(15);
+
+        $this->SetFillColor(232, 232, 232);
+        $this->SetFont('Arial', 'B', 12);
+        $this->Cell(5);
+        $this->Cell(120, 6, 'SOLICITANTE', 1, 0, 'C', 1);
+        $this->Cell(30, 6, 'ENTREGA', 1, 0, 'C', 1);
+        $this->Cell(30, 6, 'DEVOLUCION', 1, 1, 'C', 1);
+
+        foreach ($data['prestamos'] as $prestamo) {
+            $this->SetFont('Arial', '', 10);
+            $this->Cell(5);
+            $this->Cell(120, 6, utf8_decode($prestamo->numero_carnet2->nom_sol . ' ' . $prestamo->numero_carnet2->ape_sol), 1, 0, 'C');
+            $this->Cell(30, 6, utf8_decode($prestamo->fecha_entrega), 1, 0, 'C');
+            $this->Cell(30, 6, utf8_decode($prestamo->fecha_devolucion), 1, 1, 'C');
+        }
+
+        $this->Render();
+    }
 }

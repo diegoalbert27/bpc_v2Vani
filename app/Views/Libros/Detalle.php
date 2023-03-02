@@ -11,8 +11,7 @@
                     <span class="fas fa-download"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" target="_blank" href="<?php echo $helpers->generateUrl('libro', 'getCarnet', [ 'id' => $solicitante->id_sol ]) ?>">Carnet</a></li>
-                    <li><a class="dropdown-item" target="_blank" href="<?php echo $helpers->generateUrl('solicitante', 'gethistorialprestamo', [ 'id' => $solicitante->id_sol ]) ?>">Historial de prestamos</a></li>
+                    <li><a class="dropdown-item" target="_blank" href="<?php echo $helpers->generateUrl('libro', 'getReportPdf', [ 'id' => $libro->id_libro ]) ?>">Generar Reporte PDF</a></li>
                 </ul>
             </div>
         </div>

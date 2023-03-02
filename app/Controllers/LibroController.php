@@ -4,15 +4,20 @@ use App\Core\baseController;
 use App\Models\Category;
 use App\Models\Inventario;
 use App\Models\Libro;
+use App\Models\Prestamo;
+use App\Models\Solicitante;
 use App\Utils\Authentication\InterfaceAuthentication;
+use App\Utils\Pdf\InterfacePdf;
 
 class LibroController extends baseController
 {
     protected $authentication;
+    protected $pdf;
 
-    public function __construct(InterfaceAuthentication $authentication)
+    public function __construct(InterfaceAuthentication $authentication, InterfacePdf $pdf)
     {
         $this->authentication = $authentication;
+        $this->pdf = $pdf;
     }
 
     public function Index()
@@ -313,7 +318,6 @@ class LibroController extends baseController
         $id_inventario = $_GET['id'];
 
         $inventario_model = new Inventario();
-        $inventario = $inventario_model->getByOne('id_inv', $id_inventario);
 
         if (
             !isset($_POST['cantidad_actual']) &&
@@ -360,5 +364,37 @@ class LibroController extends baseController
         $libro = $libro_model->getByOne('cantidad', $id_inventario);
 
         $this->redirect('libro', 'detalle', 'success', 'La cantidad del libro ha sido actualizado satisfactoriamente', [ 'id' => $libro->id_libro ]);
+    }
+
+    public function GetReportPdf()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('libro', 'index', 'danger', 'El libro ingresado no fue encontrado');
+            return;
+        }
+
+        $id_libro = $_GET['id'];
+
+        $libro_model = new Libro();
+        $libro = $libro_model->getByOne('id_libro', $id_libro);
+
+        $category_model = new Category();
+        $libro->categoria = $category_model->getByOne('id', $libro->categoria);
+
+        $inventario_model = new Inventario();
+        $libro->cantidad = $inventario_model->getByOne('id_inv', $libro->cantidad);
+
+        $prestamo_model = new Prestamo();
+        $prestamos_by_libro = $prestamo_model->getBy('id_libro2', $libro->id_libro);
+
+        $solicitante_model = new Solicitante();
+
+        foreach($prestamos_by_libro as $prestamo) {
+            $prestamo->numero_carnet2 = $solicitante_model->getByOne('id_sol', $prestamo->numero_carnet2);
+        }
+
+        $this->pdf->getReporteLibro([ 'libro' => $libro, 'prestamos' => $prestamos_by_libro ]);
     }
 }
