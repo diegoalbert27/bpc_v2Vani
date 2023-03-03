@@ -62,7 +62,7 @@
                             <a href="<?php echo $helpers->generateUrl('libro', 'index') ?>">Libros</a>
                         </li>
                         <li>
-                            <a href="#">Home 3</a>
+                            <a href="<?php echo $helpers->generateUrl('prestamos', 'index') ?>">Prestamos</a>
                         </li>
                     </ul>
                 </li>
