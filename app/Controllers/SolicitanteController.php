@@ -32,6 +32,18 @@ class SolicitanteController extends baseController
         ], true);
     }
 
+    public function Get()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        $solicitante_model = new Solicitante();
+        $solicitantes = $solicitante_model->getAll();
+
+        $response = new Response(true, '', $solicitantes);
+
+        return $this->json($response);
+    }
+
     public function Register()
     {
         $this->authentication($this->authentication->isAuth());

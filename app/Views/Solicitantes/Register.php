@@ -48,6 +48,9 @@
                             <div class="text-danger pt-1 d-none" id="valid-cedula">
                                 Debe ingresar valores numéricos.
                             </div>
+                            <div class="text-danger pt-1 d-none" id="valid-repeat-cedula">
+                                La cedula ingresada no se encuentra disponible
+                            </div>
                         </div>
                         <div class="col-md-4 col-sm-12 mb-3">
                             <label class="form-label" for="edad">Edad:</label>

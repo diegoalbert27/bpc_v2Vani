@@ -1,3 +1,5 @@
+import SolicitanteApi from "../../api/solicitante-api.js"
+
 export default class AddDataPersonal {
     constructor() {
         this.btn = document.getElementById('add-data-personal')
@@ -39,9 +41,14 @@ export default class AddDataPersonal {
 
     onBlur() {
         for (const input of this.inputs) {
-            input.onblur = (e) => {
+            input.onblur = async (e) => {
                 if (this.isCorrectInput(input)) {
                     this.inputPassed(input)
+
+                    if (input.name === 'cedula') {
+                        await this.validateCedula(input.value) ? this.cedulaPassed(input) : this.cedulaNotPassed(input)
+                    }
+
                     return
                 }
 
@@ -52,9 +59,13 @@ export default class AddDataPersonal {
 
     onKeyup() {
         for (const input of this.inputs) {
-            input.onkeyup = (e) => {
+            input.onkeyup = async (e) => {
                 if (this.isCorrectInput(input)) {
                     this.inputPassed(input)
+                    if (input.name === 'cedula') {
+                        await this.validateCedula(input.value) ? this.cedulaPassed(input) : this.cedulaNotPassed(input)
+                    }
+
                     return
                 }
 
@@ -98,5 +109,30 @@ export default class AddDataPersonal {
         document
             .getElementById(`valid-${input.id}`)
             .classList.remove('d-none')
+    }
+
+    cedulaPassed(input) {
+        input.classList.remove('formulario__grupo-incorrecto')
+
+        document
+            .getElementById(`valid-repeat-${input.id}`)
+            .classList.add('d-none')
+    }
+
+    cedulaNotPassed(input) {
+        input.classList.add('formulario__grupo-incorrecto')
+
+        document
+            .getElementById(`valid-repeat-${input.id}`)
+            .classList.remove('d-none')
+    }
+
+    async validateCedula(cedula) {
+        const solicitanteApi = new SolicitanteApi()
+        const solicitantes = await solicitanteApi.getAll()
+
+        const solicitente = solicitantes.data.find(solicitante => Number(solicitante.ced_sol) === Number(cedula))
+
+        return solicitente === undefined
     }
 }

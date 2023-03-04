@@ -9,7 +9,7 @@ export default class SolicitanteApi extends ApiServices {
     async getAll() {
         this.setBaseUrl(this.controller, 'get')
         const response = await this.get()
-        return response
+        return response.data
     }
 
     async add(solicitante) {
