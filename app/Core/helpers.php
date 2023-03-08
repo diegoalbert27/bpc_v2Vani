@@ -85,4 +85,13 @@ class helpers {
             </div>
         ";
     }
+
+    public function generateStatePrestamo(int $status) : string
+    {
+        if ($status) {
+            return '<span class="fas fa-check-square"></span> Devuelto';
+        }
+
+        return '<span class="far fa-square"></span> Pendiente';
+    }
 }
