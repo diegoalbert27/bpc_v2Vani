@@ -68,4 +68,29 @@ class PrestamosController extends baseController
             'prestamo' => $prestamo
         ], true);
     }
+
+    public function EditPrestamo()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('prestamo', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            return;
+        }
+
+        $id_prestamo = $_GET['id'];
+
+        $prestamo_model = new Prestamo();
+        $prestamo = $prestamo_model->getByOne('id_p', $id_prestamo);
+
+        if ( !$prestamo ) {
+            $this->redirect('prestamo', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            return;
+        }
+
+        $this->view('Prestamos/EditForm', [
+            'title' => 'Gestion de prestamo',
+            'prestamo' => $prestamo
+        ], true);
+    }
 }

@@ -94,4 +94,19 @@ class helpers {
 
         return '<span class="far fa-square"></span> Pendiente';
     }
+
+    public function getOptionStatePrestamo(int $status) : string
+    {
+        if ($status) {
+            return '
+                <option value="1">Devuelto</option>
+                <option value="0">Pendiente</option>
+            ';
+        }
+
+        return '
+            <option value="0">Pendiente</option>
+            <option value="1">Devuelto</option>
+        ';
+    }
 }
