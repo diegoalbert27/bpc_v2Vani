@@ -11,6 +11,9 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- Datatables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+
     <!-- BOOTSTRAP AND CUSTOM CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
@@ -43,6 +46,20 @@
                         </li>
                         <li>
                             <a href="<?php echo $helpers->generateUrl('libro', 'register') ?>">Libro</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#procesosSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between">
+                        <span>Procesos</span>
+                        <span class="fal fa-plus"></span>
+                    </a>
+                    <ul class="collapse list-unstyled mt-1" id="procesosSubmenu">
+                        <li>
+                            <a href="<?php echo $helpers->generateUrl('prestamos', 'generateprestamo') ?>">Prestamo de libros</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $helpers->generateUrl('prestamos', 'returnprestamo') ?>">Devolucion de libros</a>
                         </li>
                         <li>
                             <a href="#">Home 3</a>
@@ -103,12 +120,13 @@
                     <div class="btn-group dropstart">
                         <button type="button" class="btn border-0" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="fas fa-user"></span>
+                            <span><?php echo $user->username ?></span>
                         </button>
                         <ul class="dropdown-menu border-0 shadow">
                             <li>
-                                <a class="dropdown-item p-3" href="#">
+                                <!-- <a class="dropdown-item p-3" href="#">
                                     <span class="fas fa-bell"></span> <span>Notificaciones</span>
-                                </a>
+                                </a> -->
                             </li>
                             <li>
                                 <a class="dropdown-item p-3" href="<?php echo $helpers->generateUrl('auth', 'logout') ?>">

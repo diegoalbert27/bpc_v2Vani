@@ -36,7 +36,7 @@
             <div class="row p-2 mb-3">
                 <div class="col-md-12 col-sm-12 mb-3">
                     <label class="form-label" for="observaciones">Observaciones:</label>
-                    <input class="form-control" type="text" id="observaciones" name="observaciones">
+                    <input class="form-control" type="text" id="observaciones" name="observaciones" value="<?php echo $prestamo->observaciones_p ?>">
                 </div>
             </div>
 

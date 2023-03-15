@@ -51,9 +51,13 @@
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <h6>Observaciones:</h6>
                     <span><?php echo $prestamo->observaciones_p ?></span>
+                </div>
+                <div class="col-md-6">
+                    <h6>Estado:</h6>
+                    <span><?php echo $helpers->generateStatePrestamo($prestamo->pendiente) ?></span>
                 </div>
             </div>
             <div class="text-end">

@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\helpers;
+use App\Utils\Authentication\Authentication;
 
 class baseController
 {
@@ -12,6 +13,9 @@ class baseController
         $helpers = new helpers();
 
         if ($layout) {
+            $authentication = new Authentication();
+            $user = $authentication->getSession();
+
             include_once '../app/Views/index.php';
             return;
         }
