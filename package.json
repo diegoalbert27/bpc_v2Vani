@@ -1,0 +1,23 @@
+{
+  "name": "bpc_v2vani",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegoalbert27/bpc_v2Vani.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diegoalbert27/bpc_v2Vani/issues"
+  },
+  "homepage": "https://github.com/diegoalbert27/bpc_v2Vani#readme",
+  "description": "",
+  "dependencies": {
+    "bootstrap": "^5.2.2"
+  }
+}

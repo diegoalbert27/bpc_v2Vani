@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Utils\Authentication\Authentication;
+
 class helpers {
     public function generateUrl($controller, $action = '', $data_for_get = [])
     {
@@ -108,5 +110,19 @@ class helpers {
             <option value="0">Pendiente</option>
             <option value="1">Devuelto</option>
         ';
+    }
+
+    public function getSession()
+    {
+        $authentication = new Authentication();
+        return $authentication->getSession();
+    }
+
+    public function getCurrentDate() : string
+    {
+        date_default_timezone_set('America/Caracas');
+        $current_date = date('Y-m-d');
+
+        return $current_date;
     }
 }

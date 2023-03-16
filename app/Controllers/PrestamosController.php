@@ -70,6 +70,19 @@ class PrestamosController extends baseController
         ], true);
     }
 
+    public function GeneratePrestamo()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        $solicitante_model = new Solicitante();
+        $solicitantes = $solicitante_model->getAll();
+
+        $this->view('Prestamos/GeneratePrestamo', [
+            'title' => 'Registra Prestamo',
+            'solicitantes' => $solicitantes
+        ], true);
+    }
+
     public function EditPrestamo()
     {
         $this->authentication($this->authentication->isAuth());
