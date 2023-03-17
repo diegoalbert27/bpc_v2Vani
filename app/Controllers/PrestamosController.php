@@ -1,6 +1,8 @@
 <?php
 
 use App\Core\baseController;
+use App\Models\Api\Response;
+use App\Models\Category;
 use App\Models\Inventario;
 use App\Models\Libro;
 use App\Models\Prestamo;
@@ -77,9 +79,19 @@ class PrestamosController extends baseController
         $solicitante_model = new Solicitante();
         $solicitantes = $solicitante_model->getAll();
 
+        $libro_model = new Libro();
+        $libros = $libro_model->getAll();
+
+        $category_model = new Category();
+
+        foreach ($libros as $libro) {
+            $libro->categoria = $category_model->getByOne('id', $libro->categoria);
+        }
+
         $this->view('Prestamos/GeneratePrestamo', [
             'title' => 'Registra Prestamo',
-            'solicitantes' => $solicitantes
+            'solicitantes' => $solicitantes,
+            'libros' => $libros
         ], true);
     }
 
@@ -106,6 +118,100 @@ class PrestamosController extends baseController
             'title' => 'Gestion de prestamo',
             'prestamo' => $prestamo
         ], true);
+    }
+
+    public function Add()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        $response = new Response(false);
+
+        if (
+            !isset($_POST['solicitante']) ||
+            !isset($_POST['libro']) ||
+            !isset($_POST['fecha_devolucion'])
+        ) {
+            $response->message = 'Los campos son requeridos';
+            return $this->json($response);
+        }
+
+        $solicitante_cedula = $_POST['solicitante'];
+        $libro_cota = $_POST['libro'];
+        $observaciones = $_POST['observaciones'];
+        $fecha_entrega = date('Y-m-d');
+        $fecha_devolucion = $_POST['fecha_devolucion'];
+
+        if ($fecha_entrega < date('Y-m-d', strtotime($fecha_devolucion))) {
+            $response->message = 'La fecha de devolucion no puede ser menor que la fecha de entrega';
+            return $this->json($response);
+        }
+
+        $solicitante_model = new Solicitante();
+        $libro_model = new Libro();
+        $prestamo_model = new Prestamo();
+
+        $solicitante = $solicitante_model->getByOne('ced_sol', $solicitante_cedula);
+
+        if ( !$solicitante ) {
+            $response->message = 'El solicitante enviado no fue encontrado';
+            return $this->json($response);
+        }
+
+        $prestamos = $prestamo_model->getBy('numero_carnet2', $solicitante->id_sol);
+        $prestamos_pendientes = array_filter($prestamos, fn($prestamo) => (int) $prestamo->pendiente === 0);
+
+        if (count($prestamos_pendientes) >= 3) {
+            $response->message = 'El solicitante tiene prestamos pendientes, no puede realizar prestamos';
+            return $this->json($response);
+        }
+
+        $libro = $libro_model->getByOne('cota', $libro_cota);
+
+        if ( !$libro ) {
+            $response->message = 'El Libro enviado no fue encontrado';
+            return $this->json($response);
+        }
+
+        $inventario_model = new Inventario();
+        $inventario = $inventario_model->getByOne('id_inv', $libro->cantidad);
+
+        $cantidad_actual = $inventario->cant_inv - 1;
+        $cantidad_resto = $inventario->total_inv - $cantidad_actual;
+
+        if ($cantidad_actual < $inventario->min_inv) {
+            $response->message = 'La cantidad del libro ha llegado a su limite';
+            return $this->json($response);
+        }
+
+        $new_inventario = [
+            'id_inv' => $inventario->id_inv,
+            'cant_inv' => $cantidad_actual,
+            'total_inv' => $inventario->total_inv,
+            'min_inv' => $inventario->min_inv,
+            'resto_inv' => $cantidad_resto
+        ];
+
+        $inventario_model = new Inventario($new_inventario);
+        $inventario_model->update();
+
+        $new_prestamo = [
+            'id_p' => null,
+            'numero_carnet2' => $solicitante->id_sol,
+            'id_libro2' => $libro->id_libro,
+            'fecha_entrega' => $fecha_entrega,
+            'fecha_devolucion' => $fecha_devolucion,
+            'observaciones_p' => $observaciones,
+            'pendiente' => 0
+        ];
+
+        $prestamo_model = new Prestamo($new_prestamo);
+        $prestamo_model->save();
+
+        $response->status = true;
+        $response->message = '';
+        $response->data = [ 'id_prestamo' => $prestamo_model->lastInsertId() ];
+
+        return $this->json($response);
     }
 
     public function editStatus()
@@ -167,7 +273,7 @@ class PrestamosController extends baseController
 
         if ($prestamo->pendiente !== 1 && $state === 1) {
             $cantidad_actual = (int) $inventario_finded->cant_inv + 1;
-            $cantidad_faltante = (int) $inventario_finded->total_inv + $cantidad_actual;
+            $cantidad_faltante = (int) $inventario_finded->resto_inv - 1;
 
             $edit_inventario = new Inventario([
                 'id_inv' => $inventario_finded->id_inv,

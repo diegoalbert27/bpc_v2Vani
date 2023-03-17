@@ -60,7 +60,7 @@
                                         <input type="hidden" name="user" value="<?php echo $questions[0]->user ?>">
 
                                         <div class="text-center">
-                                            <a class="small" href="<?php echo $helpers->url('auth', 'login'); ?>">Volver</a>
+                                            <a class="small" href="<?php echo $helpers->generateUrl('auth', 'login'); ?>">Volver</a>
                                         </div>
                                     </form>
                                 </div>

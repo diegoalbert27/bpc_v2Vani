@@ -48,7 +48,7 @@
                                         </div>
                                         <hr>
                                         <div class="text-center">
-                                            <a class="small" href="<?php echo $helpers->url('auth', 'login'); ?>">Volver</a>
+                                            <a class="small" href="<?php echo $helpers->generateUrl('auth', 'login'); ?>">Volver</a>
                                         </div>
                                     </form>
                                 </div>

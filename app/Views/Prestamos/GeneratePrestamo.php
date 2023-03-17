@@ -2,21 +2,26 @@
 
 <?php echo $helpers->getMessage($_GET) ?>
 
-<div class="card shadow mt-4">
+<div class="alert alert-danger alert-dismissible fade show mt-3 d-none" id="alert" role="alert">
+    <span></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="card shadow mt-4" id="prestamoForm">
     <div class="card-body">
         <div class="container mt-2">
             <div class="row mb-3">
 
                 <label class="form-label" for="solicitante_cedula">Solicitante:</label>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <input class="form-control" type="text" id="solicitante_cedula" name="solicitante_cedula">
                 </div>
-                <div class="col-md-7">
-                    <input class="form-control" type="text" readonly>
+                <div class="col-md-6">
+                    <input class="form-control d-none" type="text" id="solicitante_name" readonly>
                 </div>
                 <div class="col-md-2">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#solicitantes-modal">
                         <span class="fas fa-user-plus"></span>
                     </button>
                 </div>
@@ -26,14 +31,14 @@
 
                 <label class="form-label" for="libro">Libro:</label>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <input class="form-control" type="text" id="libro" name="libro">
                 </div>
-                <div class="col-md-7">
-                    <input class="form-control" type="text" readonly>
+                <div class="col-md-6">
+                    <input class="form-control d-none" type="text" id="libro_title" readonly>
                 </div>
                 <div class="col-md-2">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#libros-modal">
                         <span class="fas fa-book"></span>
                     </button>
                 </div>
@@ -46,7 +51,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label" for="fecha_devolucion">Fecha de devolución:</label>
-                    <input class="form-control" type="date" id="fecha_devolucion" name="fecha_devolucion" min="<?php echo $helpers->getCurrentDate() ?>" value="<?php echo $helpers->getCurrentDate() ?>">
+                    <input class="form-control" type="date" id="fecha_devolucion" name="fecha_devolucion" min="<?php echo $helpers->getCurrentDate(1) ?>" value="<?php echo $helpers->getCurrentDate(1) ?>">
                 </div>
             </div>
 
@@ -60,20 +65,20 @@
             <div class="row mb-3">
                 <div class="col-md-12 text-end">
                     <a class="btn btn-link" href="<?php echo $helpers->generateUrl('prestamos', 'index') ?>">Volver</a>
-                    <button class="btn btn-success" type="button">Generar Prestamo</button>
+                    <button class="btn btn-primary" type="button" id="generate-prestamo">Generar Prestamo</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal modal-lg fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal Solicitantes -->
+<div class="modal modal-lg fade" id="solicitantes-modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title">Solicitantes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
         <div class="table-responsive">
@@ -94,17 +99,71 @@
                             <td><?php echo $solicitante->ced_sol ?></td>
                             <td><?php echo $solicitante->nom_sol ?></td>
                             <td><?php echo $solicitante->ape_sol ?></td>
-                            <td></td>
+                            <td>
+                                <button class="btn btn-success adds-solicitante" type="button" data-bs-dismiss="modal" data-cedula="<?php echo $solicitante->ced_sol ?>" data-name="<?php echo "{$solicitante->nom_sol} - {$solicitante->ape_sol}" ?>">
+                                    <span class="fas fa-check"></span>
+                                </button>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Libros -->
+<div class="modal modal-lg fade" id="libros-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Libros</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cota</th>
+                        <th>Titulo</th>
+                        <th>Categoria</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($libros as $libro): ?>
+                        <tr>
+                            <td><?php echo $libro->id_libro ?></td>
+                            <td><?php echo $libro->cota ?></td>
+                            <td><?php echo $libro->titulo ?></td>
+                            <td><?php echo $libro->categoria->name ?></td>
+                            <td>
+                                <button class="btn btn-success adds-libro" type="button" data-bs-dismiss="modal" data-cota="<?php echo $libro->cota ?>" data-libro="<?php echo "{$libro->titulo} - {$libro->categoria->name}" ?>">
+                                    <span class="fas fa-check"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="card shadow d-none" id="prestamoChecked">
+    <div class="card-body">
+        <div class="text-center p-4 my-3">
+            <span class="fas fa-check fs-2 text-white bg-success p-4 rounded-circle shadow"></span>
+            <h4 class="card-title fw-normal mt-4">Prestamo Registado Exitosamente</h4>
+            <a class="link link-primary" href="<?php $helpers->generateUrl('prestamos', 'generateprestamo') ?>">Generar nuevo prestamo</a>
+            <span>|</span>
+            <a class="link link-primary" id="prestamoLink" href="">Visualizar nuevo registro</a>
+        </div>
+    </div>
 </div>

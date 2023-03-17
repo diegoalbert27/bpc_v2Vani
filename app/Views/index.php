@@ -63,9 +63,6 @@
                         <li>
                             <a href="<?php echo $helpers->generateUrl('prestamos', 'returnprestamo') ?>">Devolucion de libros</a>
                         </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
                     </ul>
                 </li>
                 <li>
@@ -86,9 +83,6 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
                     <a href="#pageSubmenu" data-bs-toggle="collapse"x` aria-expanded="false" class="dropdown-toggle d-flex justify-content-between">
                         <span>Configuración</span>
                         <span class="fal fa-plus"></span>
@@ -101,12 +95,6 @@
                             <a href="<?php echo $helpers->generateUrl('category') ?>">Categorías</a>
                         </li>
                     </ul>
-                </li>
-                <li>
-                    <a href="#">Portfolio</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
                 </li>
             </ul>
         </nav>

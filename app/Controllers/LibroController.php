@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\baseController;
+use App\Models\Api\Response;
 use App\Models\Category;
 use App\Models\Inventario;
 use App\Models\Libro;
@@ -48,6 +49,28 @@ class LibroController extends baseController
             'title' => 'Libros',
             'libros' => $libros
         ], true);
+    }
+
+    public function Get()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        $libro_model = new Libro();
+        $libros = $libro_model->getAll();
+
+        $category_model = new Category();
+
+        foreach ($libros as $libro) {
+            $category = $category_model->getByOne('id', $libro->categoria);
+
+            if ($category) {
+                $libro->categoria = $category;
+            }
+        }
+
+        $response = new Response(true, '', $libros);
+
+        return $this->json($response);
     }
 
     public function Register()
