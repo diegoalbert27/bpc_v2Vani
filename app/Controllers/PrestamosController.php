@@ -141,10 +141,10 @@ class PrestamosController extends baseController
         $fecha_entrega = date('Y-m-d');
         $fecha_devolucion = $_POST['fecha_devolucion'];
 
-        if ($fecha_entrega < date('Y-m-d', strtotime($fecha_devolucion))) {
-            $response->message = 'La fecha de devolucion no puede ser menor que la fecha de entrega';
-            return $this->json($response);
-        }
+        // if ($fecha_entrega < date('Y-m-d', strtotime($fecha_devolucion))) {
+        //     $response->message = 'La fecha de devolucion no puede ser menor que la fecha de entrega';
+        //     return $this->json($response);
+        // }
 
         $solicitante_model = new Solicitante();
         $libro_model = new Libro();
