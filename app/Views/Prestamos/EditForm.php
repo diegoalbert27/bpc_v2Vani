@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12 mb-3">
                     <label class="form-label" for="libro">Libro:</label>
-                    <input class="form-control" type="text" id="libro" name="libro" value="<?php echo $prestamo->id_libro2 ?>" readonly>
+                    <input class="form-control" type="text" id="libro" name="libro" value="<?php echo $prestamo->id_libro2->cota ?>" readonly>
                 </div>
                 <div class="col-md-3 col-sm-12 mb-3">
                     <label class="form-label" for="state">Estado:</label>

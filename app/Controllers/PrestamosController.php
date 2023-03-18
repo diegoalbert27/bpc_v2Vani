@@ -78,6 +78,7 @@ class PrestamosController extends baseController
 
         $solicitante_model = new Solicitante();
         $solicitantes = $solicitante_model->getAll();
+        $solicitantes = array_filter($solicitantes, fn($solicitante) => (int) $solicitante->estado_s !== 0);
 
         $libro_model = new Libro();
         $libros = $libro_model->getAll();
@@ -114,6 +115,9 @@ class PrestamosController extends baseController
             return;
         }
 
+        $libro_model = new Libro();
+        $prestamo->id_libro2 = $libro_model->getByOne('id_libro', $prestamo->id_libro2);
+
         $this->view('Prestamos/EditForm', [
             'title' => 'Gestion de prestamo',
             'prestamo' => $prestamo
@@ -141,10 +145,10 @@ class PrestamosController extends baseController
         $fecha_entrega = date('Y-m-d');
         $fecha_devolucion = $_POST['fecha_devolucion'];
 
-        // if ($fecha_entrega < date('Y-m-d', strtotime($fecha_devolucion))) {
-        //     $response->message = 'La fecha de devolucion no puede ser menor que la fecha de entrega';
-        //     return $this->json($response);
-        // }
+        if ($fecha_devolucion < $fecha_entrega) {
+            $response->message = 'La fecha de devolucion no puede ser menor que la fecha de entrega';
+            return $this->json($response);
+        }
 
         $solicitante_model = new Solicitante();
         $libro_model = new Libro();
@@ -154,6 +158,11 @@ class PrestamosController extends baseController
 
         if ( !$solicitante ) {
             $response->message = 'El solicitante enviado no fue encontrado';
+            return $this->json($response);
+        }
+
+        if ((int) $solicitante->estado_s === 0) {
+            $response->message = 'El solicitante enviado se encuentra bloqueado';
             return $this->json($response);
         }
 
@@ -293,5 +302,28 @@ class PrestamosController extends baseController
         }
 
         $this->redirect('prestamos', 'details', 'success', 'El prestamo ha sido actualizado satisfactoriamente', [ 'id' => $id_prestamo ]);
+    }
+
+    public function ReturnPrestamo()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        $prestamo_model = new Prestamo();
+        $prestamos = $prestamo_model->getAll();
+
+        $libro_model = new Libro();
+        $solicitante_model = new Solicitante();
+
+        foreach ($prestamos as $prestamo) {
+            $prestamo->numero_carnet2 = $solicitante_model->getByOne('id_sol', $prestamo->numero_carnet2);
+            $prestamo->id_libro2 = $libro_model->getByOne('id_libro', $prestamo->id_libro2);
+        }
+
+        $prestamos = array_filter($prestamos, fn($prestamo) => (int) $prestamo->pendiente !== 1);
+
+        $this->view('Prestamos/ReturnPrestamo', [
+            'title' => 'Prestamos Pendientes',
+            'prestamos' => $prestamos
+        ], true);
     }
 }
