@@ -32,7 +32,7 @@
             </div>
 
             <div class="p-2 mb-3">
-                <button class="btn btn-primary" type="button" id="return-prestamo" data-bs-toggle="modal" data-bs-target="#devolucionModal">
+                <button class="btn btn-primary return-prestamo" type="button" data-bs-toggle="modal" data-bs-target="#devolucionModal" data-prestamo="<?php echo $prestamo->id_p ?>">
                     Prestamo Devuelto
                     <span class="fas fa-check"></span>
                 </button>
@@ -54,7 +54,7 @@
         Seguro que quiere devolver este prestamo?
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" type="button" id="ok-prestamo" data-prestamo="">Si, estoy seguro</button>
+        <a class="btn btn-primary" href="" id="ok-prestamo">Si, estoy seguro</a>
       </div>
     </div>
   </div>

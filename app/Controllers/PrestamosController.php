@@ -326,4 +326,61 @@ class PrestamosController extends baseController
             'prestamos' => $prestamos
         ], true);
     }
+
+    public function changePrestamo()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('prestamos', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            return;
+        }
+
+        $id_prestamo = $_GET['id'];
+
+        $prestamo_model = new Prestamo();
+        $prestamo = $prestamo_model->getByOne('id_p', $id_prestamo);
+
+        if ( !$prestamo ) {
+            $this->redirect('prestamos', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            return;
+        }
+
+        $edit_prestamo = [
+            'id_p' => $prestamo->id_p,
+            'numero_carnet2' => $prestamo->numero_carnet2,
+            'id_libro2' => $prestamo->id_libro2,
+            'fecha_entrega' => $prestamo->fecha_entrega,
+            'fecha_devolucion' => $prestamo->fecha_devolucion,
+            'observaciones_p' => $prestamo->observaciones_p,
+            'pendiente' => 1
+        ];
+
+        $inventario_model = new Inventario();
+        $libro_model = new Libro();
+
+        $libro = $libro_model->getByOne('id_libro', $prestamo->id_libro2);
+        $inventario_finded = $inventario_model->getByOne('id_inv', $libro->cantidad);
+
+        $cantidad_actual = (int) $inventario_finded->cant_inv + 1;
+        $cantidad_faltante = (int) $inventario_finded->resto_inv - 1;
+
+        $edit_inventario = new Inventario([
+            'id_inv' => $inventario_finded->id_inv,
+            'cant_inv' => $cantidad_actual,
+            'total_inv' => $inventario_finded->total_inv,
+            'min_inv' => $inventario_finded->min_inv,
+            'resto_inv' => $cantidad_faltante
+        ]);
+
+        $edit_inventario->update();
+
+        $prestamo_model = new Prestamo($edit_prestamo);
+
+        if (!$prestamo_model->update()) {
+            return $this->redirect('prestamos', 'returnprestamo', 'danger', "Ocurrio un error al editar el prestamo", [ 'id' => $id_prestamo ]);
+        }
+
+        $this->redirect('prestamos', 'returnprestamo', 'success', 'El prestamo ha sido devuelto satisfactoriamente', [ 'id' => $id_prestamo ]);
+    }
 }
