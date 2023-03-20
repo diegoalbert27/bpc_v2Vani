@@ -129,4 +129,47 @@ class helpers {
 
         return $current_date;
     }
+
+    public function getStateEvent(int $state)
+    {
+        $states = [
+            '0' => 'Cancelado',
+            '1' => 'Realizado',
+            '2' => 'Pendiente',
+            '3' => 'Por Confirmar',
+        ];
+
+        return $states[$state];
+    }
+
+    public function getTypeEventOption($type)
+    {
+        if ($type === 'Limitado') {
+            return '<option value="Limitado">Limitado</option>
+            <option value="No limitado">No limitado</option>';
+        }
+
+        return '<option value="No limitado">No limitado</option>
+        <option value="Limitado">Limitado</option>';
+    }
+
+    public function getStateEventOption($state)
+    {
+        $states = [
+            '0' => 'Cancelado',
+            '1' => 'Realizado',
+            '2' => 'Pendiente',
+            '3' => 'Por Confirmar',
+        ];
+
+        $states_options = [];
+
+        foreach($states as $key => $value) {
+            if ((int) $key !== (int) $state) {
+                $states_options[] = "<option value=\"{$key}\">{$value}</option>";
+            }
+        }
+
+        return "<option value=\"{$state}\">{$states[$state]}</option>" . implode('', $states_options);
+    }
 }

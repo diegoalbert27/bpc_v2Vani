@@ -62,6 +62,9 @@
                         <li>
                             <a href="<?php echo $helpers->generateUrl('prestamos', 'returnprestamo') ?>">Devolucion de libros</a>
                         </li>
+                        <li>
+                            <a href="<?php echo $helpers->generateUrl('event', 'register') ?>">Organización de Eventos</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -78,6 +81,9 @@
                         </li>
                         <li>
                             <a href="<?php echo $helpers->generateUrl('prestamos', 'index') ?>">Prestamos</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $helpers->generateUrl('event', 'index') ?>">Eventos</a>
                         </li>
                     </ul>
                 </li>
