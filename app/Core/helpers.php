@@ -172,4 +172,10 @@ class helpers {
 
         return "<option value=\"{$state}\">{$states[$state]}</option>" . implode('', $states_options);
     }
+
+    public function getCustomDate(string $date, string $format_date)
+    {
+        date_default_timezone_set('America/Caracas');
+        return date($format_date, strtotime($date));
+    }
 }

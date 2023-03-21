@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/estilos.css">
     <link rel="stylesheet" href="./assets/css/sidebar.css">
+
+    <link rel="stylesheet" href="./assets/css/fullcalendar-custom.css">
 </head>
 <body class="bg-light">
 
@@ -64,6 +66,9 @@
                         </li>
                         <li>
                             <a href="<?php echo $helpers->generateUrl('event', 'register') ?>">Organización de Eventos</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $helpers->generateUrl('participantes', 'index') ?>">Participar en eventos</a>
                         </li>
                     </ul>
                 </li>
@@ -153,6 +158,8 @@
     <!-- AXIOS -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
     <script src="../node_modules/axios/dist/axios.min.js"></script>
+
+    <script src="../node_modules/fullcalendar/index.global.min.js"></script>
 
     <?php
         if (isset($_GET['controller']) && isset($_GET['action'])) {

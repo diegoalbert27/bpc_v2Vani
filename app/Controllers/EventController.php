@@ -1,7 +1,9 @@
 <?php
 
 use App\Core\baseController;
+use App\Models\Api\Response;
 use App\Models\Event;
+use App\Models\EventParticipant;
 use App\Models\Organizer;
 use App\Models\User;
 use App\Utils\Authentication\InterfaceAuthentication;
@@ -33,6 +35,18 @@ class EventController extends baseController
             'title' => 'Eventos',
             'events' => $events
         ], true);
+    }
+
+    public function getEventsPendients()
+    {
+        $event_model = new Event();
+        $events = $event_model->getAll();
+
+        $events_pendientes = array_filter($events, fn($event) => (int) $event->state_event === 2);
+
+        $response = new Response(true, null, $events_pendientes);
+
+        return $this->json($response);
     }
 
     public function Register()
@@ -71,9 +85,13 @@ class EventController extends baseController
         $user_model = new User();
         $event->organizer_event = $user_model->getByOne('id', $event->organizer_event);
 
+        $event_participant_model = new EventParticipant();
+        $participants = $event_participant_model->getBy('id_event', $id_event);
+
         $this->view('Events/Detalle', [
             'title' => 'Informacion',
-            'event' => $event
+            'event' => $event,
+            'participants' => $participants
         ], true);
     }
 

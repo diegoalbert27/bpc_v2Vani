@@ -35,13 +35,21 @@
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <h6>Estado:</h6>
                     <span><?php echo $helpers->getStateEvent($event->state_event) ?></span>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-4">
                     <h6>Informacion:</h6>
                     <span><?php echo $event->info_event ?></span>
+                </div>
+                <div class="col-md-4">
+                    <h6>Interesados:</h6>
+                    <span><?php echo count($participants) ?></span>
+
+                    <?php if (count($participants) > 0): ?>
+                        <a class="link link-primary" href="<?php echo $helpers->generateUrl('participantes', 'info', [ 'id' => $event->id_event ]) ?>">Informacion</a>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="text-end">
