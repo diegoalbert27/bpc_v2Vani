@@ -125,6 +125,13 @@ class AuthController extends baseController
             return;
         }
 
+        if (
+            strlen($_POST['email']) > 64
+        ) {
+            $this->redirect('auth', 'signup', 'warning', 'La longitud maxima del email solo puede ser de 64 caracteres');
+            return;
+        }
+
         $name = $_POST['name'];
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -174,11 +181,11 @@ class AuthController extends baseController
             return;
         }
 
-        $user['id'] = $user_model->lastInsertId();
-        $user['role'] = $role;
+        $new_user = $user_model->getByOne('id', $user_model->lastInsertId());
+        $new_user->role = $role;
 
-        $this->authentication->create($user);
-        $this->redirect('dashboard');
+        $this->authentication->create($new_user);
+        $this->redirect('user', 'questionform', '', '', [ 'id' => $new_user->id ]);
     }
 
     public function Signup()
@@ -320,7 +327,7 @@ class AuthController extends baseController
             return;
         }
 
-        if (($question_finded_1->answer !== $answer_1) || ($question_finded_2->answer !== $answer_2)) {
+        if (base64_decode(($question_finded_1->answer) !== $answer_1) || (base64_decode($question_finded_2->answer) !== $answer_2)) {
             $error_message = 'Las respuestas son incorrectas';
 
             session_start();

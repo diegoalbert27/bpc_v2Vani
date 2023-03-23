@@ -66,6 +66,23 @@ class baseModel
         return $stmt->execute();
     }
 
+    public function deleteByParams(array $params)
+    {
+        $condition = [];
+
+        foreach($params as $column => $value) {
+            $condition[] = "{$column} = '{$value}'";
+        }
+
+        $condition = implode(' AND ', $condition);
+
+        $query = "DELETE FROM {$this->table} WHERE {$condition}";
+
+        $stmt = $this->database->prepare($query);
+
+        return $stmt->execute();
+    }
+
     public function lastInsertId()
     {
         return $this->database->lastInsertId();

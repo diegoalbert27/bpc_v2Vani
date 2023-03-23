@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Utils\Audit\Audit;
 use App\Utils\Authentication\Authentication;
 use App\Utils\Pdf\Pdf;
 use ReflectionClass;
@@ -67,8 +68,9 @@ class FrontController
     private static function getServices() {
         $authentication = new Authentication();
         $pdf = new Pdf();
+        $audit = new Audit();
 
-        return [$authentication, $pdf];
+        return [$authentication, $pdf, $audit];
     }
 
     private static function getParams($reflection_parameter, $services)

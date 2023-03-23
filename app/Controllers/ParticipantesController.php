@@ -136,13 +136,16 @@ class ParticipantesController extends baseController
         }
 
         $id_event = $_GET['id'];
-
         $user = $this->authentication->getSession();
 
         $event_participant_model = new EventParticipant();
-        $participant = $event_participant_model->getByOne('id_user', $user->id);
 
-        if ( !$event_participant_model->deleteBy('ID', $participant->ID) ) {
+        $is_removed = $event_participant_model->deleteByParams([
+            'id_event' => $id_event,
+            'id_user' => $user->id
+        ]);
+
+        if ( !$is_removed ) {
             $this->redirect('participantes', 'eventdetail', 'danger', 'Ops! Ocurrio un problema inesperado', [ 'id' => $id_event ]);
         }
 

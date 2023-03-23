@@ -9,7 +9,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label" for="answer_1">Respuesta:</label>
-                <input class="form-control"  type="text" id="answer_1" name="answer_1" value="<?php echo $questions[0]->answer ?>" required>
+                <input class="form-control"  type="text" id="answer_1" name="answer_1" value="<?php echo base64_decode($questions[0]->answer) ?>" required>
             </div>
 
             <input type="hidden" id="c1" name="id_question_1" value="<?php echo $questions[0]->id ?>">
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label" for="answer_2">Respuesta:</label>
-                <input class="form-control"  type="text" id="answer_2" name="answer_2" value="<?php echo $questions[1]->answer ?>" required>
+                <input class="form-control"  type="text" id="answer_2" name="answer_2" value="<?php echo base64_decode($questions[1]->answer) ?>" required>
             </div>
 
             <input type="hidden" id="id_question_2" name="id_question_2" value="<?php echo $questions[1]->id ?>">
@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label" for="answer_3">Respuesta:</label>
-                <input class="form-control"  type="text" id="answer_3" name="answer_3" value="<?php echo $questions[2]->answer ?>" required>
+                <input class="form-control"  type="text" id="answer_3" name="answer_3" value="<?php echo base64_decode($questions[2]->answer) ?>" required>
             </div>
 
             <input type="hidden" id="id_question_3" name="id_question_3" value="<?php echo $questions[2]->id ?>">

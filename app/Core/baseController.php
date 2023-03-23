@@ -12,7 +12,7 @@ class baseController
         $helpers = new helpers();
 
         if ($layout) {
-            $user = $helpers->getSession();
+            $session_user = $helpers->getSession();
 
             include_once '../app/Views/index.php';
             return;

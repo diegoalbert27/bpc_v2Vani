@@ -37,76 +37,13 @@
                 </h4>
             </div>
 
-            <ul class="list-unstyled components px-3">
-                <li>
-                    <a href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between">
-                        <span>Registros</span>
-                        <span class="fal fa-plus"></span>
-                    </a>
-                    <ul class="collapse list-unstyled mt-1" id="homeSubmenu">
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('solicitante', 'register') ?>">Solicitante</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('libro', 'register') ?>">Libro</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#procesosSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between">
-                        <span>Procesos</span>
-                        <span class="fal fa-plus"></span>
-                    </a>
-                    <ul class="collapse list-unstyled mt-1" id="procesosSubmenu">
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('prestamos', 'generateprestamo') ?>">Prestamo de libros</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('prestamos', 'returnprestamo') ?>">Devolucion de libros</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('event', 'register') ?>">Organización de Eventos</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('participantes', 'index') ?>">Participar en eventos</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#consultasSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between">
-                        <span>Consultas</span>
-                        <span class="fal fa-plus"></span>
-                    </a>
-                    <ul class="collapse list-unstyled mt-1" id="consultasSubmenu">
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('solicitante', 'index') ?>">Solicitantes</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('libro', 'index') ?>">Libros</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('prestamos', 'index') ?>">Prestamos</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('event', 'index') ?>">Eventos</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-bs-toggle="collapse"x` aria-expanded="false" class="dropdown-toggle d-flex justify-content-between">
-                        <span>Configuración</span>
-                        <span class="fal fa-plus"></span>
-                    </a>
-                    <ul class="collapse list-unstyled mt-1" id="pageSubmenu">
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('user') ?>">Usuarios</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo $helpers->generateUrl('category') ?>">Categorías</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <?php if ((int) $session_user->role->nivel === 10): ?>
+                <?php include_once '../app/Views/partials/SidebarAdmin.php' ?>
+            <?php endif; ?>
+
+            <?php if ((int) $session_user->role->nivel === 1 || (int) $session_user->role->nivel === 5): ?>
+                <?php include_once '../app/Views/partials/SidebarUsers.php' ?>
+            <?php endif; ?>
         </nav>
 
         <!-- Page Content -->
@@ -117,20 +54,26 @@
                         <span class="fas fa-bars"></span>
                     </button>
 
-                    <div class="btn-group dropstart">
+                    <?php if ((int) $session_user->role->nivel === 1): ?>
+                        <div class="dropdown">
+                            <button type="button" class="btn border-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="fas fa-bell"></span>
+                            </button>
+                            <ul class="dropdown-menu border-0 shadow" id="notificacions">
+                                <h6 class="dropdown-header">Notificaciones</h6>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="btn-group dropstart border">
                         <button type="button" class="btn border-0" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="fas fa-user"></span>
-                            <span><?php echo $user->username ?></span>
+                            <span><?php echo $session_user->username ?></span>
                         </button>
-                        <ul class="dropdown-menu border-0 shadow">
+                        <ul class="dropdown-menu border-0 shadow text-center">
                             <li>
-                                <!-- <a class="dropdown-item p-3" href="#">
-                                    <span class="fas fa-bell"></span> <span>Notificaciones</span>
-                                </a> -->
-                            </li>
-                            <li>
-                                <a class="dropdown-item p-3" href="<?php echo $helpers->generateUrl('auth', 'logout') ?>">
-                                    <span class="fas fa-sign-out-alt"></span> <span>Cerrar sesión</span>
+                                <a class="dropdown-item px-3" href="<?php echo $helpers->generateUrl('auth', 'logout') ?>">
+                                    <span class="fas fa-sign-out-alt"></span> <span class="fw-light text-secondary">Cerrar sesión</span>
                                 </a>
                             </li>
                         </ul>
@@ -160,6 +103,8 @@
     <script src="../node_modules/axios/dist/axios.min.js"></script>
 
     <script src="../node_modules/fullcalendar/index.global.min.js"></script>
+
+    <script src="assets/js/index.js" type="module"></script>
 
     <?php
         if (isset($_GET['controller']) && isset($_GET['action'])) {

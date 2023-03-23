@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <div class="row px-2">
                         <div class="col-md-2 fw-bold">
-                            <h1 class="mb-0"><?php echo $helpers->getCustomDate($event->date_realized_event, 'd') ?></h1>
+                            <h3 class="mb-0"><?php echo $helpers->getCustomDate($event->date_realized_event, 'd') ?></h3>
                         </div>
                         <div class="col-md-3">
                             <p class="mb-0 text-secondary">Fecha:</p>

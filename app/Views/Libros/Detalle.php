@@ -6,14 +6,16 @@
     <div class="card-header bg-white">
         <div class="d-flex">
             <h5 class="m-0 fw-bold container py-1"><?php echo "{$libro->titulo}" ?></h5>
-            <div class="dropdown">
-                <button class="btn btn-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="fas fa-download"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" target="_blank" href="<?php echo $helpers->generateUrl('libro', 'getReportPdf', [ 'id' => $libro->id_libro ]) ?>">Generar Reporte PDF</a></li>
-                </ul>
-            </div>
+            <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
+                <div class="dropdown">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fas fa-download"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" target="_blank" href="<?php echo $helpers->generateUrl('libro', 'getReportPdf', [ 'id' => $libro->id_libro ]) ?>">Generar Reporte PDF</a></li>
+                    </ul>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="card-body">
@@ -22,9 +24,11 @@
                 <div class="col-md-6 col-sm-3">
                     <div class="d-flex">
                         <h5 class="pe-3">Datos del libro</h5>
-                        <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('libro', 'editlibro', ['id' => $libro->id_libro]) ?>">
-                            <span class="fas fa-pencil"></span>
-                        </a>
+                        <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
+                            <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('libro', 'editlibro', ['id' => $libro->id_libro]) ?>">
+                                <span class="fas fa-pencil"></span>
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -52,9 +56,11 @@
                 <div class="col-md-6 col-sm-3">
                     <div class="d-flex">
                         <h5 class="pe-3">Cantidad</h5>
-                        <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('libro', 'cantidadform', ['id' => $libro->cantidad->id_inv ]) ?>">
-                            <span class="fas fa-pencil"></span>
-                        </a>
+                        <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
+                            <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('libro', 'cantidadform', ['id' => $libro->cantidad->id_inv ]) ?>">
+                                <span class="fas fa-pencil"></span>
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

@@ -130,6 +130,18 @@ class helpers {
         return $current_date;
     }
 
+    public function getCurrentDateTime(int $after_days = 0) : string
+    {
+        date_default_timezone_set('America/Caracas');
+        $current_date = date('Y-m-d: H:i:s');
+
+        if ($after_days > 0) {
+            $current_date = date('Y-m-d', strtotime('+1 day', strtotime($current_date)));
+        }
+
+        return $current_date;
+    }
+
     public function getStateEvent(int $state)
     {
         $states = [

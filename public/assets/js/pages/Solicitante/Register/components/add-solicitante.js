@@ -27,7 +27,11 @@ export default class AddSolicitante {
             this.btnBackDataOcupacion.disabled = true
 
             if (this.ocupacion.value !== 'Ninguno') {
-                if (this.validateInputs(this.inputs)) return
+                if (this.validateInputs(this.inputs)) {
+                    this.btn.disabled = false
+                    this.btnBackDataOcupacion.disabled = false
+                    return
+                }
             }
 
             this.inputsPassed(this.inputs)

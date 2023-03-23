@@ -1,22 +1,32 @@
 <?php
 
 use App\Core\baseController;
+use App\Core\helpers;
 use App\Models\Api\Response;
 use App\Models\Libro;
 use App\Models\Prestamo;
 use App\Models\Solicitante;
 use App\Utils\Authentication\InterfaceAuthentication;
+use App\Utils\Audit\InterfaceAudit;
 use App\Utils\Pdf\InterfacePdf;
 
 class SolicitanteController extends baseController
 {
     protected $authentication;
     protected $pdf;
+    protected $audit;
 
-    public function __construct(InterfaceAuthentication $authentication, InterfacePdf $pdf)
+    public $helpers;
+    protected $user;
+
+    public function __construct(InterfaceAuthentication $authentication, InterfacePdf $pdf, InterfaceAudit $audit)
     {
         $this->authentication = $authentication;
         $this->pdf = $pdf;
+        $this->audit = $audit;
+
+        $this->helpers = new helpers();
+        $this->user = $this->helpers->getSession();
     }
 
     public function Index()
@@ -75,6 +85,8 @@ class SolicitanteController extends baseController
 
     public function Add()
     {
+        $this->authentication($this->authentication->isAuth());
+
         $response = new Response(false);
 
         if (
@@ -173,6 +185,8 @@ class SolicitanteController extends baseController
 
         $id_solicitante = $solicitante_model->lastInsertId();
         $solicitante_saved = $solicitante_model->getByOne('id_sol', $id_solicitante);
+
+        $this->audit->create('Solicitante', 'Creacion de nuevo solicitante', $this->user->id, $this->helpers->getCurrentDateTime());
 
         $response->data = $solicitante_saved;
 
@@ -275,6 +289,8 @@ class SolicitanteController extends baseController
 
         $solicitante_model->updatePersonalData($new_personal_data, $id_solicitante);
 
+        $this->audit->create('Solicitante', 'Actualizacion de datos del solicitantes solicitante ' . $cedula, $this->user->id, $this->helpers->getCurrentDateTime());
+
         $this->redirect('solicitante', 'Detail', 'success', "Los datos personales del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
     }
 
@@ -356,6 +372,8 @@ class SolicitanteController extends baseController
         ];
 
         $solicitante_model->updatePersonalContactData($new_personal_contact_data, $id_solicitante);
+
+        $this->audit->create('Solicitante', 'Actualizacion de datos de contacto del solicitante ' . $email, $this->user->id, $this->helpers->getCurrentDateTime());
 
         $this->redirect('solicitante', 'Detail', 'success', "Los datos de contacto del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
     }
@@ -446,6 +464,8 @@ class SolicitanteController extends baseController
         ];
 
         $solicitante_model->updatePersonalOcupacionData($new_personal_ocupacion_data, $id_solicitante);
+
+        $this->audit->create('Solicitante', 'Actualizacion de datos de ocupacion del solicitante', $this->user->id, $this->helpers->getCurrentDateTime());
 
         $this->redirect('solicitante', 'Detail', 'success', "Los datos de ocupacion del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
     }

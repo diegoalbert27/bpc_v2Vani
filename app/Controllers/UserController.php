@@ -9,6 +9,8 @@ use App\Utils\Authentication\InterfaceAuthentication;
 
 class UserController extends baseController
 {
+    protected $authentication;
+
     public function __construct(InterfaceAuthentication $authentication)
     {
         $this->authentication = $authentication;
@@ -259,6 +261,8 @@ class UserController extends baseController
 
     public function QuestionForm()
     {
+        $this->authentication($this->authentication->isAuth());
+
         if (!isset($_GET['id'])) {
             $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
             return;
@@ -282,6 +286,8 @@ class UserController extends baseController
 
     public function CreateQuestion()
     {
+        $this->authentication($this->authentication->isAuth());
+
         if (!isset($_POST['id'])) {
             $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
             return;
@@ -330,7 +336,7 @@ class UserController extends baseController
 
             $question_model = new Question([
                 'id' => null,
-                'answer' => $answer,
+                'answer' => base64_encode($answer),
                 'question' => $question,
                 'user' => $id_user
             ]);
@@ -346,6 +352,8 @@ class UserController extends baseController
 
     public function EditQuestionForm()
     {
+        $this->authentication($this->authentication->isAuth());
+
         if (!isset($_GET['id'])) {
             $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
             return;
@@ -373,6 +381,8 @@ class UserController extends baseController
 
     public function EditQuestion()
     {
+        $this->authentication($this->authentication->isAuth());
+
         if (!isset($_POST['id'])) {
             $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
             return;
