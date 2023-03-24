@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\baseController;
+use App\Models\Organizer;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Question;
@@ -67,9 +68,14 @@ class UserController extends baseController
 
         $user->role = $role;
 
+        $organizer = new Organizer();
+
+        $is_organizer = $organizer->getByOne('id_user', $id_user);
+
         $this->view('Usuarios/Details', [
-            'title' => "Usuario #{$user->id}",
-            'user' => $user
+            'title' => "{$user->user}",
+            'user' => $user,
+            'is_organizer' => $is_organizer
         ], true);
     }
 
@@ -256,7 +262,7 @@ class UserController extends baseController
 
         $user_model->update();
 
-        $this->redirect('user', 'index', 'success', "El usuarios ha sido actualizado exitosamente");
+        $this->redirect('user', 'details', 'success', "El usuarios ha sido actualizado exitosamente", [ 'id' => $id_user ]);
     }
 
     public function QuestionForm()
@@ -445,5 +451,28 @@ class UserController extends baseController
         }
 
         $this->redirect('user', 'index', 'success', "Las preguntas de seguridad han sido actualizadas exitosamente");
+    }
+
+    public function TobeOrganizer()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if (!isset($_GET['id'])) {
+            $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
+            return;
+        }
+
+        $id_user = $_GET['id'];
+
+        $organizer_model = new Organizer([
+            'id_user' => $id_user,
+            'is_actived' => 0
+        ]);
+
+        if ( !$organizer_model->save() ) {
+            $this->redirect('user', 'details', 'danger', 'Ups! Algo salio mal', [ 'id' => $id_user ]);
+        }
+
+        $this->redirect('user', 'details', 'success', "Se registro como organizador exitosamente", [ 'id' => $id_user ]);
     }
 }

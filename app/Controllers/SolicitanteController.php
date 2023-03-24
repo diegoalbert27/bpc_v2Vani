@@ -15,9 +15,7 @@ class SolicitanteController extends baseController
     protected $authentication;
     protected $pdf;
     protected $audit;
-
     public $helpers;
-    protected $user;
 
     public function __construct(InterfaceAuthentication $authentication, InterfacePdf $pdf, InterfaceAudit $audit)
     {
@@ -26,7 +24,6 @@ class SolicitanteController extends baseController
         $this->audit = $audit;
 
         $this->helpers = new helpers();
-        $this->user = $this->helpers->getSession();
     }
 
     public function Index()
@@ -186,7 +183,9 @@ class SolicitanteController extends baseController
         $id_solicitante = $solicitante_model->lastInsertId();
         $solicitante_saved = $solicitante_model->getByOne('id_sol', $id_solicitante);
 
-        $this->audit->create('Solicitante', 'Creacion de nuevo solicitante', $this->user->id, $this->helpers->getCurrentDateTime());
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Solicitante', 'Creacion de nuevo solicitante ' . $id_solicitante, $user->id, $this->helpers->getCurrentDateTime());
 
         $response->data = $solicitante_saved;
 
@@ -289,7 +288,9 @@ class SolicitanteController extends baseController
 
         $solicitante_model->updatePersonalData($new_personal_data, $id_solicitante);
 
-        $this->audit->create('Solicitante', 'Actualizacion de datos del solicitantes solicitante ' . $cedula, $this->user->id, $this->helpers->getCurrentDateTime());
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Solicitante', 'Actualizacion de datos del solicitantes solicitante ' . $cedula, $user->id, $this->helpers->getCurrentDateTime());
 
         $this->redirect('solicitante', 'Detail', 'success', "Los datos personales del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
     }
@@ -373,7 +374,9 @@ class SolicitanteController extends baseController
 
         $solicitante_model->updatePersonalContactData($new_personal_contact_data, $id_solicitante);
 
-        $this->audit->create('Solicitante', 'Actualizacion de datos de contacto del solicitante ' . $email, $this->user->id, $this->helpers->getCurrentDateTime());
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Solicitante', 'Actualizacion de datos de contacto del solicitante ' . $email, $user->id, $this->helpers->getCurrentDateTime());
 
         $this->redirect('solicitante', 'Detail', 'success', "Los datos de contacto del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
     }
@@ -465,7 +468,9 @@ class SolicitanteController extends baseController
 
         $solicitante_model->updatePersonalOcupacionData($new_personal_ocupacion_data, $id_solicitante);
 
-        $this->audit->create('Solicitante', 'Actualizacion de datos de ocupacion del solicitante', $this->user->id, $this->helpers->getCurrentDateTime());
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Solicitante', 'Actualizacion de datos de ocupacion del solicitante', $user->id, $this->helpers->getCurrentDateTime());
 
         $this->redirect('solicitante', 'Detail', 'success', "Los datos de ocupacion del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
     }

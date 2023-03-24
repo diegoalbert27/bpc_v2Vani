@@ -47,20 +47,20 @@ class helpers {
             return '<span class="fas fa-circle text-success"></span> Activo';
         }
 
-        return '<span class="fas fa-circle text-danger"></span> Desactivo';
+        return '<span class="fas fa-circle text-danger"></span> Inactivo';
     }
 
     public function isEnabledOption($is_enabled) {
         if ($is_enabled) {
             return '
                 <option value="1">Activo</option>
-                <option value="0">Desactivo</option>
+                <option value="0">Inactivo</option>
             ';
         }
 
         return '
             <option value="0">Desactivo</option>
-            <option value="1">Activo</option>
+            <option value="1">Inactivo</option>
         ';
     }
 

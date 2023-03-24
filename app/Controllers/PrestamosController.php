@@ -1,21 +1,28 @@
 <?php
 
 use App\Core\baseController;
+use App\Core\helpers;
 use App\Models\Api\Response;
 use App\Models\Category;
 use App\Models\Inventario;
 use App\Models\Libro;
 use App\Models\Prestamo;
 use App\Models\Solicitante;
+use App\Utils\Audit\InterfaceAudit;
 use App\Utils\Authentication\InterfaceAuthentication;
 
 class PrestamosController extends baseController
 {
     protected $authentication;
+    protected $audit;
+    protected $helpers;
 
-    public function __construct(InterfaceAuthentication $authentication)
+    public function __construct(InterfaceAuthentication $authentication, InterfaceAudit $audit)
     {
         $this->authentication = $authentication;
+        $this->audit = $audit;
+
+        $this->helpers = new helpers();
     }
 
     public function Index()
@@ -218,7 +225,14 @@ class PrestamosController extends baseController
 
         $response->status = true;
         $response->message = '';
-        $response->data = [ 'id_prestamo' => $prestamo_model->lastInsertId() ];
+
+        $id_prestamo = $prestamo_model->lastInsertId();
+
+        $response->data = [ 'id_prestamo' => $id_prestamo ];
+
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Prestamo Circulante', 'Creacion de nuevo prestamo ' . $id_prestamo, $user->id, $this->helpers->getCurrentDateTime());
 
         return $this->json($response);
     }
@@ -301,6 +315,10 @@ class PrestamosController extends baseController
             return $this->redirect('prestamos', 'details', 'danger', "Ocurrio un error al editar el prestamo", [ 'id' => $id_prestamo ]);
         }
 
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Prestamo Circulante', 'Estatus de prestamo ' . $prestamo->id_p . ' actualizado', $user->id, $this->helpers->getCurrentDateTime());
+
         $this->redirect('prestamos', 'details', 'success', 'El prestamo ha sido actualizado satisfactoriamente', [ 'id' => $id_prestamo ]);
     }
 
@@ -380,6 +398,10 @@ class PrestamosController extends baseController
         if (!$prestamo_model->update()) {
             return $this->redirect('prestamos', 'returnprestamo', 'danger', "Ocurrio un error al editar el prestamo", [ 'id' => $id_prestamo ]);
         }
+
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Prestamo Circulante', 'El prestamo ' . $prestamo->id_p . ' ha sido devuelto', $user->id, $this->helpers->getCurrentDateTime());
 
         $this->redirect('prestamos', 'returnprestamo', 'success', 'El prestamo ha sido devuelto satisfactoriamente', [ 'id' => $id_prestamo ]);
     }

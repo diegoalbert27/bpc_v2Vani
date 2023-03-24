@@ -33,7 +33,7 @@ export default class View {
             .join('')
 
         const div = document.createElement('div')
-        div.innerHTML = notifications
+        div.innerHTML = notifications.length === 0 ? this.nothingEvent() : notifications
 
         this.notification.append(div)
     }
@@ -45,6 +45,15 @@ export default class View {
             <div class="small px-4">Nuevo evento el ${event.date_realized_event}!</div>
             <p class="fw-bold px-4">${event.title_event}</p>
             </a>
+        `
+    }
+
+    nothingEvent() {
+        return `
+            <div class="dropdown-divider"></div>
+            <p class="text-dark">
+              <div class="fw-bold small px-4">Sin Notificaciones</div>
+            </p>
         `
     }
 

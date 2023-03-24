@@ -68,6 +68,12 @@
             <li>
                 <a href="<?php echo $helpers->generateUrl('audit') ?>">Auditoria</a>
             </li>
+            <li>
+                <a href="<?php echo $helpers->generateUrl('user', 'details', [ 'id' => $session_user->id ]) ?>">Perfil</a>
+            </li>
+            <li>
+                <a href="<?php echo $helpers->generateUrl('organizer', 'index') ?>">Organizadores</a>
+            </li>
         </ul>
     </li>
 </ul>

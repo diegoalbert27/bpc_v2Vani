@@ -1,21 +1,28 @@
 <?php
 
 use App\Core\baseController;
+use App\Core\helpers;
 use App\Models\Api\Response;
 use App\Models\Event;
 use App\Models\EventParticipant;
 use App\Models\Organizer;
 use App\Models\User;
+use App\Utils\Audit\InterfaceAudit;
 use App\Utils\Authentication\InterfaceAuthentication;
 
 class EventController extends baseController
 {
     protected $authentication;
     protected $pdf;
+    protected $audit;
+    protected $helpers;
 
-    public function __construct(InterfaceAuthentication $authentication)
+    public function __construct(InterfaceAuthentication $authentication, InterfaceAudit $audit)
     {
         $this->authentication = $authentication;
+        $this->audit = $audit;
+
+        $this->helpers = new helpers();
     }
 
     public function Index()
@@ -159,6 +166,10 @@ class EventController extends baseController
 
         $id_event = $event_model->lastInsertId();
 
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Eventos', 'Creacion de nuevo Evento ' . $id_event, $user->id, $this->helpers->getCurrentDateTime());
+
         $this->redirect('event', 'detalle', 'success', 'El evento ha sido registrado satisfactoriamente', [ 'id' => $id_event ]);
     }
 
@@ -269,6 +280,10 @@ class EventController extends baseController
         if ( !$event_model->update() ) {
             return $this->redirect('event', 'eventedit', 'danger', "Ocurrio un error al guardar el evento", [ 'id' => $id_event ]);
         }
+
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Eventos', 'Evento Actualizado ' . $id_event, $user->id, $this->helpers->getCurrentDateTime());
 
         $this->redirect('event', 'detalle', 'success', 'El evento ha sido actualizado satisfactoriamente', [ 'id' => $id_event ]);
     }

@@ -1,12 +1,14 @@
 <?php
 
 use App\Core\baseController;
+use App\Core\helpers;
 use App\Models\Api\Response;
 use App\Models\Category;
 use App\Models\Inventario;
 use App\Models\Libro;
 use App\Models\Prestamo;
 use App\Models\Solicitante;
+use App\Utils\Audit\InterfaceAudit;
 use App\Utils\Authentication\InterfaceAuthentication;
 use App\Utils\Pdf\InterfacePdf;
 
@@ -14,11 +16,16 @@ class LibroController extends baseController
 {
     protected $authentication;
     protected $pdf;
+    protected $audit;
+    public $helpers;
 
-    public function __construct(InterfaceAuthentication $authentication, InterfacePdf $pdf)
+    public function __construct(InterfaceAuthentication $authentication, InterfacePdf $pdf, InterfaceAudit $audit)
     {
         $this->authentication = $authentication;
         $this->pdf = $pdf;
+        $this->audit = $audit;
+
+        $this->helpers = new helpers();
     }
 
     public function Index()
@@ -88,6 +95,8 @@ class LibroController extends baseController
 
     public function Add()
     {
+        $this->authentication($this->authentication->isAuth());
+
         if (
             !isset($_POST['cota']) &&
             !isset($_POST['title']) &&
@@ -167,6 +176,10 @@ class LibroController extends baseController
         }
 
         $id_libro = $libro_model->lastInsertId();
+
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Libros', 'Creacion de nuevo libro ' . $id_libro, $user->id, $this->helpers->getCurrentDateTime());
 
         $this->redirect('libro', 'detalle', 'success', 'El libro ha sido registrado satisfactoriamente', [ 'id' => $id_libro ]);
     }
@@ -306,6 +319,10 @@ class LibroController extends baseController
             return $this->redirect('libro', 'editlibro', 'danger', "Ocurrio un error al editar el libro", [ 'id' => $id_libro ]);
         }
 
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Libros', 'Actualizado de libro ' . $cota, $user->id, $this->helpers->getCurrentDateTime());
+
         $this->redirect('libro', 'detalle', 'success', 'El libro ha sido actualizado satisfactoriamente', [ 'id' => $id_libro ]);
     }
 
@@ -385,6 +402,10 @@ class LibroController extends baseController
 
         $libro_model = new Libro();
         $libro = $libro_model->getByOne('cantidad', $id_inventario);
+
+        $user = $this->helpers->getSession();
+
+        $this->audit->create('Libros', 'El inventario del libro ' . $libro->cota . ' ha sido actualizada', $user->id, $this->helpers->getCurrentDateTime());
 
         $this->redirect('libro', 'detalle', 'success', 'La cantidad del libro ha sido actualizado satisfactoriamente', [ 'id' => $libro->id_libro ]);
     }
