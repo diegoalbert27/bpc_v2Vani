@@ -2,6 +2,10 @@
 
 <?php echo $helpers->getMessage($_GET) ?>
 
+<div class="mt-2">
+    <a class="btn btn-primary" target="_blank" href="<?php echo $helpers->generateUrl('category', 'getReportPdf') ?>"><span class="fas fa-download"></span> Genera Reporte Pdf</a>
+</div>
+
 <div class="row mt-4">
     <div class="col-md-6 col-sm-12">
         <div class="card shadow mb-4">

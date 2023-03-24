@@ -65,6 +65,20 @@ class EventController extends baseController
 
         $user_model = new User();
 
+        $user = $this->helpers->getSession();
+
+        if (count($organizers) === 0) {
+            $organizer = new Organizer([
+                'id' => null,
+                'id_user' => $user->id,
+                'is_actived' => 1
+            ]);
+
+            if ($organizer->save()) {
+                $organizers = $organizer_model->getAll();
+            }
+        }
+
         foreach($organizers as $organizer) {
             $organizer->id_user = $user_model->getByOne('id', $organizer->id_user);
         }

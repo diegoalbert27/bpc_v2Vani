@@ -42,7 +42,7 @@
                 <span>|</span>
             <?php else: ?>
                 <div class="bg-light rounded w-50 m-auto p-2 border <?php echo $is_organizer->is_actived ? 'text-primary' : 'text-danger' ?>">
-                    <span class="fas fa-exclamation-circle"></span> <?php echo $is_organizer->is_actived ? 'Organizador Activo' : 'Organizador Inactivo' ?>
+                    <span class="fas fa-<?php echo $is_organizer->is_actived ? 'check' : 'exclamation' ?>-circle"></span> <?php echo $is_organizer->is_actived ? 'Organizador Activo' : 'Organizador Inactivo' ?>
                 </div>
             <?php endif; ?>
 

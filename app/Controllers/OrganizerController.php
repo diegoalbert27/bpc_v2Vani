@@ -35,4 +35,37 @@ class OrganizerController extends baseController
             'organizers' => $organizers
         ], true);
     }
+
+    public function EditStatus()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if (
+            !isset($_GET['id']) ||
+            !isset($_GET['status'])
+        ) {
+            return $this->redirect('organizer', 'index', 'danger', 'Los campos son requeridos');
+        }
+
+        if (
+            empty($_GET['id'])
+        ) {
+            return $this->redirect('organizer', 'index', 'danger', 'El organizador no esta activo');
+        }
+
+        $id_organizer = $_GET['id'];
+        $status = $_GET['status'];
+
+        $organizer_model = new Organizer([
+            'id' => $id_organizer,
+            'id_user' => null,
+            'is_actived' => $status
+        ]);
+
+        if (!$organizer_model->updateStatus()) {
+            return $this->redirect('organizer', 'index', 'danger', 'Ops! Salio algo mal');
+        }
+
+        $this->redirect('organizer', 'index', 'success', 'El organizador ha sido actualizado con exito');
+    }
 }

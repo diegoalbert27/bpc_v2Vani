@@ -5,14 +5,17 @@ use App\Models\Event;
 use App\Models\EventParticipant;
 use App\Models\User;
 use App\Utils\Authentication\InterfaceAuthentication;
+use App\Utils\Pdf\InterfacePdf;
 
 class ParticipantesController extends baseController
 {
     protected $authentication;
+    protected $pdf;
 
-    public function __construct(InterfaceAuthentication $authentication)
+    public function __construct(InterfaceAuthentication $authentication, InterfacePdf $pdf)
     {
         $this->authentication = $authentication;
+        $this->pdf = $pdf;
     }
 
     public function Index()
@@ -180,5 +183,33 @@ class ParticipantesController extends baseController
             'event' => $event,
             'participants' => $participants
         ], true);
+    }
+
+    public function GetReportPdf()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('participantes', 'index', 'danger', 'El evento ingresado no fue encontrado');
+            return;
+        }
+
+        $id_event = $_GET['id'];
+
+        $event_model = new Event();
+        $event = $event_model->getByOne('id_event', $id_event);
+
+        $event_participant_model = new EventParticipant();
+        $participants = $event_participant_model->getBy('id_event', $id_event);
+
+        $user_model = new User();
+
+        $event->organizer_event = $user_model->getByOne('id', $event->organizer_event);
+
+        foreach ($participants as $participant) {
+            $participant->id_user = $user_model->getByOne('id', $participant->id_user);
+        }
+
+        $this->pdf->getReporteParticipantes([ 'event' => $event, 'participants' => $participants ]);
     }
 }

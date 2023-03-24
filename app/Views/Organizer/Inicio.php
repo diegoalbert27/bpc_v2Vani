@@ -22,7 +22,7 @@
                             <td><?php echo $helpers->isEnabled($organizer->is_actived) ?></td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-success view-organizer" type="button" data-bs-toggle="modal" data-bs-target="#organizer">
+                                    <button class="btn btn-success view-organizers" type="button" data-bs-toggle="modal" data-bs-target="#organizer" data-id="<?php echo $organizer->id ?>" data-state="<?php echo $organizer->is_actived ?>" data-name="<?php echo $organizer->id_user->user ?>">
                                         <span class="fas fa-pencil"></span>
                                     </button>
                                 </div>
@@ -44,7 +44,7 @@
       </div>
       <div class="modal-body text-center">
         <h5 class="fw-light mb-3">Actualizar el estado del organizador</h5>
-        <button class="btn w-100" id="btn-change-status">Activo</button>
+        <button class="btn w-100" id="btn-change-status"></button>
       </div>
       <div class="modal-footer">
         <a class="btn btn-primary" href="" id="send-organizer"><span class="fas fa-floppy-disk"></span> Guardar</a>

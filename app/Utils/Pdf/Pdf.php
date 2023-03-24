@@ -222,4 +222,91 @@ class Pdf extends Fpdf implements InterfacePdf
 
         $this->Render();
     }
+
+    public function getReporteParticipantes(array $data)
+    {
+        $this->AddPage();
+
+        $this->Cell(5);
+        $this->Cell(30, 10, 'EVENTO', 0, 0);
+        $this->Ln(10);
+        $this->Cell(5);
+        $this->Multicell(160, 6, utf8_decode($data['event']->title_event), 0, 'L', 0);
+        $this->Ln(6);
+
+        $this->SetFont('Arial', '', 12);
+
+        $this->Cell(5);
+        $this->Multicell(160, 7, utf8_decode($data['event']->info_event), 0, 'L', 0);
+        $this->Ln(5);
+        $this->Cell(5);
+        $this->Cell(10, 10, utf8_decode('ORGANIZADOR: ' . $data['event']->organizer_event->user . '        FECHA: ' . $data['event']->date_realized_event), 10, 0);
+        $this->Ln(9);
+        $this->Cell(5);
+        $this->Cell(10, 10, utf8_decode('TIPO DE EVENTO: ' . $data['event']->type_event . '          AFORO: ' . $data['event']->participants_event), 10, 0);
+        $this->Ln(11);
+        $this->Cell(5);
+        $this->Multicell(160, 7, utf8_decode('LUGAR: ' . $data['event']->place_event), 0, 'L', 0);
+        $this->Ln(7);
+
+        $this->SetFont('Arial', 'B', 14);
+
+        $this->Cell(5);
+        $this->Cell(30, 10, 'PARTICIPANTES E INTERESADOS EN EL EVENTO', 0, 0);
+        $this->Ln(15);
+
+        $this->SetFillColor(232, 232, 232);
+        $this->SetFont('Arial', 'B', 12);
+        $this->Cell(5);
+        $this->Cell(80, 6, 'NOMBRE', 1, 0, 'C', 1);
+        $this->Cell(30, 6, 'TELEFONO', 1, 0, 'C', 1);
+        $this->Cell(70, 6, 'CORREO ELECTRONICO', 1, 1, 'C', 1);
+
+        foreach ($data['participants'] as $participant) {
+            $this->SetFont('Arial', '', 10);
+            $this->Cell(5);
+            $this->Cell(80, 6, utf8_decode($participant->id_user->user), 1, 0, 'C');
+            $this->Cell(30, 6, utf8_decode($participant->id_user->phone), 1, 0, 'C');
+            $this->Cell(70, 6, utf8_decode($participant->id_user->email), 1, 1, 'C');
+        }
+
+        $this->Render();
+    }
+
+    public function getReporteCategories(array $data)
+    {
+        $this->AddPage();
+
+        $this->Cell(5);
+        $this->Cell(30, 10, 'CATEGORIAS DE LOS LIBROS', 0, 0);
+        $this->Ln(10);
+        $this->SetFont('Arial', '', 12);
+
+        foreach ($data['categories'] as $category) {
+            $this->Cell(5);
+            $this->Cell(160, 6, utf8_decode($category->name . ', ubicado en el piso ' . $category->ubication), 0, 0);
+            $this->Ln(6);
+        }
+
+        $this->Render();
+    }
+
+    public function getReporteNew(array $data)
+    {
+        $this->AddPage();
+
+        $this->Cell(5);
+        $this->Cell(30, 10, 'NOTICIA', 0, 0);
+        $this->Ln(10);
+        $this->Cell(5);
+        $this->Multicell(160, 6, utf8_decode($data['new']->title_new), 0, 'L', 0);
+        $this->Ln(10);
+
+        $this->SetFont('Arial', '', 12);
+
+        $this->Cell(5);
+        $this->Multicell(160, 7, utf8_decode($data['new']->content_new), 0, 'L', 0);
+
+        $this->Render();
+    }
 }

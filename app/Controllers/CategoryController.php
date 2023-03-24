@@ -3,13 +3,16 @@
 use App\Core\baseController;
 use App\Models\Category;
 use App\Utils\Authentication\InterfaceAuthentication;
+use App\Utils\Pdf\InterfacePdf;
 
 class CategoryController extends baseController
 {
     protected $authentication;
-    public function __construct(InterfaceAuthentication $authentication)
+    protected $pdf;
+    public function __construct(InterfaceAuthentication $authentication, InterfacePdf $pdf)
     {
         $this->authentication = $authentication;
+        $this->pdf = $pdf;
     }
 
     public function Index()
@@ -147,5 +150,15 @@ class CategoryController extends baseController
         $category_model->update();
 
         $this->redirect('category', 'index', 'success', "La categoria ha sido actualizada exitosamente");
+    }
+
+    public function GetReportPdf()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        $category_model = new Category();
+        $categories = $category_model->getAll();
+
+        $this->pdf->getReporteCategories([ 'categories' => $categories ]);
     }
 }

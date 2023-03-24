@@ -11,6 +11,9 @@
             <li>
                 <a href="<?php echo $helpers->generateUrl('libro', 'register') ?>">Libro</a>
             </li>
+            <li>
+                <a href="<?php echo $helpers->generateUrl('news', 'register') ?>">Noticia</a>
+            </li>
         </ul>
     </li>
     <li>
@@ -51,6 +54,9 @@
             <li>
                 <a href="<?php echo $helpers->generateUrl('event', 'index') ?>">Eventos</a>
             </li>
+            <li>
+                <a href="<?php echo $helpers->generateUrl('news', 'index') ?>">Noticias</a>
+            </li>
         </ul>
     </li>
     <li>
@@ -75,5 +81,8 @@
                 <a href="<?php echo $helpers->generateUrl('organizer', 'index') ?>">Organizadores</a>
             </li>
         </ul>
+    </li>
+    <li>
+        <a href="<?php echo $helpers->generateUrl('auth', 'profile') ?>">Ayuda</a>
     </li>
 </ul>

@@ -44,4 +44,15 @@ class Organizer extends baseModel
 
         return $stmt->execute();
     }
+
+    public function updateStatus()
+    {
+        $query = "UPDATE {$this->table} SET is_actived = :is_actived WHERE id = :id";
+
+        $stmt = $this->database->prepare($query);
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':is_actived', $this->is_actived);
+
+        return $stmt->execute();
+    }
 }

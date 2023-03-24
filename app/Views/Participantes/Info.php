@@ -4,7 +4,19 @@
 
 <div class="card shadow mt-4">
     <div class="card-header bg-light">
-        <h5 class="card-title"><?php echo $event->title_event ?></h5>
+        <div class="d-flex justify-content-between">
+            <h5 class="card-title"><?php echo $event->title_event ?></h5>
+            <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
+                <div class="dropdown">
+                    <button class="btn btn-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fas fa-download"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" target="_blank" href="<?php echo $helpers->generateUrl('participantes', 'getReportPdf', [ 'id' => $event->id_event ]) ?>">Generar Reporte PDF</a></li>
+                    </ul>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
