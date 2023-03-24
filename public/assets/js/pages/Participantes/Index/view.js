@@ -1,4 +1,4 @@
-import EventApi from "../../Events/api/events-api.js";
+import EventApi from "../../Event/api/events-api.js";
 import ViewDefaulEvents from "./components/view-defaul-events.js";
 
 export default class View {

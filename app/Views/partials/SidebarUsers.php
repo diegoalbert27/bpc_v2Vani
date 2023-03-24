@@ -37,9 +37,8 @@
             <a href="<?php echo $helpers->generateUrl('news', 'index') ?>"><span class="far fa-newspaper"></span> Noticias</a>
         </li>
     <?php endif; ?>
-
     <li>
-        <a href="<?php echo $helpers->generateUrl('auth', 'profile') ?>"><span class="far fa-user"></span> Perfil</a>
+        <a href="<?php echo $helpers->generateUrl('user', 'details', [ 'id' => $session_user->id ]) ?>"><span class="far fa-user"></span> Perfil</a>
     </li>
 
     <?php if ((int) $session_user->role->nivel === 5): ?>

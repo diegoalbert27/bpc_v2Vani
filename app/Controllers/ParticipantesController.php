@@ -43,6 +43,8 @@ class ParticipantesController extends baseController
             }
         }
 
+        usort($events_pendientes, fn($a, $b) => strtotime($a->date_realized_event) - strtotime($b->date_realized_event));
+
         $this->view('Participantes/Inicio', [
             'title' => 'Eventos Pendientes',
             'events_pendientes' => $events_pendientes,

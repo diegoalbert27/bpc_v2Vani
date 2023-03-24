@@ -38,3 +38,9 @@
         </div>
     </div>
 </div>
+
+<div class="card shadow mt-4">
+    <div class="card-body">
+        <canvas id="chart"></canvas>
+    </div>
+</div>

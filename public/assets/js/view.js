@@ -1,4 +1,4 @@
-import EventApi from "./pages/Events/api/events-api.js"
+import EventApi from "./pages/Event/api/events-api.js"
 
 export default class View {
     constructor() {

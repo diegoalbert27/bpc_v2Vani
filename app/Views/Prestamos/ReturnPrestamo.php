@@ -5,7 +5,11 @@
 <?php foreach($prestamos as $prestamo): ?>
     <div class="card shadow mt-4 mb-3">
         <div class="card-header bg-white">
-            <h5 class="card-title">Fecha de devolución: <?php echo $prestamo->fecha_devolucion ?></h5>
+            <h5 class="card-title <?php
+                if ($helpers->getCurrentDate() >= $helpers->getCustomDate('Y-m-d', $prestamo->fecha_devolucion)) {
+                    echo 'text-danger';
+                }
+            ?>">Fecha de devolución: <?php echo $prestamo->fecha_devolucion ?>
         </div>
         <div class="card-body">
 

@@ -23,12 +23,14 @@
                                     <a class="btn btn-primary" href="<?php echo $helpers->generateUrl('news', 'detalle', [ 'id' => $new->id_new ]) ?>">
                                         <span class="fas fa-eye"></span>
                                     </a>
-                                    <a class="btn btn-success" href="<?php echo $helpers->generateUrl('news', 'editform', [ 'id' => $new->id_new ]) ?>">
-                                        <span class="fas fa-pencil"></span>
-                                    </a>
-                                    <a class="btn btn-danger" href="<?php echo $helpers->generateUrl('news', 'delete', [ 'id' => $new->id_new ]) ?>">
-                                        <span class="fas fa-trash"></span>
-                                    </a>
+                                    <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
+                                        <a class="btn btn-success" href="<?php echo $helpers->generateUrl('news', 'editform', [ 'id' => $new->id_new ]) ?>">
+                                            <span class="fas fa-pencil"></span>
+                                        </a>
+                                        <a class="btn btn-danger" href="<?php echo $helpers->generateUrl('news', 'delete', [ 'id' => $new->id_new ]) ?>">
+                                            <span class="fas fa-trash"></span>
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                             </td>
                         </tr>

@@ -104,6 +104,8 @@
 
     <script src="../node_modules/fullcalendar/index.global.min.js"></script>
 
+    <script src="../node_modules/chart.js/dist/chart.umd.js"></script>
+
     <script src="assets/js/index.js" type="module"></script>
 
     <?php
