@@ -83,6 +83,6 @@
         </ul>
     </li>
     <li>
-        <a href="<?php echo $helpers->generateUrl('auth', 'profile') ?>">Ayuda</a>
+        <a href="assets/docs/manual-administrador.pdf">Ayuda</a>
     </li>
 </ul>

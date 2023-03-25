@@ -49,7 +49,11 @@ class EventController extends baseController
         $event_model = new Event();
         $events = $event_model->getAll();
 
-        $events_pendientes = array_filter($events, fn($event) => (int) $event->state_event === 2);
+        $events_pendientes = [];
+        foreach($events as $event) {
+            if ((int) $event->state_event === 2)
+                array_push($events_pendientes, $event);
+        }
 
         $response = new Response(true, null, $events_pendientes);
 
