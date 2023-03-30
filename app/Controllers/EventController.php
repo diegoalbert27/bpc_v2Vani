@@ -273,10 +273,16 @@ class EventController extends baseController
         $event_time = $_POST['event_time'];
         $event_point = $_POST['event_point'];
         $event_detail = $_POST['event_detail'];
-        $state_event = $_POST['state_event'];
+        $state_event = (int) $_POST['state_event'];
 
         if ($event_type === 'Limitado' && $aforo <= 0) {
             return $this->redirect('event', 'editevent', 'danger', 'El numero de aforo no fue asignado', [ 'id' => $id_event ]);
+        }
+
+        $current_date = $this->helpers->getCurrentDateTime();
+
+        if ($state_event === 1 && $current_date < $this->helpers->getCustomDate($event_date, 'Y-m-d')) {
+            return $this->redirect('event', 'editevent', 'danger', 'El evento no puede cambiar como realizado', [ 'id' => $id_event ]);
         }
 
         $edit_event = [

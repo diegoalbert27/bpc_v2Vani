@@ -38,7 +38,7 @@
             <div class="row p-2 mb-3">
                 <div class="col-md-3">
                     <label class="form-label" for="event_date">Fecha:</label>
-                    <input class="form-control" type="date" name="event_date" id="event_date" min="<?php echo $helpers->getCurrentDate() ?>"" value="<?php echo $event->date_realized_event ?>">
+                    <input class="form-control" type="date" name="event_date" id="event_date" min="<?php echo $event->date_realized_event ?>"" value="<?php echo $event->date_realized_event ?>" max="<?php echo $event->date_realized_event ?>">
                 </div>
 
                 <div class="col-md-3">

@@ -339,6 +339,8 @@ class PrestamosController extends baseController
 
         $prestamos = array_filter($prestamos, fn($prestamo) => (int) $prestamo->pendiente !== 1);
 
+        usort($prestamos, fn($a, $b) => strcasecmp($a->fecha_devolucion, $b->fecha_devolucion));
+
         $this->view('Prestamos/ReturnPrestamo', [
             'title' => 'Prestamos Pendientes',
             'prestamos' => $prestamos

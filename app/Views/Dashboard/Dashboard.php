@@ -28,7 +28,7 @@
         <div class="col-md-6">
             <h4>Préstamos pendientes por devolución</h4>
 
-            <a class="btn btn-primary" href="<?php $helpers->generateUrl('prestamos', 'returnprestamo') ?>">Ver mas</a>
+            <a class="btn btn-primary" href="<?php echo $helpers->generateUrl('prestamos', 'returnprestamo') ?>">Ver mas</a>
 
             <?php foreach($prestamos as $prestamo): ?>
                 <div class="card shadow-sm mt-4 mb-3 border-0">
