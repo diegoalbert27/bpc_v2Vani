@@ -190,4 +190,78 @@ class helpers {
         date_default_timezone_set('America/Caracas');
         return date($format_date, strtotime($date));
     }
+
+    /**
+     * Validar extension de la imagen
+     *
+     * @param  string $image_extention
+     * @return bool
+     */
+    public function validateImage(string $image_extention) : bool
+    {
+        $images_extentions = [
+            'image/png',
+            'image/gif',
+            'image/jpeg',
+            'image/webp'
+        ];
+
+        $index = array_search($image_extention, $images_extentions);
+
+        return $index !== false ? true : false;
+    }
+
+    /**
+     * uploadsFiles
+     *
+     * @param  string $folder
+     * @param  array $files
+     * @return bool|array
+     */
+    public function uploadsFiles(string $folder, array $files) : bool|array
+    {
+        $file_path = __DIR__ . "/../../public/uploads/{$folder}/";
+
+        if ( !is_dir($file_path) ) {
+            mkdir($file_path, 0777, true);
+            chmod($file_path, 0777);
+        }
+
+        $public_urls = [];
+
+        foreach ($files as $file) {
+            $extention = strtolower(explode('.', $file['name'])[1]);
+            $new_file = uniqid() . ".{$extention}";
+            $file_uploaded = $file_path . $new_file;
+
+            if ( !move_uploaded_file($file['tmp_name'], $file_uploaded) ) {
+                return false;
+            }
+
+            $public_urls[] = "/uploads/{$folder}/{$new_file}";
+        }
+
+        return $public_urls;
+    }
+
+    /**
+     * removeUploadFile
+     * Para remover archivos de La carpeta uploads
+     *
+     * @param  string $folder
+     * @param  string $file
+     * @return bool
+     */
+    public function removeUploadFile(string $folder, string $file) : bool
+    {
+        $file_path = __DIR__ . "/../../public/uploads/{$folder}/";
+
+        if ( !is_dir($file_path) ) {
+            return true;
+        }
+
+        $dir_file  = $file_path . $file;
+
+        return unlink($dir_file);
+    }
 }

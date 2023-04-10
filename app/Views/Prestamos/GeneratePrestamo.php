@@ -161,7 +161,7 @@
         <div class="text-center p-4 my-3">
             <span class="fas fa-check fs-2 text-white bg-success p-4 rounded-circle shadow"></span>
             <h4 class="card-title fw-normal mt-4">Prestamo Registado Exitosamente</h4>
-            <a class="link link-primary" href="<?php $helpers->generateUrl('prestamos', 'generateprestamo') ?>">Generar nuevo prestamo</a>
+            <a class="link link-primary" href="<?php echo $helpers->generateUrl('prestamos', 'generateprestamo') ?>">Generar nuevo prestamo</a>
             <span>|</span>
             <a class="link link-primary" id="prestamoLink" href="">Visualizar nuevo registro</a>
         </div>

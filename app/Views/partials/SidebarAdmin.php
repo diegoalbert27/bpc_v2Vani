@@ -32,7 +32,7 @@
                 <a href="<?php echo $helpers->generateUrl('event', 'register') ?>">Organización de Eventos</a>
             </li>
             <li>
-                <a href="<?php echo $helpers->generateUrl('participantes', 'index') ?>">Participar en eventos</a>
+                <a href="<?php echo $helpers->generateUrl('participantes', 'index') ?>">Gestion de Eventos</a>
             </li>
         </ul>
     </li>

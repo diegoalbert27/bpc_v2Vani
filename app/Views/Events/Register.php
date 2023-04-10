@@ -15,7 +15,7 @@
             <div class="row p-2 mb-3">
                 <div class="col-md-6">
                     <label class="form-label" for="organizer">Organizador:</label>
-                    <select class="form-control" name="organizer" id="organizer">
+                    <select class="form-select" name="organizer" id="organizer">
                         <?php foreach($organizers as $organizer): ?>
                             <option value="<?php echo $organizer->id ?>"><?php echo $organizer->id_user->user ?></option>
                         <?php endforeach; ?>
@@ -24,7 +24,7 @@
 
                 <div class="col-md-3">
                     <label class="form-label" for="event_type">Tipo:</label>
-                    <select class="form-control" name="event_type" id="event_type">
+                    <select class="form-select" name="event_type" id="event_type">
                         <option value="Limitado">Limitado</option>
                         <option value="No limitado">No limitado</option>
                     </select>

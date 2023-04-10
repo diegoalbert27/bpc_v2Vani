@@ -29,7 +29,16 @@
                         <div class="col">
                             <h5 class="fw-bold"><?php echo $event->title_event ?></h5>
                             <p><?php echo $event->place_event ?></p>
-                            <a class="link link-primary" href="<?php echo $helpers->generateUrl('participantes', 'eventdetail', [ 'id' => $event->id_event ]) ?>">Saber mas</a>
+
+                            <?php if ((int) $session_user->role->nivel === 10): ?>
+                                <a class="btn btn-sm btn-primary" href="<?php echo $helpers->generateUrl('participantes', 'eventdetail', [ 'id' => $event->id_event ]) ?>">
+                                    <span class="fas fa-pencil"></span> Gestionar
+                                </a>
+                            <?php endif ?>
+
+                            <?php if ((int) $session_user->role->nivel === 1): ?>
+                                <a class="link link-primary" href="<?php echo $helpers->generateUrl('participantes', 'eventdetail', [ 'id' => $event->id_event ]) ?>">Saber mas</a>
+                            <?php endif ?>
 
                             <?php if ($is_participants[$event->id_event]): ?>
                                 <p class="fw-bold">Tu Asistencia Confirmada!</p>

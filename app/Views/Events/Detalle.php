@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-5">
+            <div class="row mb-4">
                 <div class="col-md-4 col-sm-3">
                     <h6>Tipo de evento:</h6>
                     <span><?php echo $event->type_event ?></span>
@@ -50,6 +50,17 @@
                     <?php if (count($participants) > 0): ?>
                         <a class="link link-primary" href="<?php echo $helpers->generateUrl('participantes', 'info', [ 'id' => $event->id_event ]) ?>">Informacion</a>
                     <?php endif; ?>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <?php if ($news_event): ?>
+                        <h6>Noticia</h6>
+                        <a class="link link-primary" href="<?php echo $helpers->generateUrl('news', 'detalle', [ 'id' => $news_event->id_new ]) ?>">Ver Noticia</a>
+                    <?php elseif ((int) $event->state_event === 1): ?>
+                        <h6>Noticia</h6>
+                        <a class="link link-primary" href="<?php echo $helpers->generateUrl('news', 'eventNewForm', [ 'id' => $event->id_event ]) ?>">Generar Noticia</a>
+                    <?php endif ?>
                 </div>
             </div>
             <div class="text-end">

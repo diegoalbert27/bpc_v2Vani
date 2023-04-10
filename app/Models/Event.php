@@ -76,4 +76,15 @@ class Event extends baseModel
 
         return $stmt->execute();
     }
+
+    public function editState($id_event, $state_event)
+    {
+        $query = "UPDATE {$this->table} SET state_event = :state_event WHERE id_event = :id_event";
+
+        $stmt = $this->database->prepare($query);
+        $stmt->bindParam(':id_event', $id_event);
+        $stmt->bindParam(':state_event', $state_event);
+
+        return $stmt->execute();
+    }
 }

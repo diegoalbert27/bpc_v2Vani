@@ -19,7 +19,7 @@
                             </div>
                             <div class="col-sm-12 col-md-12">
                                 <label class="form-label" for="ubication">Ubicacíon</label>
-                                <select name="ubication" class="form-control mb-3"  id="ubication" required>
+                                <select name="ubication" class="form-select mb-3"  id="ubication" required>
                                     <option value="1">Piso 1</option>
                                     <option value="2">Piso 2</option>
                                 </select>

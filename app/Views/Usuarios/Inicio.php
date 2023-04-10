@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <label class="form-label" for="role">Nivel</label>
-                                <select class="form-control form-control-user mb-3" name="role" id="role">
+                                <select class="form-select form-control-user mb-3" name="role" id="role">
                                     <?php foreach($roles as $role) : ?>
                                         <option value="<?php echo $role->id?>"><?php echo $role->name ?></option>
                                     <?php endforeach; ?>

@@ -8,7 +8,7 @@
             <div class="row p-2 mb-3">
                 <div class="col-md-6 col-sm-12 mb-3">
                     <label class="form-label" for="ocupacion">Ocupación:</label>
-                    <select class="form-control" name="ocupacion" id="ocupacion">
+                    <select class="form-select" name="ocupacion" id="ocupacion">
                         <?php foreach($ocupaciones as $ocupacion): ?>
                             <option value="<?php echo $ocupacion ?>"><?php echo $ocupacion ?></option>
                         <?php endforeach; ?>

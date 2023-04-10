@@ -29,7 +29,7 @@
                 <div class="col-md-4 col-sm-12">
                     <label class="form-label" for="sexo">Sexo:</label>
 
-                    <select class="form-control" name="sexo" id="sexo">
+                    <select class="form-select" name="sexo" id="sexo">
                         <?php foreach ($sexos as $sexo): ?>
                             <option value="<?php echo $sexo ?>"><?php echo $sexo ?></option>
                         <?php endforeach; ?>

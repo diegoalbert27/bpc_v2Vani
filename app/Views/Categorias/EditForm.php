@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-sm-12 col-md-12">
                         <label class="form-label" for="ubication">Ubicacíon</label>
-                        <select name="ubication" class="form-control mb-3"  id="ubication" required>
+                        <select name="ubication" class="form-select mb-3"  id="ubication" required>
                             <?php
                                 if ($category->ubication === 1) {
                                     echo '<option value="1">Piso 1</option>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-sm-12 col-md-12">
                         <label class="form-label" for="enabled">Estado</label>
-                        <select class="form-control form-control-user mb-3" name="enabled" id="enabled">
+                        <select class="form-select form-control-user mb-3" name="enabled" id="enabled">
                             <?php echo $helpers->isEnabledOption($category->enabled) ?>
                         </select>
                     </div>

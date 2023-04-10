@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-md-3 col-sm-12 mb-3">
                     <label class="form-label" for="state">Estado:</label>
-                    <select class="form-control" id="state" name="state">
+                    <select class="form-select" id="state" name="state">
                         <?php echo $helpers->getOptionStatePrestamo($prestamo->pendiente) ?>
                     </select>
                 </div>

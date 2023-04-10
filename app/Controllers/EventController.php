@@ -5,6 +5,7 @@ use App\Core\helpers;
 use App\Models\Api\Response;
 use App\Models\Event;
 use App\Models\EventParticipant;
+use App\Models\News;
 use App\Models\Organizer;
 use App\Models\User;
 use App\Utils\Audit\InterfaceAudit;
@@ -113,10 +114,14 @@ class EventController extends baseController
         $event_participant_model = new EventParticipant();
         $participants = $event_participant_model->getBy('id_event', $id_event);
 
+        $news_model = new News();
+        $news_event = $news_model->getByOne('id_event', $event->id_event);
+
         $this->view('Events/Detalle', [
             'title' => 'Informacion',
             'event' => $event,
-            'participants' => $participants
+            'participants' => $participants,
+            'news_event' => $news_event
         ], true);
     }
 
@@ -310,5 +315,41 @@ class EventController extends baseController
         $this->audit->create('Eventos', 'Evento Actualizado ' . $id_event, $user->id, $this->helpers->getCurrentDateTime());
 
         $this->redirect('event', 'detalle', 'success', 'El evento ha sido actualizado satisfactoriamente', [ 'id' => $id_event ]);
+    }
+
+    public function Management() {
+        $this->authentication($this->authentication->isAuth());
+
+        if ( !isset($_GET['id']) ) {
+            $this->redirect('event', 'index', 'danger', 'El evento ingresado no fue encontrado');
+            return;
+        }
+
+        $id_event = $_GET['id'];
+
+        $state_event = (int) $_GET['state'];
+
+        if ( !isset($_GET['state']) ) {
+            return $this->redirect('participantes', 'eventdetail', 'danger', 'Los datos requeridos no fueron enviados', [ 'id' => $id_event ]);
+        }
+
+        $event_model = new Event();
+        $event = $event_model->getByOne('id_event', $id_event);
+
+        $current_date = $this->helpers->getCurrentDateTime();
+
+        if (
+            $state_event === 1 && $current_date < $this->helpers->getCustomDate($event->date_realized_event	, 'Y-m-d')
+        ) {
+            return $this->redirect('participantes', 'eventdetail', 'danger', 'El evento no puede cambiar como realizado', [ 'id' => $id_event ]);
+        }
+
+        $is_edited = $event_model->editState($id_event, $state_event);
+
+        if ( !$is_edited ) {
+            return $this->redirect('participantes', 'eventdetail', 'danger', 'El estado del evento no pudo ser actualizado', [ 'id' => $id_event ]);
+        }
+
+        return $this->redirect('participantes', 'eventdetail', 'success', 'El evento ha sido actualizado con exito', [ 'id' => $id_event, 'state' => $state_event ]);
     }
 }

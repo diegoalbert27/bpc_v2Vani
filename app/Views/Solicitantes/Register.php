@@ -63,7 +63,7 @@
                         <div class="col-md-4 col-sm-12">
                             <label class="form-label" for="sexo">Sexo:</label>
 
-                            <select class="form-control" name="sexo" id="sexo">
+                            <select class="form-select" name="sexo" id="sexo">
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                                 <option value="Otros">Otros</option>
@@ -122,7 +122,7 @@
                     <div class="row p-2 mb-3">
                         <div class="col-md-6 col-sm-12 mb-3">
                             <label class="form-label" for="ocupacion">Ocupación:</label>
-                            <select class="form-control" name="ocupacion" id="ocupacion">
+                            <select class="form-select" name="ocupacion" id="ocupacion">
                                 <option value="Ninguno">Ninguno</option>
                                 <option value="Trabajador">Trabajador</option>
                                 <option value="Estudiante">Estudiante</option>

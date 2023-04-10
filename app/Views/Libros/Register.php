@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-md-3">
                     <label class="form-label" for="category">Categoria</label>
-                    <select class="form-control" name="category" id="category">
+                    <select class="form-select" name="category" id="category">
                         <?php foreach($categories as $category): ?>
                             <option value="<?php echo $category->id ?>"><?php echo $category->name ?></option>
                         <?php endforeach; ?>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label" for="state">Estado</label>
-                    <select class="form-control" name="state" id="state">
+                    <select class="form-select" name="state" id="state">
                         <option value="Disponible para su lectura">Disponible para su lectura</option>
                         <option value="Disponible para su lectura y prestamo">Disponible para su lectura y prestamo</option>
                         <option value="No disponible">No disponible</option>
