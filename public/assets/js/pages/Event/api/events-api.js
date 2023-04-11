@@ -11,4 +11,10 @@ export default class EventApi extends ApiServices {
         const response = await this.get()
         return response.data
     }
+
+    async getAll() {
+        this.setBaseUrl(this.controller, 'get')
+        const response = await this.get()
+        return response.data
+    }
 }

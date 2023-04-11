@@ -45,6 +45,30 @@ class EventController extends baseController
         ], true);
     }
 
+    public function Get()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        $event_model = new Event();
+        $events = $event_model->getAll();
+
+        $user_model = new User();
+        $event_participant = new EventParticipant();
+
+        $events_participants = [];
+
+        foreach($events as $event) {
+            $event->organizer_event = $user_model->getByOne('id', $event->organizer_event);
+            $participants = $event_participant->getBy('id_event', $event->id_event);
+
+            if ($participants) $events_participants[$event->id_event] = $participants;
+        }
+
+        $response = new Response(true, 'Eventos', [$events, $events_participants]);
+
+        echo $this->json($response);
+    }
+
     public function getEventsPendients()
     {
         $event_model = new Event();
