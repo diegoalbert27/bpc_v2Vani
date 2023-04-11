@@ -47,6 +47,27 @@ class PrestamosController extends baseController
         ], true);
     }
 
+    public function Get()
+    {
+        $this->authentication($this->authentication->isAuth());
+
+        $prestamo_model = new Prestamo();
+        $prestamos = $prestamo_model->getAll();
+
+        $solicitante_model = new Solicitante();
+        $libro_model = new Libro();
+
+        foreach ($prestamos as $prestamo) {
+            $prestamo->numero_carnet2 = $solicitante_model->getByOne('id_sol', $prestamo->numero_carnet2);
+
+            $prestamo->id_libro2 = $libro_model->getByOne('id_libro', $prestamo->id_libro2);
+        }
+
+        $reponse = new Response(true, 'Prestamos', $prestamos);
+
+        echo $this->json($reponse);
+    }
+
     public function Details()
     {
         $this->authentication($this->authentication->isAuth());

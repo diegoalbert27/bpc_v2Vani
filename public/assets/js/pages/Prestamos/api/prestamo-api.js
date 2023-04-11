@@ -11,4 +11,10 @@ export default class PrestamoApi extends ApiServices {
         const response = await this.post(prestamo)
         return response
     }
+
+    async getAll() {
+        this.setBaseUrl(this.controller, 'get')
+        const response = await this.get()
+        return response
+    }
 }

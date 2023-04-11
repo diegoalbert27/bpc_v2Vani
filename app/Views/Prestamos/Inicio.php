@@ -39,6 +39,11 @@
 
 <div class="card shadow mt-4">
     <div class="card-body">
+        <div class="d-flex flex-row-reverse">
+            <div class="w-25">
+                <select class="form-select" id="year-prestamo"></select>
+            </div>
+        </div>
         <canvas id="chart"></canvas>
     </div>
 </div>
