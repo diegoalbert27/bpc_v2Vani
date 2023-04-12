@@ -99,7 +99,6 @@
     <script src="./assets/js/datatables.js"></script>
 
     <!-- AXIOS -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
     <script src="../node_modules/axios/dist/axios.min.js"></script>
 
     <script src="../node_modules/fullcalendar/index.global.min.js"></script>
