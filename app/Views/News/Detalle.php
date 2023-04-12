@@ -35,18 +35,20 @@
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col d-flex">
-                    <button class="btn btn-link" id="add-image">Agregar Nueva Imagen</button>
+                <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
+                    <div class="col d-flex">
+                        <button class="btn btn-link" id="add-image">Agregar Nueva Imagen</button>
 
-                    <form action="<?php echo $helpers->generateUrl('news', 'addNewsImages', [ 'id' => $new->id_new ]) ?>" method="POST" enctype="multipart/form-data">
+                        <form action="<?php echo $helpers->generateUrl('news', 'addNewsImages', [ 'id' => $new->id_new ]) ?>" method="POST" enctype="multipart/form-data">
 
-                        <div class="" id="images-section"></div>
+                            <div class="" id="images-section"></div>
 
-                        <button class="btn btn-sm btn-primary d-none" type="submit" id="save-images">
-                            <span class="fas fa-floppy-disk"></span> Guardar
-                        </button>
-                    </form>
-                </div>
+                            <button class="btn btn-sm btn-primary d-none" type="submit" id="save-images">
+                                <span class="fas fa-floppy-disk"></span> Guardar
+                            </button>
+                        </form>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="row mb-4">
                 <ul class="col list-group" id="preview-list-images"></ul>
@@ -54,11 +56,13 @@
             <div class="row mb-4">
                 <?php foreach($news_images as $image): ?>
                     <div class="col">
-                        <div class="text-end py-2">
-                            <button class="btn btn-sm btn-danger delete-image" type="button" data-bs-toggle="modal" data-bs-target="#delete-confirm-image" data-image="<?php echo $image->id_new_image ?>">
-                                <span class="fas fa-trash"></span>
-                            </button>
-                        </div>
+                        <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
+                            <div class="text-end py-2">
+                                <button class="btn btn-sm btn-danger delete-image" type="button" data-bs-toggle="modal" data-bs-target="#delete-confirm-image" data-image="<?php echo $image->id_new_image ?>">
+                                    <span class="fas fa-trash"></span>
+                                </button>
+                            </div>
+                        <?php endif; ?>
                         <a href="<?php echo "./{$image->url}" ?>" target="_blank">
                             <img class="w-100 rounded img-fluid" src="<?php echo "./{$image->url}" ?>">
                         </a>

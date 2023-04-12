@@ -192,12 +192,12 @@ class NewsController extends baseController {
 
         foreach($new_images['name'] as $index => $image) {
             if ( !$this->helpers->validateImage($new_images['type'][$index]) ) {
-                return $this->redirect('news', 'eventNewForm', 'danger', 'Las imagenes deben de ser de una extension valida como jpeg, png o gif');
+                return $this->redirect('news', 'eventNewForm', 'danger', 'Las imagenes deben de ser de una extension valida como jpeg, png o gif', [ 'id' => $id_event ]);
             }
 
-            if ( $new_images['size'][$index] > 500 * (1048576) ) {
-                return $this->redirect('news', 'eventNewForm', 'danger', 'Las imagenes deben de ser menor que 500 MB');
-            }
+            // if ( $new_images['size'][$index] > 500 * (1048576) ) {
+            //     return $this->redirect('news', 'eventNewForm', 'danger', 'Las imagenes deben de ser menor que 500 MB', [ 'id' => $id_event ]);
+            // }
 
             $file = [
                 'name' => $image,
@@ -227,7 +227,7 @@ class NewsController extends baseController {
             $public_file_urls = $this->helpers->uploadsFiles('news_image', $uploads);
 
             if ($public_file_urls === false) {
-                $this->redirect('news', 'eventNewForm', 'danger', 'Ups! Hubo un error al subir los archivos verifique los accesos de los directorios');
+                return $this->redirect('news', 'eventNewForm', 'danger', 'Ups! Hubo un error al subir los archivos verifique los accesos de los directorios', [ 'id' => $id_event ]);
             }
 
             $id_new = $new_model->lastInsertId();
@@ -245,7 +245,7 @@ class NewsController extends baseController {
 
             $this->redirect('news', 'index', 'success', 'Noticia registrada con exito');
         } else {
-            $this->redirect('news', 'eventNewForm', 'danger', 'Ups! hubo un error al registra la noticia');
+            $this->redirect('news', 'eventNewForm', 'danger', 'Ups! hubo un error al registra la noticia', [ 'id' => $id_event ]);
         }
     }
 
@@ -297,9 +297,9 @@ class NewsController extends baseController {
                 return $this->redirect('news', 'detalle', 'danger', 'Las imagenes deben de ser de una extension valida como jpeg, png o gif', [ 'id' => $id_new ]);
             }
 
-            if ( $new_images['size'][$index] > 500 * (1048576) ) {
-                return $this->redirect('news', 'detalle', 'danger', 'Las imagenes deben de ser menor que 500 MB', [ 'id' => $id_new ]);
-            }
+            // if ( $new_images['size'][$index] > 500 * (1048576) ) {
+            //     return $this->redirect('news', 'detalle', 'danger', 'Las imagenes deben de ser menor que 500 MB', [ 'id' => $id_new ]);
+            // }
 
             $file = [
                 'name' => $image,
