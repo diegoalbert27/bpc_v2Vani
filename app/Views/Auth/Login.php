@@ -9,8 +9,7 @@
     <title><?php echo $title ?> | Biblioteca "Agustín Codazzi"</title>
 
     <!-- BOOTSTRAP AND CUSTOM CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/estilos.css">
@@ -18,51 +17,52 @@
 
 <body class="bg-dark">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
             <div class="col-xl-10 col-lg-12 col-md-9">
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+
                             <div class="col-lg-6">
                                 <div class="p-5">
+
                                     <div class="text-center mb-3">
                                         <img src='assets/img/biblioteca.jpg' alt="" width="120" height="80">
-                                        <h1 class="h3 text-gray-900 mt-2 mb-4">¡Bienvenidos!</h1>
+                                        <h3 class="text-dark-emphasis mt-2 mb-4">¡Bienvenidos!</h3>
                                     </div>
 
                                     <?php echo $helpers->getMessage($_GET) ?>
 
                                     <form class="user" method="post" action="<?php echo $helpers->generateUrl('auth', 'validate'); ?>">
-                                        <div class="form-group">
-                                            <input type="text" name="username" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Usuario" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="password"
-                                                class="form-control form-control-user" id="exampleInputPassword"
-                                                placeholder="Contraseña" required>
+                                        <div class="mb-3">
+                                            <input type="text" name="username" class="form-control form-control-user" placeholder="Usuario" required>
                                         </div>
 
-                                        <div class="form-group">
-                                            <input class="btn btn-block color-primario text-white" type="submit"
-                                                value="Ingresar">
+                                        <div class="mb-3">
+                                            <input type="password" name="password" class="form-control form-control-user" placeholder="Contraseña" required>
                                         </div>
+
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-primary" type="submit">Ingresar</button>
+                                        </div>
+
                                         <hr>
+
                                         <div class="text-center">
                                             <a class="small" href="<?php echo $helpers->generateUrl('auth', 'accountrecovery'); ?>">
-                                                ¿Olvidaste tu
-                                                contraseña?
+                                                ¿Olvidaste tu contraseña?
                                             </a>
                                         </div>
-                                        <div class="text-center mb-5">
+
+                                        <div class="text-center mb-3">
                                             <a class="small" href="<?php echo $helpers->generateUrl('auth', 'signup'); ?>">
                                                 ¡Crea una cuenta!
                                             </a>
                                         </div>
                                     </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -71,8 +71,8 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Bootstrap Scripts -->
+    <script src="../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

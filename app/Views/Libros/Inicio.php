@@ -2,7 +2,9 @@
 
 <?php echo $helpers->getMessage($_GET) ?>
 
-<a class="btn btn-primary" href="<?php echo $helpers->generateUrl('libro', 'register') ?>">Añadir Nuevo Solicitante</a>
+<?php if ((int) $session_user->role->nivel === 5 || (int) $session_user->role->nivel === 10): ?>
+    <a class="btn btn-primary" href="<?php echo $helpers->generateUrl('libro', 'register') ?>">Añadir Nuevo Libro</a>
+<?php endif; ?>
 
 <div class="card shadow mt-4">
     <div class="card-body">
