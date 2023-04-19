@@ -2,6 +2,8 @@
 
 <?php echo $helpers->getMessage($_GET) ?>
 
+<a class="btn btn-primary" href="<?php echo $helpers->generateUrl('solicitante', 'register') ?>">Añadir Nuevo Solicitante</a>
+
 <div class="card shadow mt-4">
     <div class="card-body">
         <div class="table-responsive">

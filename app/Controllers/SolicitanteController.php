@@ -275,7 +275,7 @@ class SolicitanteController extends baseController
         $sexo = $_POST['sexo'];
         $state = $_POST['state'];
 
-        if ( $solicitante_model->getByOne('ced_sol', $cedula) && (int) $cedula !== $solicitante->ced_sol ) {
+        if ( $solicitante_model->getByOne('ced_sol', $cedula) && (int) $cedula !== (int) $solicitante->ced_sol ) {
             $this->redirect('solicitante', 'formpersonal', 'danger', "Cedula '{$cedula}' no se encuentra disponible", [ 'id' => $id_solicitante ]);
             return;
         }
