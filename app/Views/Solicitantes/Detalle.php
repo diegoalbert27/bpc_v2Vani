@@ -30,17 +30,21 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-3 col-sm-3">
                     <h6>Cédula:</h6>
                     <span><?php echo $solicitante->ced_sol ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-3 col-sm-3">
                     <h6>Edad:</h6>
                     <span><?php echo $solicitante->tlf_sol ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-3 col-sm-3">
                     <h6>Sexo:</h6>
                     <span><?php echo $solicitante->sex_sol ?></span>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h6>Estado:</h6>
+                    <span><?php echo $helpers->isEnabled($solicitante->estado_s) ?></span>
                 </div>
             </div>
             <div class="row mb-4">

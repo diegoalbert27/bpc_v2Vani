@@ -242,7 +242,8 @@ class SolicitanteController extends baseController
             !isset($_POST['apellidos']) &&
             !isset($_POST['cedula']) &&
             !isset($_POST['edad']) &&
-            !isset($_POST['sexo'])
+            !isset($_POST['sexo']) &&
+            !isset($_POST['state'])
         ) {
             $this->redirect('solicitante', 'formpersonal', 'danger', 'Los campos enviados son requeridos', [ 'id' => $id_solicitante ]);
             return;
@@ -272,6 +273,7 @@ class SolicitanteController extends baseController
         $cedula = $_POST['cedula'];
         $edad = $_POST['edad'];
         $sexo = $_POST['sexo'];
+        $state = $_POST['state'];
 
         if ( $solicitante_model->getByOne('ced_sol', $cedula) && (int) $cedula !== $solicitante->ced_sol ) {
             $this->redirect('solicitante', 'formpersonal', 'danger', "Cedula '{$cedula}' no se encuentra disponible", [ 'id' => $id_solicitante ]);
@@ -284,6 +286,7 @@ class SolicitanteController extends baseController
             'ced_sol' => $cedula,
             'edad_sol' => $edad,
             'sex_sol' => $sexo,
+            'estado_s' => $state
         ];
 
         $solicitante_model->updatePersonalData($new_personal_data, $id_solicitante);

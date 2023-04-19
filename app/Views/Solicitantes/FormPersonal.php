@@ -6,21 +6,21 @@
     <div class="card-body">
         <form action="<?php echo $helpers->generateUrl('solicitante', 'editpersonal') ?>" method="POST">
             <div class="row p-2 mb-3">
-                <div class="col-md-6 col-sm-12 mb-3">
+                <div class="col-md-4 col-sm-12 mb-3">
                     <label class="form-label" for="names">Nombres:</label>
                     <input class="form-control" type="text" id="names" name="names" value="<?php echo $solicitante->nom_sol ?>" minlength="3" required>
                 </div>
-                <div class="col-md-6 col-sm-12 mb-3">
+                <div class="col-md-4 col-sm-12 mb-3">
                     <label class="form-label" for="lastNames">Apellidos:</label>
                     <input class="form-control" type="text" id="lastNames" name="lastNames" value="<?php echo $solicitante->ape_sol ?>" minlength="3" required>
                 </div>
-            </div>
-
-            <div class="row p-2 mb-3">
                 <div class="col-md-4 col-sm-12 mb-3">
                     <label class="form-label" for="cedula">Cédula de identidad:</label>
                     <input class="form-control" type="number" id="cedula" name="cedula" value="<?php echo $solicitante->ced_sol ?>" min="0" required>
                 </div>
+            </div>
+
+            <div class="row p-2 mb-3">
                 <div class="col-md-4 col-sm-12 mb-3">
                     <label class="form-label" for="edad">Edad:</label>
                     <input class="form-control" type="number" id="edad" name="edad" value="<?php echo $solicitante->edad_sol ?>" min="0" required>
@@ -33,6 +33,13 @@
                         <?php foreach ($sexos as $sexo): ?>
                             <option value="<?php echo $sexo ?>"><?php echo $sexo ?></option>
                         <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="col-md-4 col-sm-12">
+                    <label class="form-label" for="state">Estado</label>
+                    <select class="form-select form-control-user mb-3" name="state" id="state">
+                        <?php echo $helpers->isEnabledOption($solicitante->estado_s) ?>
                     </select>
                 </div>
             </div>

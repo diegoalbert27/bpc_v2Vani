@@ -59,8 +59,8 @@ class helpers {
         }
 
         return '
-            <option value="0">Desactivo</option>
-            <option value="1">Inactivo</option>
+            <option value="0">Inactivo</option>
+            <option value="1">Activo</option>
         ';
     }
 
