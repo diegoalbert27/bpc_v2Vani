@@ -33,10 +33,12 @@ class EventController extends baseController
         $event_model = new Event();
         $events = $event_model->getAll();
 
+        $organizer_model = new Organizer();
         $user_model = new User();
 
         foreach($events as $event) {
-            $event->organizer_event = $user_model->getByOne('id', $event->organizer_event);
+            $organizer = $organizer_model->getByOne('id', $event->organizer_event);
+            $event->organizer_event = $user_model->getByOne('id', $organizer->id_user);
         }
 
         $this->view('Events/Inicio', [
@@ -108,13 +110,18 @@ class EventController extends baseController
             }
         }
 
+        $organizers_actived = [];
+
         foreach($organizers as $organizer) {
-            $organizer->id_user = $user_model->getByOne('id', $organizer->id_user);
+            if ((int)$organizer->is_actived === 1) {
+                $organizer->id_user = $user_model->getByOne('id', $organizer->id_user);
+                $organizers_actived[] = $organizer;
+            }
         }
 
         $this->view('Events/Register', [
             'title' => 'Crear evento',
-            'organizers' => $organizers
+            'organizers' => $organizers_actived
         ], true);
     }
 
@@ -243,9 +250,9 @@ class EventController extends baseController
             $organizer->id_user = $user_model->getByOne('id', $organizer->id_user);
         }
 
-        $organizers = array_filter($organizers, fn($organizer) => (int) $organizer->id_user->id !== (int) $event->organizer_event);
+        $organizers = array_filter($organizers, fn($organizer) => (int) $organizer->id !== (int) $event->organizer_event);
 
-        $organizer = $organizer_model->getByOne('id_user', $event->organizer_event);
+        $organizer = $organizer_model->getByOne('id', $event->organizer_event);
         $organizer->id_user = $user_model->getByOne('id', $organizer->id_user);
 
         array_unshift($organizers, $organizer);
