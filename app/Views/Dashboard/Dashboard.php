@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <div class="bg-white shadow-sm rounded p-5">
             <h1 class="fs-2">Hola, <?php echo $user->user ?>.</h1>
-            <h5 class="text-secondary fw-light">Has ingreso como, <?php echo $user->role->name ?></h5>
+            <h5 class="text-secondary fw-light">Has ingresado como <?php echo $user->role->name ?></h5>
         </div>
 
         <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>

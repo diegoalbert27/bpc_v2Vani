@@ -37,13 +37,15 @@
             </div>
         </div>
         <div class="text-center p-3">
-            <?php if ( !$is_organizer ): ?>
-                <a class="link-primary" href="<?php echo $helpers->generateUrl('user', 'TobeOrganizer', ['id' => $user->id ]) ?>">Registrar como organizador</a>
-                <span>|</span>
-            <?php else: ?>
-                <div class="bg-light rounded w-50 m-auto p-2 border <?php echo $is_organizer->is_actived ? 'text-primary' : 'text-danger' ?>">
-                    <span class="fas fa-<?php echo $is_organizer->is_actived ? 'check' : 'exclamation' ?>-circle"></span> <?php echo $is_organizer->is_actived ? 'Organizador Activo' : 'Organizador Inactivo' ?>
-                </div>
+            <?php if ((int) $session_user->role->nivel === 1 || (int) $session_user->role->nivel === 10 && (int) $user->role->nivel !== 5): ?>
+                <?php if ( !$is_organizer ): ?>
+                    <a class="link-primary" href="<?php echo $helpers->generateUrl('user', 'TobeOrganizer', ['id' => $user->id ]) ?>">Registrar como organizador</a>
+                    <span>|</span>
+                <?php else: ?>
+                    <div class="bg-light rounded w-50 m-auto p-2 border <?php echo $is_organizer->is_actived ? 'text-primary' : 'text-danger' ?>">
+                        <span class="fas fa-<?php echo $is_organizer->is_actived ? 'check' : 'exclamation' ?>-circle"></span> <?php echo $is_organizer->is_actived ? 'Organizador Activo' : 'Organizador Inactivo' ?>
+                    </div>
+                <?php endif; ?>
             <?php endif; ?>
 
             <a class="link-primary" href="<?php echo $helpers->generateUrl('user', 'editquestionform', ['id' => $user->id ]) ?>">Administrar preguntas de seguridad</a>

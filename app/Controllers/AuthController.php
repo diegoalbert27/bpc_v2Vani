@@ -327,7 +327,10 @@ class AuthController extends baseController
             return;
         }
 
-        if (base64_decode(($question_finded_1->answer) !== $answer_1) || (base64_decode($question_finded_2->answer) !== $answer_2)) {
+        if (
+            base64_decode($question_finded_1->answer) !== $answer_1 ||
+            base64_decode($question_finded_2->answer) !== $answer_2
+        ) {
             $error_message = 'Las respuestas son incorrectas';
 
             session_start();

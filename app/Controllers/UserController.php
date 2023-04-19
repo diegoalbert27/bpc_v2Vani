@@ -270,7 +270,7 @@ class UserController extends baseController
         $this->authentication($this->authentication->isAuth());
 
         if (!isset($_GET['id'])) {
-            $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
+            $this->redirect('dashboard', 'index', 'danger', 'El usuario ingresado no fue encontrado');
             return;
         }
 
@@ -295,7 +295,7 @@ class UserController extends baseController
         $this->authentication($this->authentication->isAuth());
 
         if (!isset($_POST['id'])) {
-            $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
+            $this->redirect('dashboard', 'index', 'danger', 'El usuario ingresado no fue encontrado');
             return;
         }
 
@@ -305,7 +305,7 @@ class UserController extends baseController
         $users_finded = $user_model->getBy('id', $id_user);
 
         if (count($users_finded) <= 0) {
-            $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
+            $this->redirect('dashboard', 'index', 'danger', 'El usuario ingresado no fue encontrado');
             return;
         }
 
@@ -314,7 +314,7 @@ class UserController extends baseController
         $questions_finded = $question_model->getBy('user', $id_user);
 
         if (count($questions_finded) > 0) {
-            $this->redirect('user', 'index', 'danger', 'El usuario ya se encuentra con preguntas de seguridad registradas');
+            $this->redirect('user', 'details', 'danger', 'El usuario ya se encuentra con preguntas de seguridad registradas', [ 'id' => $id_user ]);
             return;
         }
 
@@ -325,7 +325,7 @@ class UserController extends baseController
                 !isset($_POST['answer_' . $field]) ||
                 !isset($_POST['question_' . $field])
             ) {
-                $this->redirect('user', '', 'warning', 'Los datos requeridos no fueron enviados');
+                $this->redirect('user', 'details', 'warning', 'Los datos requeridos no fueron enviados', [ 'id' => $id_user ]);
                 return;
             }
 
@@ -333,7 +333,7 @@ class UserController extends baseController
                 empty($_POST['answer_' . $field]) ||
                 empty($_POST['question_' . $field])
             ) {
-                $this->redirect('user', '', 'warning', 'Los datos son requeridos');
+                $this->redirect('user', 'details', 'warning', 'Los datos son requeridos', [ 'id' => $id_user ]);
                 return;
             }
 
@@ -349,11 +349,11 @@ class UserController extends baseController
 
             if (!$question_model->save()) {
                 $question_model->deleteBy('user', $id_user);
-                $this->redirect('user', 'index', 'danger', 'Ups! Algo salio mal');
+                $this->redirect('user', 'details', 'danger', 'Ups! Algo salio mal', [ 'id' => $id_user ]);
             }
         }
 
-        $this->redirect('user', 'index', 'success', "El usuario ha sido registrado exitosamente");
+        $this->redirect('user', 'details', 'success', "Las preguntas de segurida han sido registrado exitosamente", [ 'id' => $id_user ]);
     }
 
     public function EditQuestionForm()
@@ -361,7 +361,7 @@ class UserController extends baseController
         $this->authentication($this->authentication->isAuth());
 
         if (!isset($_GET['id'])) {
-            $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
+            $this->redirect('dashboard', 'index', 'danger', 'El usuario ingresado no fue encontrado');
             return;
         }
 
@@ -371,12 +371,17 @@ class UserController extends baseController
         $users_finded = $user_model->getBy('id', $id_user);
 
         if (count($users_finded) <= 0) {
-            $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
+            $this->redirect('dashboard', 'index', 'danger', 'El usuario ingresado no fue encontrado');
             return;
         }
 
         $question_model =  new Question();
         $questions = $question_model->getBy('user', $id_user);
+
+        if (count($questions) === 0) {
+            $this->redirect('user', 'QuestionForm', 'info', 'Asignar Preguntas De Seguridad Para Este Usuario', [ 'id' => $id_user ]);
+            return;
+        }
 
         $this->view('Usuarios/EditQuestionForm', [
             'title' => 'Editar Usuario',
@@ -390,17 +395,17 @@ class UserController extends baseController
         $this->authentication($this->authentication->isAuth());
 
         if (!isset($_POST['id'])) {
-            $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
+            $this->redirect('dashboard', 'index', 'danger', 'El usuario ingresado no fue encontrado');
             return;
         }
 
         $id_user = $_POST['id'];
 
         $user_model = new User();
-        $users_finded = $user_model->getBy('id', $id_user);
+        $user_finded = $user_model->getByOne('id', $id_user);
 
-        if (count($users_finded) <= 0) {
-            $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
+        if ( !$user_finded ) {
+            $this->redirect('user', 'details', 'danger', 'El usuario ingresado no fue encontrado', [ 'id' => $id_user ]);
             return;
         }
 
@@ -409,7 +414,7 @@ class UserController extends baseController
         $questions_finded = $question_model->getBy('user', $id_user);
 
         if (count($questions_finded) <= 0) {
-            $this->redirect('user', 'index', 'danger', 'El usuario no tiene preguntas de seguridad asignadas');
+            $this->redirect('user', 'details', 'danger', 'El usuario no tiene preguntas de seguridad asignadas', [ 'id' => $id_user ]);
             return;
         }
 
@@ -421,7 +426,7 @@ class UserController extends baseController
                 !isset($_POST['answer_' . $field]) ||
                 !isset($_POST['question_' . $field])
             ) {
-                $this->redirect('user', '', 'warning', 'Los datos requeridos no fueron enviados');
+                $this->redirect('user', 'details', 'warning', 'Los datos requeridos no fueron enviados', [ 'id' => $id_user ]);
                 return;
             }
 
@@ -430,7 +435,7 @@ class UserController extends baseController
                 empty($_POST['answer_' . $field]) ||
                 empty($_POST['question_' . $field])
             ) {
-                $this->redirect('user', '', 'warning', 'Los datos son requeridos');
+                $this->redirect('user', 'details', 'warning', 'Los datos son requeridos', [ 'id' => $id_user ]);
                 return;
             }
 
@@ -440,17 +445,15 @@ class UserController extends baseController
 
             $question_model = new Question([
                 'id' => $id_question,
-                'answer' => $answer,
+                'answer' => base64_encode($answer),
                 'question' => $question,
                 'user' => $id_user
             ]);
 
-            if (!$question_model->update()) {
-                $this->redirect('user', 'index', 'danger', 'Ups! Algo salio mal');
-            }
+            $question_model->update();
         }
 
-        $this->redirect('user', 'index', 'success', "Las preguntas de seguridad han sido actualizadas exitosamente");
+        $this->redirect('user', 'details', 'success', "Las preguntas de seguridad han sido actualizadas exitosamente", [ 'id' => $id_user ]);
     }
 
     public function TobeOrganizer()

@@ -39,10 +39,10 @@
             </div>
 
             <input type="hidden" id="id" name="id" value="<?php echo $id_user ?>">
-
-            <div class="text-center mt-4">
-                <button class="btn btn-primary" type="submit">Agregar Registro</button>
-            </div>
         </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <button class="btn btn-primary" type="submit">Agregar Registro</button>
     </div>
 </form>
