@@ -15,10 +15,10 @@
                         <label class="form-label" for="ubication">Ubicacíon</label>
                         <select name="ubication" class="form-select mb-3"  id="ubication" required>
                             <?php
-                                if ($category->ubication === 1) {
+                                if ((int)$category->ubication === 1) {
                                     echo '<option value="1">Piso 1</option>
                                     <option value="2">Piso 2</option>';
-                                } else if ($category->ubication === 2) {
+                                } else if ((int)$category->ubication === 2) {
                                     echo '<option value="2">Piso 2</option>
                                     <option value="1">Piso 1</option>';
                                 }
