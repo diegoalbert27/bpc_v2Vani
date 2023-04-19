@@ -108,6 +108,21 @@ class NewsController extends baseController {
 
         $id_new = $_GET['id'];
 
+        $new_image_model = new NewsImage();
+
+        $images = $new_image_model->getBy('id_new', $id_new);
+
+        if (count($images) > 0) {
+            foreach ($images as $image) {
+                $urls = explode('/', $image->url);
+                $id_image_file = $urls[count($urls) - 1];
+
+                $this->helpers->removeUploadFile('news_image', $id_image_file);
+            }
+
+            $new_image_model->deleteBy('id_new', $id_new);
+        }
+
         $new_model = new News();
 
         if ($new_model->deleteBy('id_new', $id_new)) {
