@@ -67,15 +67,21 @@ class LibroController extends baseController
 
         $category_model = new Category();
 
-        foreach ($libros as $libro) {
-            $category = $category_model->getByOne('id', $libro->categoria);
+        $libros_actived = [];
 
-            if ($category) {
-                $libro->categoria = $category;
+        foreach ($libros as $libro) {
+            if ($libro->estado_libro === 'Disponible para su lectura y prestamo') {
+                $category = $category_model->getByOne('id', $libro->categoria);
+
+                if ($category) {
+                    $libro->categoria = $category;
+                }
+
+                $libros_actived[] = $libro;
             }
         }
 
-        $response = new Response(true, '', $libros);
+        $response = new Response(true, '', $libros_actived);
 
         return $this->json($response);
     }
