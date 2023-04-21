@@ -15,7 +15,8 @@ export default class Model {
         return response.data
     }
 
-    addDataPersonal({ nombres, apellidos, cedula, edad, sexo }) {
+    addDataPersonal({ carnet, nombres, apellidos, cedula, edad, sexo }) {
+        this.data.carnet = carnet
         this.data.nombres = nombres
         this.data.apellidos = apellidos
         this.data.cedula = cedula

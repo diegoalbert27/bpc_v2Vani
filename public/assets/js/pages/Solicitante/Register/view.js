@@ -35,12 +35,13 @@ export default class View {
         this.solicitanteLink = document.getElementById('solicitanteLink')
 
         this.addDataPersonalForm.onClick((
+            carnet,
             nombres,
             apellidos,
             cedula,
             edad,
             sexo
-        ) => this.addDataPersonal({ nombres, apellidos, cedula, edad, sexo }))
+        ) => this.addDataPersonal({ nombres, apellidos, cedula, edad, sexo, carnet }))
 
         this.addDataPersonalForm.onBlur()
         this.addDataPersonalForm.onKeyup()

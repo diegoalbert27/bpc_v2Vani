@@ -87,6 +87,7 @@ class SolicitanteController extends baseController
         $response = new Response(false);
 
         if (
+            !isset($_POST['carnet']) &&
             !isset($_POST['nombres']) &&
             !isset($_POST['apellidos']) &&
             !isset($_POST['cedula']) &&
@@ -105,6 +106,7 @@ class SolicitanteController extends baseController
         }
 
         if (
+            empty($_POST['carnet']) &&
             empty($_POST['nombres']) &&
             empty($_POST['apellidos']) &&
             empty($_POST['cedula']) &&
@@ -119,6 +121,7 @@ class SolicitanteController extends baseController
             return $this->json($response);
         }
 
+        $carnet = $_POST['carnet'];
         $nombres = $_POST['nombres'];
         $apellidos = $_POST['apellidos'];
         $cedula = $_POST['cedula'];
@@ -149,8 +152,10 @@ class SolicitanteController extends baseController
             return $this->json($response);
         }
 
-        $all_solicitantes = $solicitante_model->getAll();
-        $carnet = count($all_solicitantes) + 1000;
+        if ( $solicitante_model->getByOne('carnet', $carnet) ) {
+            $response->message = "El nro. carnet '{$carnet}' no se encuentra disponible";
+            return $this->json($response);
+        }
 
         $solicitante = [
             'id_sol' => null,
@@ -238,6 +243,7 @@ class SolicitanteController extends baseController
         $id_solicitante = $_POST['id'];
 
         if (
+            !isset($_POST['carnet']) &&
             !isset($_POST['nombres']) &&
             !isset($_POST['apellidos']) &&
             !isset($_POST['cedula']) &&
@@ -250,6 +256,7 @@ class SolicitanteController extends baseController
         }
 
         if (
+            empty($_POST['carnet']) &&
             empty($_POST['nombres']) &&
             empty($_POST['apellidos']) &&
             empty($_POST['cedula']) &&
@@ -268,6 +275,7 @@ class SolicitanteController extends baseController
             return;
         }
 
+        $carnet = $_POST['carnet'];
         $nombres = $_POST['names'];
         $apellidos = $_POST['lastNames'];
         $cedula = $_POST['cedula'];
@@ -280,7 +288,13 @@ class SolicitanteController extends baseController
             return;
         }
 
+        if ( $solicitante_model->getByOne('carnet', $carnet) && (int) $carnet !== (int) $solicitante->carnet ) {
+            $this->redirect('solicitante', 'formpersonal', 'danger', " 'El nro. carnet '{$carnet}' no se encuentra disponible", [ 'id' => $id_solicitante ]);
+            return;
+        }
+
         $new_personal_data = [
+            'carnet' => $carnet,
             'nom_sol' => $nombres,
             'ape_sol' => $apellidos,
             'ced_sol' => $cedula,

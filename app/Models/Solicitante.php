@@ -95,9 +95,10 @@ class Solicitante extends baseModel
 
     public function updatePersonalData(array $new_personal_data, string $id_solicitante)
     {
-        $query = "UPDATE {$this->table} SET nom_sol = :nom_sol, ape_sol = :ape_sol, ced_sol = :ced_sol, edad_sol = :edad_sol, sex_sol = :sex_sol, estado_s = :estado_s WHERE id_sol = :id";
+        $query = "UPDATE {$this->table} SET carnet = :carnet, nom_sol = :nom_sol, ape_sol = :ape_sol, ced_sol = :ced_sol, edad_sol = :edad_sol, sex_sol = :sex_sol, estado_s = :estado_s WHERE id_sol = :id";
 
         $stmt = $this->database->prepare($query);
+        $stmt->bindParam(':carnet', $new_personal_data['carnet']);
         $stmt->bindParam(':nom_sol', $new_personal_data['nom_sol']);
         $stmt->bindParam(':ape_sol', $new_personal_data['ape_sol']);
         $stmt->bindParam(':ced_sol', $new_personal_data['ced_sol']);

@@ -4,6 +4,7 @@ export default class AddDataPersonal {
     constructor() {
         this.btn = document.getElementById('add-data-personal')
 
+        this.carnet = document.getElementById('carnet')
         this.nombres = document.getElementById('names')
         this.apellidos = document.getElementById('lastNames')
         this.cedula = document.getElementById('cedula')
@@ -11,13 +12,14 @@ export default class AddDataPersonal {
         this.sexo = document.getElementById('sexo')
 
         this.inputs = [
-            this.nombres,
+            this.carnet,
             this.apellidos,
             this.cedula,
             this.edad,
         ]
 
         this.patterns = {
+            carnet: /\d$/,
             names: /^[a-zA-ZÀ-ÿ\W\s]{3,40}$/,
             lastNames: /^[a-zA-ZÀ-ÿ\W\s]{3,40}$/,
             cedula: /^\d{4,14}$/,
@@ -30,6 +32,7 @@ export default class AddDataPersonal {
             if (this.validateInputs(this.inputs)) return
 
             callback(
+                this.carnet.value,
                 this.nombres.value,
                 this.apellidos.value,
                 this.cedula.value,

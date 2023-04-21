@@ -19,7 +19,7 @@
                 <tbody>
                     <?php foreach($solicitantes as $solicitante): ?>
                         <tr>
-                            <th><?php echo $solicitante->id_sol ?></th>
+                            <th><?php echo $solicitante->carnet ?></th>
                             <td><?php echo $solicitante->nom_sol ?></td>
                             <td><?php echo $solicitante->ape_sol ?></td>
                             <td><?php echo $solicitante->ced_sol ?></td>

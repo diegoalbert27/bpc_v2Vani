@@ -2,7 +2,6 @@
 
 use App\Core\baseController;
 use App\Models\Event;
-use App\Models\EventParticipant;
 use App\Models\Libro;
 
 class HomeController  extends baseController
@@ -11,6 +10,14 @@ class HomeController  extends baseController
     {
         $libro_model = new Libro();
         $libros = $libro_model->getAll();
+
+        $show_books = [];
+
+        foreach ($libros as $key => $libro) {
+            if ($key <= 7) {
+                $show_books[] = $libro;
+            }
+        }
 
         $event_model = new Event();
         $events = $event_model->getAll();
@@ -21,7 +28,7 @@ class HomeController  extends baseController
 
         $this->view('LandingPage/Inicio', [
             'title' => 'Inicio',
-            'libros' => $libros,
+            'libros' => $show_books,
             'events_pendientes' => $events_pendientes
         ]);
     }
