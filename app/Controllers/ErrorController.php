@@ -1,9 +1,11 @@
 <?php
 
-class ErrorController
+use App\Core\baseController;
+
+class ErrorController extends baseController
 {
     public function Index()
     {
-        echo 'Not Found';
+        $this->view('Error/404', [ 'title' => 'Pagina No Encontrada' ]);
     }
 }
