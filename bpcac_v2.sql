@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-04-2023 a las 02:06:36
+-- Tiempo de generación: 24-04-2023 a las 01:33:26
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -90,6 +90,17 @@ INSERT INTO `auditorias` (`id_aud`, `ent_aud`, `acc_aud`, `usr_aud`, `fec_aud`) 
 (53, 'Solicitante', 'Actualizacion de datos del solicitantes solicitante 10012308', 10, '2023-04-19 00:00:00'),
 (54, 'Solicitante', 'Actualizacion de datos del solicitantes solicitante 10012308', 10, '2023-04-19 00:00:00'),
 (55, 'Solicitante', 'Actualizacion de datos del solicitantes solicitante 10012308', 10, '2023-04-19 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `backup`
+--
+
+CREATE TABLE `backup` (
+  `id` int(11) NOT NULL,
+  `url` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -500,6 +511,12 @@ ALTER TABLE `auditorias`
   ADD KEY `usr_aud` (`usr_aud`);
 
 --
+-- Indices de la tabla `backup`
+--
+ALTER TABLE `backup`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `categories`
 --
 ALTER TABLE `categories`
@@ -596,6 +613,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `auditorias`
   MODIFY `id_aud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
+-- AUTO_INCREMENT de la tabla `backup`
+--
+ALTER TABLE `backup`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`

@@ -9,7 +9,7 @@ class baseModel
     public $database;
     private $table;
 
-    public function __construct($table)
+    public function __construct(string $table = '')
     {
         $this->table = $table;
         $this->database = DataBase::getInstance();
