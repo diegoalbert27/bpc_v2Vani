@@ -164,7 +164,10 @@ class NewsController extends baseController {
         $new_model = new News();
         $new = $new_model->getByOne('id_new', $id_new);
 
-        $this->pdf->getReporteNew([ 'new' => $new ]);
+        $news_image_model = new NewsImage();
+        $news_images = $news_image_model->getBy('id_new', $new->id_new) ?: [];
+
+        $this->pdf->getReporteNew([ 'new' => $new, 'news_images' => $news_images ]);
     }
 
     public function EventNewForm()

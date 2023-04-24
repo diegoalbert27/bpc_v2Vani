@@ -307,6 +307,22 @@ class Pdf extends Fpdf implements InterfacePdf
         $this->Cell(5);
         $this->Multicell(160, 7, utf8_decode($data['new']->content_new), 0, 'L', 0);
 
+        $this->AddPage();
+
+        $row = 40;
+        $column = 10;
+
+        foreach($data['news_images'] as $index => $image) {
+            $aligment = $index + 1;
+            if (($aligment % 5) === 0) {
+                $row += 40;
+                $column = 10;
+            }
+
+            $this->Image(".{$image->url}", $column, $row, 40);
+            $column += 50;
+        }
+
         $this->Render();
     }
 }
