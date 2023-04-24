@@ -67,8 +67,9 @@ class BackupController extends baseController {
     {
         $this->authentication($this->authentication->isAuth());
 
-        if (isset($_FILES['file']) || empty($_FILES['file']['tmp_name'])) {
-            return $this->redirect('backup', 'index', 'danger', 'EL archivo es necesario para la importacion');
+        if (!isset($_FILES['file']) || empty($_FILES['file']['tmp_name'])) {
+            $this->redirect('backup', 'index', 'danger', 'EL archivo es necesario para la importacion');
+            return;
         }
 
         $file_path = __DIR__ . "/../../public/backup/";
