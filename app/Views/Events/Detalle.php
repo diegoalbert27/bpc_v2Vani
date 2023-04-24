@@ -21,29 +21,15 @@
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-3 col-sm-3">
                     <h6>Tipo de evento:</h6>
                     <span><?php echo $event->type_event ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-3 col-sm-3">
                     <h6>Aforo:</h6>
                     <span><?php echo $event->participants_event ?? 0 ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
-                    <h6>Lugar:</h6>
-                    <span><?php echo $event->place_event ?></span>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <h6>Estado:</h6>
-                    <span><?php echo $helpers->getStateEvent($event->state_event) ?></span>
-                </div>
-                <div class="col-md-4">
-                    <h6>Informacion:</h6>
-                    <span><?php echo $event->info_event ?></span>
-                </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <h6>Interesados:</h6>
                     <span><?php echo count($participants) ?></span>
 
@@ -51,9 +37,13 @@
                         <a class="link link-primary" href="<?php echo $helpers->generateUrl('participantes', 'info', [ 'id' => $event->id_event ]) ?>">Informacion</a>
                     <?php endif; ?>
                 </div>
+                <div class="col-md-3">
+                    <h6>Estado:</h6>
+                    <span><?php echo $helpers->getStateEvent($event->state_event) ?></span>
+                </div>
             </div>
             <div class="row mb-4">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <?php if ($news_event): ?>
                         <h6>Noticia</h6>
                         <a class="link link-primary" href="<?php echo $helpers->generateUrl('news', 'detalle', [ 'id' => $news_event->id_new ]) ?>">Ver Noticia</a>
@@ -61,6 +51,16 @@
                         <h6>Noticia</h6>
                         <a class="link link-primary" href="<?php echo $helpers->generateUrl('news', 'eventNewForm', [ 'id' => $event->id_event ]) ?>">Generar Noticia</a>
                     <?php endif ?>
+                </div>
+                <div class="col-md-9 col-sm-3">
+                    <h6>Lugar:</h6>
+                    <span><?php echo $event->place_event ?></span>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <h6>Informacion:</h6>
+                    <span><?php echo $event->info_event ?></span>
                 </div>
             </div>
             <div class="text-end">
