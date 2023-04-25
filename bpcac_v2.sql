@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2023 a las 01:33:26
+-- Tiempo de generación: 25-04-2023 a las 03:39:03
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -102,6 +102,14 @@ CREATE TABLE `backup` (
   `url` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `backup`
+--
+
+INSERT INTO `backup` (`id`, `url`) VALUES
+(1, './backup/6445d7fa03d77-2023-04-24-db.sql'),
+(2, './backup/6445d7fba18da-2023-04-24-db.sql');
+
 -- --------------------------------------------------------
 
 --
@@ -136,7 +144,7 @@ CREATE TABLE `events` (
   `id_event` int(11) NOT NULL,
   `title_event` varchar(255) NOT NULL,
   `info_event` text NOT NULL,
-  `organizer_event` varchar(255) NOT NULL,
+  `organizer_event` int(11) NOT NULL,
   `date_realized_event` date NOT NULL,
   `time` time NOT NULL,
   `date_created_event` datetime DEFAULT NULL,
@@ -151,14 +159,14 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id_event`, `title_event`, `info_event`, `organizer_event`, `date_realized_event`, `time`, `date_created_event`, `place_event`, `type_event`, `participants_event`, `state_event`) VALUES
-(1, 'Los chamorrucoss', 'El encuentro de los grandes chamorrucos en el botadero de san vicente xds', '1', '2023-03-21', '07:00:00', '2023-04-08 00:00:00', 'El vertederos', 'Limitado', 12, '1'),
-(2, 'Los vatos', 'pa los convives', '1', '2023-03-26', '06:00:00', '2023-03-29 00:00:00', 'La romana', 'Limitado', 8, '1'),
-(3, 'Los panas', 'carlos to', '1', '2023-03-24', '06:00:00', '2023-04-08 00:00:00', 'la 28', 'Limitado', 10, '1'),
-(4, 'Inauguración', 'Inauguración de la segunda exposición', '1', '2023-04-07', '10:00:00', '2023-03-24 00:00:00', 'Biblioteca', 'Limitado', 20, '1'),
-(5, 'Pa la fiesta', 'Pa la fiesta siva', '1', '2023-03-30', '06:00:00', '2023-04-06 00:00:00', 'El vertedero', 'Limitado', 14, '1'),
-(6, 'Prueba 1', 'Inauguración de la segunda exposición', '1', '2023-04-30', '06:00:00', '2023-03-24 00:00:00', 'El vertedero', 'Limitado', 12, '2'),
-(7, 'Prueba 2', 'carlos to', '1', '2023-04-07', '06:00:00', '2023-03-24 00:00:00', 'El vertedero', 'Limitado', 12, '1'),
-(8, 'La Fiesta de Jaimito', 'Bueno tu sabes que jaimito cumple anos', '2', '2023-05-31', '12:00:00', '2023-04-18 00:00:00', 'Mi casa en santa ines', 'Limitado', 7, '2');
+(1, 'Los chamorrucoss', 'El encuentro de los grandes chamorrucos en el botadero de san vicente xds', 1, '2023-03-21', '07:00:00', '2023-04-08 00:00:00', 'El vertederos', 'Limitado', 12, '1'),
+(2, 'Los vatos', 'pa los convives', 1, '2023-03-26', '06:00:00', '2023-03-29 00:00:00', 'La romana', 'Limitado', 8, '1'),
+(3, 'Los panas', 'carlos to', 1, '2023-03-24', '06:00:00', '2023-04-08 00:00:00', 'la 28', 'Limitado', 10, '1'),
+(4, 'Inauguración', 'Inauguración de la segunda exposición', 1, '2023-04-07', '10:00:00', '2023-03-24 00:00:00', 'Biblioteca', 'Limitado', 20, '1'),
+(5, 'Pa la fiesta', 'Pa la fiesta siva', 1, '2023-03-30', '06:00:00', '2023-04-06 00:00:00', 'El vertedero', 'Limitado', 14, '1'),
+(6, 'Prueba 1', 'Inauguración de la segunda exposición', 1, '2023-04-30', '06:00:00', '2023-03-24 00:00:00', 'El vertedero', 'Limitado', 12, '2'),
+(7, 'Prueba 2', 'carlos to', 1, '2023-04-07', '06:00:00', '2023-03-24 00:00:00', 'El vertedero', 'Limitado', 12, '1'),
+(8, 'La Fiesta de Jaimito', 'Bueno tu sabes que jaimito cumple anos', 2, '2023-05-31', '12:00:00', '2023-04-18 00:00:00', 'Mi casa en santa ines', 'Limitado', 7, '2');
 
 -- --------------------------------------------------------
 
@@ -618,7 +626,7 @@ ALTER TABLE `auditorias`
 -- AUTO_INCREMENT de la tabla `backup`
 --
 ALTER TABLE `backup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
