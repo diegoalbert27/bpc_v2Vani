@@ -81,7 +81,7 @@
                 <a href="<?php echo $helpers->generateUrl('organizer', 'index') ?>">Organizadores</a>
             </li>
             <li>
-                <a href="<?php echo $helpers->generateUrl('backup', 'index') ?>">Backup</a>
+                <a href="<?php echo $helpers->generateUrl('backup', 'index') ?>">Respaldo</a>
             </li>
         </ul>
     </li>

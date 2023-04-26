@@ -1,10 +1,10 @@
-<?php echo $helpers->getHeader('Gestion de datos', 'Backup/Inicio') ?>
+<?php echo $helpers->getHeader('Respaldo', 'Respaldo/Inicio') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 
 <div class="card shadow mt-4">
     <div class="card-body">
-        <p>Gestion para la importacion y exportacion de la base de datos, entienda que para importar la base de datos tiene que ser una instancia de la misma exportacion del sistema, de lo contrario la importacion no se hara de forma satisfactoria</p>
+        <p>Gestión para la importación y exportación de la base de datos, entienda que para importar la base de datos tiene que ser una instancia de la misma exportación del sistema, de lo contrario la importación no se hará de forma satisfactoria</p>
 
         <div class="row">
             <div class="col-md-6">
