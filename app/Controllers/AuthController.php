@@ -308,11 +308,11 @@ class AuthController extends baseController
         $question_finded_2 = null;
 
         foreach ($questions as $question) {
-            if ($question->id === $id_question_1) {
+            if ((int) $question->id === $id_question_1) {
                 $question_finded_1 = $question;
             }
 
-            if ($question->id === $id_question_2) {
+            if ((int) $question->id === $id_question_2) {
                 $question_finded_2 = $question;
             }
         }
