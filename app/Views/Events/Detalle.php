@@ -30,7 +30,7 @@
                     <span><?php echo $event->participants_event ?? 0 ?></span>
                 </div>
                 <div class="col-md-3">
-                    <h6>Interesados:</h6>
+                    <h6>Participantes:</h6>
                     <span><?php echo count($participants) ?></span>
 
                     <?php if (count($participants) > 0): ?>
@@ -38,19 +38,19 @@
                     <?php endif; ?>
                 </div>
                 <div class="col-md-3">
-                    <h6>Estado:</h6>
-                    <span><?php echo $helpers->getStateEvent($event->state_event) ?></span>
+                    <?php if ($news_event): ?>
+                        <h6>Noticia:</h6>
+                        <a class="link link-primary" href="<?php echo $helpers->generateUrl('news', 'detalle', [ 'id' => $news_event->id_new ]) ?>">Ver Noticia</a>
+                    <?php elseif ((int) $event->state_event === 1): ?>
+                        <h6>Noticia:</h6>
+                        <a class="link link-primary" href="<?php echo $helpers->generateUrl('news', 'eventNewForm', [ 'id' => $event->id_event ]) ?>">Generar Noticia</a>
+                    <?php endif ?>
                 </div>
             </div>
             <div class="row mb-4">
                 <div class="col-md-3">
-                    <?php if ($news_event): ?>
-                        <h6>Noticia</h6>
-                        <a class="link link-primary" href="<?php echo $helpers->generateUrl('news', 'detalle', [ 'id' => $news_event->id_new ]) ?>">Ver Noticia</a>
-                    <?php elseif ((int) $event->state_event === 1): ?>
-                        <h6>Noticia</h6>
-                        <a class="link link-primary" href="<?php echo $helpers->generateUrl('news', 'eventNewForm', [ 'id' => $event->id_event ]) ?>">Generar Noticia</a>
-                    <?php endif ?>
+                    <h6>Estado:</h6>
+                    <span><?php echo $helpers->getStateEvent($event->state_event) ?></span>
                 </div>
                 <div class="col-md-9 col-sm-3">
                     <h6>Lugar:</h6>
@@ -59,7 +59,7 @@
             </div>
             <div class="row mb-4">
                 <div class="col-md-12">
-                    <h6>Informacion:</h6>
+                    <h6>Información:</h6>
                     <span><?php echo $event->info_event ?></span>
                 </div>
             </div>

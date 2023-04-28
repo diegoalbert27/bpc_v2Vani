@@ -12,11 +12,11 @@
             <table class="table">
                 <thead>
                     <th>Cota</th>
-                    <th>Titulo</th>
+                    <th>Título</th>
                     <th>Autor</th>
-                    <th>Categoria</th>
+                    <th>Categoría</th>
                     <th>Estado</th>
-                    <th>Cantida</th>
+                    <th>Cantidad</th>
                     <th></th>
                 </thead>
                 <tbody>
