@@ -177,10 +177,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
 
         <!-- AXIOS -->
-        <script src="../node_modules/axios/dist/axios.min.js"></script>
+        <script src="assets/libs/axios/axios.min.js"></script>
 
         <!-- Fullcalendar -->
-        <script src="../node_modules/fullcalendar/index.global.min.js"></script>
+        <script src="assets/libs/fullcalendar/index.global.min.js"></script>
 
         <!-- Core theme JS-->
         <script src="assets/js/landing-page.js" type="module"></script>

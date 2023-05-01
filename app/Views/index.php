@@ -9,13 +9,13 @@
     <title><?php echo $title ?> | Biblioteca "Agustín Codazzi"</title>
 
     <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./assets/libs/font-awesome/all.min.css">
 
     <!-- Datatables -->
-    <link rel="stylesheet" href="../node_modules/datatables/media/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="./assets/libs/datatables/css/jquery.dataTables.min.css">
 
     <!-- BOOTSTRAP AND CUSTOM CSS -->
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/libs/bootstrap/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/estilos.css">
@@ -87,23 +87,23 @@
     </div>
 
     <!-- Bootstrap Scripts -->
-    <script src="../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./assets/libs/popperjs/popper.min.js"></script>
+    <script src="./assets/libs/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Datateble and Jquery -->
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/datatables/media/js/jquery.datatables.min.js"></script>
+    <script src="./assets/libs/jquery/jquery.min.js"></script>
+    <script src="./assets/libs/datatables/js/jquery.datatables.min.js"></script>
 
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/datatables.js"></script>
 
     <!-- AXIOS -->
-    <script src="../node_modules/axios/dist/axios.min.js"></script>
+    <script src="./assets/libs/axios/axios.min.js"></script>
 
     <!-- Fullcalendar -->
-    <script src="../node_modules/fullcalendar/index.global.min.js"></script>
+    <script src="./assets/libs/fullcalendar/index.global.min.js"></script>
 
-    <script src="../node_modules/chart.js/dist/chart.umd.js"></script>
+    <script src="./assets/libs/chartjs/chart.umd.js"></script>
 
     <script src="assets/js/index.js" type="module"></script>
 

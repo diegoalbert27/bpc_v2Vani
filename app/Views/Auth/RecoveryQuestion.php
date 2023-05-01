@@ -9,10 +9,10 @@
     <title><?php echo $title ?> | Biblioteca "Agustín Codazzi"</title>
 
     <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./assets/libs/font-awesome/all.min.css">
 
     <!-- BOOTSTRAP AND CUSTOM CSS -->
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/libs/bootstrap/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/estilos.css">
@@ -71,7 +71,7 @@
     </div>
 
     <!-- Bootstrap Scripts -->
-    <script src="../node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./assets/libs/popperjs/popper.min.js"></script>
+    <script src="./assets/libs/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
