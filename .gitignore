@@ -3,3 +3,5 @@ node_modules/
 
 public/uploads
 public/backup
+public/assets/libs
+public/assets/build
