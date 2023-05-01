@@ -9,7 +9,7 @@
     <title><?php echo $title ?> | Biblioteca "Agustín Codazzi"</title>
 
     <!-- BOOTSTRAP AND CUSTOM CSS -->
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/libs/bootstrap/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/estilos.css">
