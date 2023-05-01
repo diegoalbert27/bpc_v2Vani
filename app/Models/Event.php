@@ -19,7 +19,7 @@ class Event extends baseModel
     private $state_event;
     protected $table = 'events';
 
-    public function __construct(?array $event = null)
+    public function __construct(array $event = null)
     {
         if (is_array($event)) {
             $this->id_event = $event['id_event'];

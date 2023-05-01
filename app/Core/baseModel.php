@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-use App\Utils\DataBase;
+use App\Utils\Database;
 
 class baseModel
 {

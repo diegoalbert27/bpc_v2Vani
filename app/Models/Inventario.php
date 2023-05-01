@@ -13,7 +13,7 @@ class Inventario extends baseModel
     private $resto_inv;
     protected $table = 'inventario';
 
-    public function __construct(?array $inventario = null)
+    public function __construct(array $inventario = null)
     {
         if (is_array($inventario)) {
             $this->id_inv = $inventario['id_inv'];

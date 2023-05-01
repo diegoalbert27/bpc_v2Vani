@@ -27,7 +27,9 @@ class FrontController
         $reflection_class = new ReflectionClass($name_controller);
         $reflection_methods = $reflection_class->getMethods();
 
-        $reflection_method = array_filter($reflection_methods, fn($reflection_method) => $reflection_method->getName() === '__construct');
+        $reflection_method = array_filter($reflection_methods, function($reflection_method) {
+            return $reflection_method->getName() === '__construct';
+        });
 
         if (count($reflection_method) > 0) {
             $reflection_method = array_shift($reflection_method);
@@ -82,7 +84,9 @@ class FrontController
 
             $interfaces = $reflection_class->getInterfaceNames();
 
-            $parameter = array_filter($reflection_parameter, fn($parameter) => $parameter->getType()->getName() === $interfaces[0]);
+            $parameter = array_filter($reflection_parameter, function($parameter) {
+                return $parameter->getType()->getName() === $interfaces[0];
+            });
 
             if (count($parameter) > 0) {
                 $parameter = array_shift($parameter);

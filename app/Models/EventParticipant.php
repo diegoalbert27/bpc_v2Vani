@@ -11,7 +11,7 @@ class EventParticipant extends baseModel
     private $id_event;
     protected $table = 'event_participant';
 
-    public function __construct(?array $event_participant = null)
+    public function __construct(array $event_participant = null)
     {
         if (is_array($event_participant)) {
             $this->ID = $event_participant['ID'];

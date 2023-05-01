@@ -10,7 +10,7 @@ class Backup extends baseModel
     private $url;
     protected $table = 'backup';
 
-    public function __construct(?array $backup = null)
+    public function __construct(array $backup = null)
     {
         if (is_array($backup)) {
             $this->id = $backup['id'];

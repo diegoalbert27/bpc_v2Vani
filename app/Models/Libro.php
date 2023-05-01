@@ -16,7 +16,7 @@ class Libro extends baseModel
     private $cantidad;
     protected $table = 'libros';
 
-    public function __construct(?array $libro = null)
+    public function __construct(array $libro = null)
     {
         if (is_array($libro)) {
             $this->id_libro = $libro['id_libro'];

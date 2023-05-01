@@ -22,9 +22,13 @@ class HomeController  extends baseController
         $event_model = new Event();
         $events = $event_model->getAll();
 
-        $events_pendientes = array_filter($events, fn($event) => (int) $event->state_event === 2);
+        $events_pendientes = array_filter($events, function($event) {
+            return (int) $event->state_event === 2;
+        });
 
-        usort($events_pendientes, fn($a, $b) => strtotime($a->date_realized_event) - strtotime($b->date_realized_event));
+        usort($events_pendientes, function($a, $b) {
+            return strtotime($a->date_realized_event) - strtotime($b->date_realized_event);
+        });
 
         $this->view('LandingPage/Inicio', [
             'title' => 'Inicio',

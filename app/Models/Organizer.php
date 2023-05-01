@@ -11,7 +11,7 @@ class Organizer extends baseModel
     private $is_actived;
     protected $table = 'organizer';
 
-    public function __construct(?array $organizer = null)
+    public function __construct(array $organizer = null)
     {
         if (is_array($organizer)) {
             $this->id = $organizer['id'];

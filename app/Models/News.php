@@ -14,7 +14,7 @@ class News extends baseModel
     private $id_event;
     protected $table = 'news';
 
-    public function __construct(?array $news = null)
+    public function __construct(array $news = null)
     {
         if (is_array($news)) {
             $this->id_new = $news['id_new'];

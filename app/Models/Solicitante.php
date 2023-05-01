@@ -23,7 +23,7 @@ class Solicitante extends baseModel
     private $estado_s;
     protected $table = 'solicitantes';
 
-    public function __construct(?array $solicitante = null)
+    public function __construct(array $solicitante = null)
     {
         if (is_array($solicitante)) {
             $this->id_sol = $solicitante['id_sol'];

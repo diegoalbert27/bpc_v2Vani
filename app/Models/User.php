@@ -16,7 +16,7 @@ class User extends baseModel
     private $enabled;
     protected $table = 'users';
 
-    public function __construct(?array $user = null)
+    public function __construct(array $user = null)
     {
         if (is_array($user)) {
             $this->id = $user['id'];

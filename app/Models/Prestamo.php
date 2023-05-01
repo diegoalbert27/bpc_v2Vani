@@ -15,7 +15,7 @@ class Prestamo extends baseModel
     private $pendiente;
     protected $table = 'prestamo';
 
-    public function __construct(?array $prestamo = null)
+    public function __construct(array $prestamo = null)
     {
         if (is_array($prestamo)) {
             $this->id_p = $prestamo['id_p'];

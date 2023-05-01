@@ -12,7 +12,7 @@ class Question extends baseModel
     private $user;
     protected $table = 'questions';
 
-    public function __construct(?array $question = null)
+    public function __construct(array $question = null)
     {
         if (is_array($question)) {
             $this->id = $question['id'];

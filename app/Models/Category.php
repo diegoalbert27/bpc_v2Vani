@@ -12,7 +12,7 @@ class Category extends baseModel
     private $enabled;
     protected $table = 'categories';
 
-    public function __construct(?array $category = null)
+    public function __construct(array $category = null)
     {
         if (is_array($category)) {
             $this->id = $category['id'];

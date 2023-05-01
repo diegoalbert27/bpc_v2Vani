@@ -11,7 +11,7 @@ class Role extends baseModel
     private $nivel;
     protected $table = 'roles';
 
-    public function __construct(?array $role = null)
+    public function __construct(array $role = null)
     {
         if (is_array($role)) {
             $this->id = $role['id'];

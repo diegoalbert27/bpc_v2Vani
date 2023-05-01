@@ -13,7 +13,7 @@ class Database extends \PDO
     /**
      * __construct function
      */
-    private function __construct()
+    public function __construct()
     {
         $dsn = 'mysql:host=localhost;dbname=bpcac_v2;charset=utf8';
 

@@ -13,7 +13,7 @@ class Audit extends baseModel
     private $fec_aud;
     protected $table = 'auditorias';
 
-    public function __construct(?array $audit = null)
+    public function __construct(array $audit = null)
     {
         if (is_array($audit)) {
             $this->id_aud = $audit['id_aud'];

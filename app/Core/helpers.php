@@ -218,7 +218,7 @@ class helpers {
      * @param  array $files
      * @return bool|array
      */
-    public function uploadsFiles(string $folder, array $files) : bool|array
+    public function uploadsFiles(string $folder, array $files)
     {
         $file_path = __DIR__ . "/../../public/uploads/{$folder}/";
 

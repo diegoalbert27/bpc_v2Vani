@@ -11,7 +11,7 @@ class NewsImage extends baseModel
     private $id_new;
     private $table = 'news_image';
 
-    public function __construct(?array $news_image = null)
+    public function __construct(array $news_image = null)
     {
         if (is_array($news_image)) {
             $this->id_new_image = $news_image['id_new_image'];
