@@ -84,12 +84,16 @@ class FrontController
 
             $interfaces = $reflection_class->getInterfaceNames();
 
-            $parameter = array_filter($reflection_parameter, function($parameter) {
-                return $parameter->getType()->getName() === $interfaces[0];
-            });
+            $parameter_filter = [];
 
-            if (count($parameter) > 0) {
-                $parameter = array_shift($parameter);
+            foreach ($reflection_parameter as $parameter) {
+                if ($parameter->getType()->getName() === $interfaces[0]) {
+                    $parameter_filter[] = $parameter;
+                }
+            }
+
+            if (count($parameter_filter) > 0) {
+                $parameter = array_shift($parameter_filter);
 
                 $index_of = array_search($parameter->getType()->getName(), $interfaces);
 
