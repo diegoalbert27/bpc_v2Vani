@@ -17,15 +17,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <label class="form-label" for="role">Nivel</label>
-                        <select class="form-select form-control-user mb-3" name="role" id="role">
-                            <?php foreach($roles as $role) : ?>
-                                <option value="<?php echo $role->id?>"><?php echo $role->name ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
+                    <?php if ((int) $session_user->role->nivel === 10): ?>
+                        <div class="col-sm-12 col-md-6">
+                            <label class="form-label" for="role">Nivel</label>
+                            <select class="form-select form-control-user mb-3" name="role" id="role">
+                                <?php foreach($roles as $role) : ?>
+                                    <option value="<?php echo $role->id?>"><?php echo $role->name ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    <?php endif; ?>
+                    <div class="col-sm-12 col-md">
                         <label class="form-label" for="password">Contraseña</label>
                         <input type="password" name="password" class="form-control form-control-user mb-3" id="password">
                     </div>
@@ -41,12 +43,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <label class="form-label" for="enabled">Estado</label>
-                        <select class="form-select form-control-user mb-3" name="enabled" id="enabled">
-                            <?php echo $helpers->isEnabledOption($user->enabled) ?>
-                        </select>
-                    </div>
+                    <?php if ((int) $session_user->role->nivel === 10): ?>
+                        <div class="col-sm-12 col-md-6">
+                            <label class="form-label" for="enabled">Estado</label>
+                            <select class="form-select form-control-user mb-3" name="enabled" id="enabled">
+                                <?php echo $helpers->isEnabledOption($user->enabled) ?>
+                            </select>
+                        </div>
+                    <?php endif; ?>
                 </div>
 
                 <input type="hidden" id="id" name="id" value="<?php echo $user->id ?>" >

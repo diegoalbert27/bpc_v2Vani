@@ -207,9 +207,7 @@ class UserController extends baseController
             !isset($_POST['username']) ||
             !isset($_POST['password']) ||
             !isset($_POST['phone']) ||
-            !isset($_POST['email']) ||
-            !isset($_POST['role']) ||
-            !isset($_POST['enabled'])
+            !isset($_POST['email'])
         ) {
             $this->redirect('user', 'index', 'warning', 'Los datos requeridos no fueron enviados');
             return;
@@ -219,9 +217,7 @@ class UserController extends baseController
             empty($_POST['id']) ||
             empty($_POST['name']) ||
             empty($_POST['username']) ||
-            empty($_POST['phone']) ||
-            empty($_POST['email']) ||
-            empty($_POST['role'])
+            empty($_POST['phone'])
         ) {
             $this->redirect('user', 'index', 'warning', 'Debe llenar todo el formulario para el registro');
             return;
@@ -235,17 +231,23 @@ class UserController extends baseController
         $password = $_POST['password'];
         $phone = $_POST['phone'];
         $email = $_POST['email'];
-        $role = $_POST['role'];
-        $enabled = $_POST['enabled'];
 
-        $users_finded = $user_model->getBy('id', $id_user);
+        $session_user = $this->authentication->getSession();
 
-        if (count($users_finded) <= 0) {
-            $this->redirect('user', 'index', 'danger', 'El usuario ingresado no fue encontrado');
+        $user_finded = $user_model->getByOne('id', $id_user);
+
+        if ( !$user_finded ) {
+            $this->redirect('user', 'details', 'danger', 'El usuario ingresado no fue encontrado', [ 'id' => $id_user ]);
             return;
         }
 
-        $user_finded = array_shift($users_finded);
+        $role = $user_finded->role;
+        $enabled = $user_finded->enabled;
+
+        if ((int) $session_user->role->nivel === 10) {
+            $role = $_POST['role'];
+            $enabled = $_POST['enabled'];
+        }
 
         $user = [
             'id' => $id_user,
