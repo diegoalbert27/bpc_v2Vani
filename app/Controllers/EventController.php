@@ -250,7 +250,9 @@ class EventController extends baseController
             $organizer->id_user = $user_model->getByOne('id', $organizer->id_user);
         }
 
-        $organizers = array_filter($organizers, fn($organizer) => (int) $organizer->id !== (int) $event->organizer_event);
+        $organizers = array_filter($organizers, function($organizer) use ($event) {
+            return (int) $organizer->id !== (int) $event->organizer_event;
+        });
 
         $organizer = $organizer_model->getByOne('id', $event->organizer_event);
         $organizer->id_user = $user_model->getByOne('id', $organizer->id_user);

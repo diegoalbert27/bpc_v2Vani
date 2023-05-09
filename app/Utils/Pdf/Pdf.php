@@ -67,7 +67,7 @@ class Pdf extends Fpdf implements InterfacePdf
         $this->Cell(30, 10, 'CARNET', 0, 0);
         $this->Cell(50);
 
-        $this->Cell(30, 10, $data['solicitante']->carnet, 0, 0, );
+        $this->Cell(30, 10, $data['solicitante']->carnet, 0, 0);
         $this->Cell(10);
 
         $this->Cell(10, 10, date('d/m/Y'), 0, 0, 'L');

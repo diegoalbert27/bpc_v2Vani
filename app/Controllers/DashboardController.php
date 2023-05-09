@@ -38,9 +38,13 @@ class DashboardController extends baseController
             $prestamo->id_libro2 = $libro_model->getByOne('id_libro', $prestamo->id_libro2);
         }
 
-        $prestamos = array_filter($prestamos, fn($prestamo) => (int) $prestamo->pendiente !== 1);
+        $prestamos = array_filter($prestamos, function($prestamo) {
+            return (int) $prestamo->pendiente !== 1;
+        });
 
-        usort($prestamos, fn($a, $b) => strcasecmp($a->fecha_devolucion, $b->fecha_devolucion));
+        usort($prestamos, function($a, $b) {
+            return strcasecmp($a->fecha_devolucion, $b->fecha_devolucion);
+        });
 
         if (count($prestamos) >= 3) {
             array_splice($prestamos, 3);

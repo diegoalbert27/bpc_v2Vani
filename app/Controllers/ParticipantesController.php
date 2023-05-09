@@ -25,7 +25,9 @@ class ParticipantesController extends baseController
         $event_model = new Event();
         $events = $event_model->getAll();
 
-        $events_pendientes = array_filter($events, fn($event) => (int) $event->state_event === 2);
+        $events_pendientes = array_filter($events, function($event) {
+            return (int) $event->state_event === 2;
+        });
 
         $is_participants = [];
         $user = $this->authentication->getSession();
@@ -34,7 +36,9 @@ class ParticipantesController extends baseController
 
         foreach ($events_pendientes as $event) {
             $participants_by_user = $event_participant_model->getBy('id_user', $user->id);
-            $event_participant = array_filter($participants_by_user, fn($participant) => (int) $participant->id_event === (int) $event->id_event);
+            $event_participant = array_filter($participants_by_user, function($participant) use ($event) {
+                return (int) $participant->id_event === (int) $event->id_event;
+            });
 
             if (count($event_participant) > 0) {
                 $is_participants[$event->id_event] = true;
@@ -43,7 +47,9 @@ class ParticipantesController extends baseController
             }
         }
 
-        usort($events_pendientes, fn($a, $b) => strtotime($a->date_realized_event) - strtotime($b->date_realized_event));
+        usort($events_pendientes, function($a, $b) {
+            return strtotime($a->date_realized_event) - strtotime($b->date_realized_event);
+        });
 
         $this->view('Participantes/Inicio', [
             'title' => 'Eventos Pendientes',
@@ -74,7 +80,9 @@ class ParticipantesController extends baseController
         $is_participant = false;
 
         $participants_by_user = $event_participant_model->getBy('id_user', $user->id);
-        $event_participant = array_filter($participants_by_user, fn($participant) => (int) $participant->id_event === (int) $id_event);
+        $event_participant = array_filter($participants_by_user, function($participant) use ($id_event) {
+            return (int) $participant->id_event === (int) $id_event;
+        });
 
         if (count($event_participant) > 0) {
             $is_participant = !$is_participant;

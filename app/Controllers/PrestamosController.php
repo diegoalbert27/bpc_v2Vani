@@ -106,7 +106,9 @@ class PrestamosController extends baseController
 
         $solicitante_model = new Solicitante();
         $solicitantes = $solicitante_model->getAll();
-        $solicitantes = array_filter($solicitantes, fn($solicitante) => (int) $solicitante->estado_s !== 0);
+        $solicitantes = array_filter($solicitantes, function($solicitante) {
+            return (int) $solicitante->estado_s !== 0;
+        });
 
         $libro_model = new Libro();
         $libros = $libro_model->getAll();
@@ -195,7 +197,9 @@ class PrestamosController extends baseController
         }
 
         $prestamos = $prestamo_model->getBy('numero_carnet2', $solicitante->id_sol);
-        $prestamos_pendientes = array_filter($prestamos, fn($prestamo) => (int) $prestamo->pendiente === 0);
+        $prestamos_pendientes = array_filter($prestamos, function($prestamo) {
+            return (int) $prestamo->pendiente === 0;
+        });
 
         if (count($prestamos_pendientes) >= 3) {
             $response->message = 'El solicitante tiene prestamos pendientes, no puede realizar prestamos';
@@ -358,9 +362,13 @@ class PrestamosController extends baseController
             $prestamo->id_libro2 = $libro_model->getByOne('id_libro', $prestamo->id_libro2);
         }
 
-        $prestamos = array_filter($prestamos, fn($prestamo) => (int) $prestamo->pendiente !== 1);
+        $prestamos = array_filter($prestamos, function($prestamo) {
+            return (int) $prestamo->pendiente !== 1;
+        });
 
-        usort($prestamos, fn($a, $b) => strcasecmp($a->fecha_devolucion, $b->fecha_devolucion));
+        usort($prestamos, function($a, $b) {
+            return strcasecmp($a->fecha_devolucion, $b->fecha_devolucion);
+        });
 
         $this->view('Prestamos/ReturnPrestamo', [
             'title' => 'Prestamos Pendientes',
