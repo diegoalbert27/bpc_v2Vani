@@ -31,6 +31,9 @@
                             <div class="text-danger pt-1 d-none" id="valid-carnet">
                                 El carnet solo permite valores numéricos
                             </div>
+                            <div class="text-danger pt-1 d-none" id="valid-repeat-carnet">
+                                El nro de carnet ingresada no se encuentra disponible
+                            </div>
                         </div>
                         <div class="col-md-4 col-sm-12 mb-3">
                             <label class="form-label" for="names">Nombres:</label>

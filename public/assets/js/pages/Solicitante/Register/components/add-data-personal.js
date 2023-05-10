@@ -13,6 +13,7 @@ export default class AddDataPersonal {
 
         this.inputs = [
             this.carnet,
+            this.nombres,
             this.apellidos,
             this.cedula,
             this.edad,
@@ -25,6 +26,11 @@ export default class AddDataPersonal {
             cedula: /^\d{4,14}$/,
             edad: /^\d{2}$/,
         }
+
+        this.solicitantes = null
+        this.solicitanteApi = new SolicitanteApi()
+
+        this.getUsers()
     }
 
     onClick(callback) {
@@ -49,7 +55,11 @@ export default class AddDataPersonal {
                     this.inputPassed(input)
 
                     if (input.name === 'cedula') {
-                        await this.validateCedula(input.value) ? this.cedulaPassed(input) : this.cedulaNotPassed(input)
+                        this.validateField('ced_sol', input.value) ? this.inputUserPassed(input) : this.inputUserNotPassed(input)
+                    }
+
+                    if (input.name === 'carnet') {
+                        this.validateField('carnet', input.value) ? this.inputUserPassed(input) : this.inputUserNotPassed(input)
                     }
 
                     return
@@ -65,8 +75,13 @@ export default class AddDataPersonal {
             input.onkeyup = async (e) => {
                 if (this.isCorrectInput(input)) {
                     this.inputPassed(input)
+
                     if (input.name === 'cedula') {
-                        await this.validateCedula(input.value) ? this.cedulaPassed(input) : this.cedulaNotPassed(input)
+                        this.validateField('ced_sol', input.value) ? this.inputUserPassed(input) : this.inputUserNotPassed(input)
+                    }
+
+                    if (input.name === 'carnet') {
+                        this.validateField('carnet', input.value) ? this.inputUserPassed(input) : this.inputUserNotPassed(input)
                     }
 
                     return
@@ -114,7 +129,7 @@ export default class AddDataPersonal {
             .classList.remove('d-none')
     }
 
-    cedulaPassed(input) {
+    inputUserPassed(input) {
         input.classList.remove('formulario__grupo-incorrecto')
 
         document
@@ -122,7 +137,7 @@ export default class AddDataPersonal {
             .classList.add('d-none')
     }
 
-    cedulaNotPassed(input) {
+    inputUserNotPassed(input) {
         input.classList.add('formulario__grupo-incorrecto')
 
         document
@@ -130,12 +145,12 @@ export default class AddDataPersonal {
             .classList.remove('d-none')
     }
 
-    async validateCedula(cedula) {
-        const solicitanteApi = new SolicitanteApi()
-        const solicitantes = await solicitanteApi.getAll()
+    async getUsers() {
+        this.solicitantes = await this.solicitanteApi.getAll()
+    }
 
-        const solicitente = solicitantes.data.find(solicitante => Number(solicitante.ced_sol) === Number(cedula))
-
+    validateField(field, value) {
+        const solicitente = this.solicitantes.data.find(solicitante => String(solicitante[field]) === String(value))
         return solicitente === undefined
     }
 }

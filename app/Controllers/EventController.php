@@ -246,23 +246,28 @@ class EventController extends baseController
 
         $user_model = new User();
 
+        $organizers_actived = [];
+
         foreach($organizers as $organizer) {
-            $organizer->id_user = $user_model->getByOne('id', $organizer->id_user);
+            if ((int)$organizer->is_actived === 1) {
+                $organizer->id_user = $user_model->getByOne('id', $organizer->id_user);
+                $organizers_actived[] = $organizer;
+            }
         }
 
-        $organizers = array_filter($organizers, function($organizer) use ($event) {
+        $organizers_actived = array_filter($organizers_actived, function($organizer) use ($event) {
             return (int) $organizer->id !== (int) $event->organizer_event;
         });
 
         $organizer = $organizer_model->getByOne('id', $event->organizer_event);
         $organizer->id_user = $user_model->getByOne('id', $organizer->id_user);
 
-        array_unshift($organizers, $organizer);
+        array_unshift($organizers_actived, $organizer);
 
         $this->view('Events/EditEvent', [
             'title' => 'Editar Evento',
             'event' => $event,
-            'organizers' => $organizers
+            'organizers' => $organizers_actived
         ], true);
     }
 
