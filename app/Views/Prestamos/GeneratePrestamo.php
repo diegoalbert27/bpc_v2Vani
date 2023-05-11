@@ -95,7 +95,7 @@
                 <tbody>
                     <?php foreach($solicitantes as $solicitante): ?>
                         <tr>
-                            <td><?php echo $solicitante->id_sol ?></td>
+                            <td><?php echo $solicitante->carnet ?></td>
                             <td><?php echo $solicitante->ced_sol ?></td>
                             <td><?php echo $solicitante->nom_sol ?></td>
                             <td><?php echo $solicitante->ape_sol ?></td>

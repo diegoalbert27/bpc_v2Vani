@@ -94,7 +94,7 @@ class Pdf extends Fpdf implements InterfacePdf
 
         $this->Cell(90);
 
-        $this->Cell(45, 10, 'No. de Carnet: ' . $data['solicitante']->id_sol, 1, 0);
+        $this->Cell(45, 10, 'No. de Carnet: ' . $data['solicitante']->carnet, 1, 0);
         $this->Cell(40, 10, utf8_decode('Cédula: ') . $data['solicitante']->ced_sol, 1, 0);
 
         $this->Render();

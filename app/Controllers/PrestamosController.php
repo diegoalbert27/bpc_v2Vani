@@ -115,14 +115,24 @@ class PrestamosController extends baseController
 
         $category_model = new Category();
 
+        $libros_actived = [];
+
         foreach ($libros as $libro) {
-            $libro->categoria = $category_model->getByOne('id', $libro->categoria);
+            if ($libro->estado_libro === 'Disponible para su lectura y prestamo') {
+                $category = $category_model->getByOne('id', $libro->categoria);
+
+                if ($category) {
+                    $libro->categoria = $category;
+                }
+
+                $libros_actived[] = $libro;
+            }
         }
 
         $this->view('Prestamos/GeneratePrestamo', [
             'title' => 'Registra Prestamo',
             'solicitantes' => $solicitantes,
-            'libros' => $libros
+            'libros' => $libros_actived
         ], true);
     }
 
