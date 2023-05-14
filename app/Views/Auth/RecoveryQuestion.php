@@ -37,7 +37,7 @@
                                             <p name="pregunta_1"><?php echo $questions[0]->question ?></p>
                                         </div>
                                         <div class="mb-3">
-                                            <input class="form-control" type="text" name="answer_1" placeholder="Respuesta" required>
+                                            <input class="form-control" type="text" name="answer_1" placeholder="Respuesta" autocomplete="off" required>
 
                                             <input type="hidden" name="id_1" value="<?php echo $questions[0]->id ?>">
                                         </div>
@@ -46,7 +46,7 @@
                                             <p name="pregunta_2"><?php echo $questions[1]->question ?></p>
                                         </div>
                                         <div class="mb-3">
-                                            <input class="form-control" type="text" name="answer_2" placeholder="Respuesta" required>
+                                            <input class="form-control" type="text" name="answer_2" placeholder="Respuesta" autocomplete="off" required>
                                             <input type="hidden" name="id_2" value="<?php echo $questions[1]->id ?>">
                                         </div>
 

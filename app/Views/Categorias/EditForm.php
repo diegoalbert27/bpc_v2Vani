@@ -12,7 +12,7 @@
                         <input type="text" name="category" class="form-control mb-3" id="category" required value="<?php echo $category->name ?>">
                     </div>
                     <div class="col-sm-12 col-md-12">
-                        <label class="form-label" for="ubication">Ubicacíon</label>
+                        <label class="form-label" for="ubication">Ubicación</label>
                         <select name="ubication" class="form-select mb-3"  id="ubication" required>
                             <?php
                                 if ((int)$category->ubication === 1) {

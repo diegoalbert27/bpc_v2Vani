@@ -88,7 +88,7 @@ class helpers {
         ";
     }
 
-    public function generateStatePrestamo(int $status) : string
+    public function generateStatePrestamo(int $status)
     {
         if ($status) {
             return '<span class="fas fa-check-square"></span> Devuelto';
@@ -97,7 +97,7 @@ class helpers {
         return '<span class="far fa-square"></span> Pendiente';
     }
 
-    public function getOptionStatePrestamo(int $status) : string
+    public function getOptionStatePrestamo(int $status)
     {
         if ($status) {
             return '
@@ -118,7 +118,7 @@ class helpers {
         return $authentication->getSession();
     }
 
-    public function getCurrentDate(int $after_days = 0) : string
+    public function getCurrentDate(int $after_days = 0)
     {
         date_default_timezone_set('America/Caracas');
         $current_date = date('Y-m-d');
@@ -130,7 +130,7 @@ class helpers {
         return $current_date;
     }
 
-    public function getCurrentDateTime(int $after_days = 0) : string
+    public function getCurrentDateTime(int $after_days = 0)
     {
         date_default_timezone_set('America/Caracas');
         $current_date = date('Y-m-d: H:i:s');
@@ -197,7 +197,7 @@ class helpers {
      * @param  string $image_extention
      * @return bool
      */
-    public function validateImage(string $image_extention) : bool
+    public function validateImage(string $image_extention)
     {
         $images_extentions = [
             'image/png',
@@ -252,7 +252,7 @@ class helpers {
      * @param  string $file
      * @return bool
      */
-    public function removeUploadFile(string $folder, string $file) : bool
+    public function removeUploadFile(string $folder, string $file)
     {
         $file_path = __DIR__ . "/../../public/uploads/{$folder}/";
 

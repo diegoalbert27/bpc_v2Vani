@@ -60,7 +60,7 @@
         </ul>
     </li>
     <li>
-        <a href="#pageSubmenu" data-bs-toggle="collapse"x` aria-expanded="false" class="dropdown-toggle d-flex justify-content-between">
+        <a href="#pageSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between">
             <span>Configuración</span>
             <span class="fal fa-plus"></span>
         </a>

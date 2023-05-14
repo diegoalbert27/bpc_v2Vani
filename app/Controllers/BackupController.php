@@ -23,7 +23,7 @@ class BackupController extends baseController {
         $backup_model = new Backup();
         $backup = $backup_model->getAll();
 
-        $this->view('Backup\Inicio', [ 'title' => 'Gestion de BD', 'backup' => $backup ], true);
+        $this->view('Backup/Inicio', [ 'title' => 'Gestion de BD', 'backup' => $backup ], true);
     }
 
     public function Export()
