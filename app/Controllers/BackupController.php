@@ -94,8 +94,7 @@ class BackupController extends baseController {
 
             $this->redirect('backup', 'index', 'success', 'La importacion del respaldo se ha generado con exito');
         } catch (\Exception $e) {
-            // $this->redirect('backup', 'index', 'danger', 'Export failed with message: ' . $e->getMessage());
-            $this->redirect('backup', 'index', 'success', 'La importacion del respaldo se ha generado con exito');
+            $this->redirect('backup', 'index', 'danger', 'Export failed with message: ' . $e->getMessage());
         }
     }
 }
