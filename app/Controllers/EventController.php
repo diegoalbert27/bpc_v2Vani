@@ -73,8 +73,12 @@ class EventController extends baseController
 
     public function getEventsPendients()
     {
+        $this->authentication($this->authentication->isAuth());
+
         $event_model = new Event();
         $events = $event_model->getAll();
+
+        $user = $this->helpers->getSession();
 
         $events_pendientes = [];
         foreach($events as $event) {
@@ -82,7 +86,9 @@ class EventController extends baseController
                 array_push($events_pendientes, $event);
         }
 
-        $response = new Response(true, null, $events_pendientes);
+        $events_final = (int) $user->role->nivel === 10 ? $events : $events_pendientes;
+
+        $response = new Response(true, null, $events_final);
 
         return $this->json($response);
     }

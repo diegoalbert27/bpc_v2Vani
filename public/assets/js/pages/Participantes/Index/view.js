@@ -1,4 +1,5 @@
 import EventApi from "../../Event/api/events-api.js";
+import NavCalendar from "./components/nav-calendar.js";
 import ViewDefaulEvents from "./components/view-defaul-events.js";
 
 export default class View {
@@ -8,14 +9,49 @@ export default class View {
 
         this.defaultEvents = document.getElementsByClassName('defaul-events')
         this.notEvent = document.getElementById('not-event')
+        this.notEventMonth = document.getElementById('not-event-month')
+
+        this.currentDate = new Date()
+        this.currentMonth = this.currentDate.getMonth()
+        this.currentYear = this.currentDate.getFullYear()
 
         this.viewDefaulEvents = new ViewDefaulEvents
         this.viewDefaulEvents.onClick(() => {
             this.notEvent.classList.add('d-none')
-            this.showDefaultEvents()
+            this.showDefaultEvents(this.currentMonth, this.currentYear)
         })
 
+        this.showDefaultEvents(this.currentMonth, this.currentYear)
         this.renderCalendar()
+          .then(() => {
+            const navCalendar = new NavCalendar()
+            navCalendar.previusOnClick(() => {
+                this.changeDate(false)
+                this.showDefaultEvents(this.currentMonth, this.currentYear)
+            })
+            navCalendar.nextOnClick(() => {
+                this.changeDate(true)
+                this.showDefaultEvents(this.currentMonth, this.currentYear)
+            })
+          })
+    }
+
+    changeDate(isNext) {
+        if (isNext) {
+            this.currentMonth++
+
+            if (this.currentMonth >= 12) {
+                this.currentMonth = 0
+                this.currentYear++
+            }
+        } else {
+            this.currentMonth--
+
+            if (this.currentMonth <= 0) {
+                this.currentMonth = 12
+                this.currentYear--
+            }
+        }
     }
 
     async getAllEvents() {
@@ -29,9 +65,35 @@ export default class View {
         }
     }
 
-    showDefaultEvents() {
+    /**
+     * Muestra todos los eventos por el mes y el año
+     * @param {Number} currentMonth
+     * @param {Number} currentYear
+     */
+    async showDefaultEvents(currentMonth, currentYear) {
+        let eventShoweds = 0
         for (const defaultEvent of this.defaultEvents) {
-            defaultEvent.classList.remove('d-none')
+            const eventId = defaultEvent.id
+            const events = await this.getAllEvents()
+            const event = events.find(event => Number(event.id_event) === Number(eventId))
+
+            const dateRealizedEvent = new Date(event.date_realized_event)
+            const eventMonth = dateRealizedEvent.getUTCMonth()
+            const eventYear = dateRealizedEvent.getUTCFullYear()
+
+            if (currentMonth === eventMonth && currentYear === eventYear) {
+                defaultEvent.classList.remove('d-none')
+                eventShoweds++
+            } else {
+                defaultEvent.classList.add('d-none')
+            }
+
+            if (eventShoweds <= 0) {
+                this.notEvent.classList.add('d-none')
+                this.notEventMonth.classList.remove('d-none')
+            } else {
+                this.notEventMonth.classList.add('d-none')
+            }
         }
     }
 
@@ -61,6 +123,7 @@ export default class View {
                 this.hideDefaultEvents()
 
                 if (eventClicked.length === 0) {
+                    this.notEventMonth.classList.add('d-none')
                     return this.notEvent.classList.remove('d-none')
                 }
 

@@ -12,6 +12,12 @@
             </div>
         </div>
 
+        <div class="card shadow mb-3 d-none" id="not-event-month">
+            <div class="card-body text-center">
+                <h6 class="card-title">No hay ningun evento en este mes</h6>
+            </div>
+        </div>
+
         <?php foreach($events_pendientes as $event): ?>
             <div class="card shadow defaul-events mb-3" id="<?php echo $event->id_event ?>">
                 <div class="card-body">
@@ -31,6 +37,10 @@
                             <p><?php echo $event->place_event ?></p>
 
                             <?php if ((int) $session_user->role->nivel === 10): ?>
+                                <div class="pb-1">
+                                    <span class="fw-bold fs-5"><?php echo $helpers->getStateEvent($event->state_event) ?></span>
+                                </div>
+
                                 <a class="btn btn-sm btn-primary" href="<?php echo $helpers->generateUrl('participantes', 'eventdetail', [ 'id' => $event->id_event ]) ?>">
                                     <span class="fas fa-pencil"></span> Gestionar
                                 </a>

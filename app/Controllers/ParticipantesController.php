@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\baseController;
+use App\Core\helpers;
 use App\Models\Event;
 use App\Models\EventParticipant;
 use App\Models\User;
@@ -11,11 +12,14 @@ class ParticipantesController extends baseController
 {
     protected $authentication;
     protected $pdf;
+    protected $helpers;
 
     public function __construct(InterfaceAuthentication $authentication, InterfacePdf $pdf)
     {
         $this->authentication = $authentication;
         $this->pdf = $pdf;
+
+        $this->helpers = new helpers();
     }
 
     public function Index()
@@ -25,16 +29,12 @@ class ParticipantesController extends baseController
         $event_model = new Event();
         $events = $event_model->getAll();
 
-        $events_pendientes = array_filter($events, function($event) {
-            return (int) $event->state_event === 2;
-        });
-
         $is_participants = [];
         $user = $this->authentication->getSession();
 
         $event_participant_model = new EventParticipant();
 
-        foreach ($events_pendientes as $event) {
+        foreach ($events as $event) {
             $participants_by_user = $event_participant_model->getBy('id_user', $user->id);
             $event_participant = array_filter($participants_by_user, function($participant) use ($event) {
                 return (int) $participant->id_event === (int) $event->id_event;
@@ -47,13 +47,19 @@ class ParticipantesController extends baseController
             }
         }
 
-        usort($events_pendientes, function($a, $b) {
+        usort($events, function($a, $b) {
             return strtotime($a->date_realized_event) - strtotime($b->date_realized_event);
         });
 
+        $events_pendientes = array_filter($events, function($event) {
+            return (int) $event->state_event === 2;
+        });
+
+        $user = $this->helpers->getSession();
+
         $this->view('Participantes/Inicio', [
             'title' => 'Eventos Pendientes',
-            'events_pendientes' => $events_pendientes,
+            'events_pendientes' => (int) $user->role->nivel === 10 ? $events : $events_pendientes,
             'is_participants' => $is_participants
         ], true);
     }
