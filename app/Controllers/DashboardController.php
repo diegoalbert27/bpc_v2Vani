@@ -5,7 +5,6 @@ use App\Core\helpers;
 use App\Models\Inventario;
 use App\Models\Libro;
 use App\Models\Prestamo;
-use App\Models\Role;
 use App\Models\Solicitante;
 use App\Utils\Authentication\InterfaceAuthentication;
 
