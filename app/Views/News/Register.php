@@ -25,7 +25,7 @@
             <div class="row p-2 mb-3">
                 <div class="col-md-12">
                     <label class="form-label" for="content">Contenido</label>
-                    <textarea class="form-control" name="content" id="content" rows="6" required></textarea>
+                    <textarea class="form-control" name="content" id="content" rows="3" required></textarea>
                 </div>
             </div>
 

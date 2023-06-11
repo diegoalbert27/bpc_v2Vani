@@ -56,7 +56,7 @@
             <div class="row p-2 mb-3">
                 <div class="col-md-12">
                     <label class="form-label" for="event_detail">Detalles del evento:</label>
-                    <input class="form-control" type="text" name="event_detail" id="event_detail" minlength="3" required>
+                    <textarea class="form-control" name="event_detail" id="event_detail" minlength="3" rows="3" required></textarea>
                 </div>
             </div>
 

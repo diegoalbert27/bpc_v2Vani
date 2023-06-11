@@ -62,7 +62,7 @@
             <div class="row p-2 mb-3">
                 <div class="col-md-12">
                     <label class="form-label" for="event_detail">Detalles del evento:</label>
-                    <input class="form-control" type="text" name="event_detail" id="event_detail" minlength="3" required value="<?php echo $event->info_event ?>">
+                    <textarea class="form-control" name="event_detail" id="event_detail" minlength="3" rows="3" required><?php echo $event->info_event ?></textarea>
                 </div>
             </div>
 

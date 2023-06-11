@@ -41,7 +41,7 @@
             <div class="row p-2 mb-3">
                 <div class="col-md-12">
                     <label class="form-label" for="sinopsis">Sinopsis</label>
-                    <textarea class="form-control" name="sinopsis" id="sinopsis" required><?php echo $libro->sinopsis ?></textarea>
+                    <textarea class="form-control" name="sinopsis" id="sinopsis" rows="3" required><?php echo $libro->sinopsis ?></textarea>
                 </div>
             </div>
 

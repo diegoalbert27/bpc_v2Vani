@@ -19,7 +19,7 @@
             <div class="row p-2 mb-3">
                 <div class="col-md-12 col-sm-12 mb-3">
                     <label class="form-label" for="address">Dirección de habitación:</label>
-                    <input class="form-control" type="text" id="address" name="address" value="<?php echo $solicitante->dir_sol ?>" required>
+                    <textarea class="form-control" id="address" name="address" rows="3" required><?php echo $solicitante->dir_sol ?></textarea>
                 </div>
             </div>
 

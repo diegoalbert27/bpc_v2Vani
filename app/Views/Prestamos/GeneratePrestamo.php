@@ -58,7 +58,7 @@
             <div class="row mb-4">
                 <div class="col-md-12">
                     <label class="form-label" for="observaciones">Observaciones:</label>
-                    <input class="form-control" type="text" id="observaciones" name="observaciones">
+                    <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
                 </div>
             </div>
 

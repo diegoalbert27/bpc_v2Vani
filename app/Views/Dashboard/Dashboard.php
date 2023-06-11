@@ -1,31 +1,33 @@
 <div class="row mt-2">
-    <div class="col-md-6">
+    <div class="col">
         <div class="bg-white shadow-sm rounded p-5">
             <h1 class="fs-2">Hola, <?php echo $user->user ?>.</h1>
             <h5 class="text-secondary fw-light">Has ingresado como <?php echo $user->role->name ?></h5>
         </div>
 
         <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
-            <div class="container">
-                <div class="bg-white shadow-sm rounded p-3 mt-5">
-                    <p class="text-primary fw-bold">CANTIDAD TOTAL DE LIBROS</p>
-                    <h3><?php echo $total_libros ?></h3>
-                </div>
+            <div class="container row">
+                <div class="col">
+                    <div class="bg-white shadow-sm rounded p-3 mt-5">
+                        <p class="text-primary fw-bold">CANTIDAD TOTAL DE LIBROS</p>
+                        <h3><?php echo $total_libros ?></h3>
+                    </div>
 
-                <div class="bg-white shadow-sm rounded p-3 mt-3">
-                    <p class="text-primary fw-bold">CANTIDAD ACTUAL DE LIBROS</p>
-                    <h3><?php echo $total_libros_actual ?></h3>
-                </div>
+                    <div class="bg-white shadow-sm rounded p-3 mt-3">
+                        <p class="text-primary fw-bold">CANTIDAD ACTUAL DE LIBROS</p>
+                        <h3><?php echo $total_libros_actual ?></h3>
+                    </div>
 
-                <div class="bg-white shadow-sm rounded p-3 mt-3">
-                    <p class="text-primary fw-bold">LIBROS PRÉSTADOS</p>
-                    <h3><?php echo $total_libros_prestado ?></h3>
+                    <div class="bg-white shadow-sm rounded p-3 mt-3">
+                        <p class="text-primary fw-bold">LIBROS PRÉSTADOS</p>
+                        <h3><?php echo $total_libros_prestado ?></h3>
+                    </div>
                 </div>
             </div>
         <?php endif; ?>
     </div>
-    <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
-        <div class="col-md-6">
+    <?php if (((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5) && count($prestamos) > 0): ?>
+        <div class="col">
             <h4>Préstamos pendientes por devolución</h4>
 
             <a class="btn btn-primary" href="<?php echo $helpers->generateUrl('prestamos', 'returnprestamo') ?>">Ver mas</a>

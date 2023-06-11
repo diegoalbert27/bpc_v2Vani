@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12 mb-3">
                     <label class="form-label" for="addressOcupacion">Dirección:</label>
-                    <input class="form-control" type="text" id="addressOcupacion" name="addressOcupacion" value="<?php echo $solicitante->dir_inst ?>">
+                    <textarea class="form-control" id="addressOcupacion" name="addressOcupacion" rows="3"><?php echo $solicitante->dir_inst ?></textarea>
                 </div>
             </div>
 

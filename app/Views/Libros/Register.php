@@ -41,7 +41,7 @@
             <div class="row p-2 mb-3">
                 <div class="col-md-12">
                     <label class="form-label" for="sinopsis">Sinopsis</label>
-                    <input class="form-control" type="text" name="sinopsis" id="sinopsis" required>
+                    <textarea class="form-control" name="sinopsis" id="sinopsis" rows="3"></textarea>
                 </div>
             </div>
 
