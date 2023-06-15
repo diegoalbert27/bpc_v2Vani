@@ -1,9 +1,9 @@
 vendor/
 node_modules/
 
-public/uploads
-public/backup
-public/assets/libs
-public/assets/build
+uploads/
+backup/
+assets/libs/
+assets/build/
 
 .htaccess

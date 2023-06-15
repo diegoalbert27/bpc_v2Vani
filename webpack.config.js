@@ -25,16 +25,16 @@ const assets = {
 
 module.exports = {
     mode: 'production',
-    entry: './public/assets/js/app.js',
+    entry: './assets/js/app.js',
     output: {
-        path: __dirname + '/public/assets/build',
+        path: __dirname + '/assets/build',
         filename: 'bundle.js'
     },
     plugins: [
         new CopyPlugin({
             patterns: Object.keys(assets).map(asset => ({
                 from: path.resolve(__dirname, `./node_modules/${assets[asset]}`),
-                to:  path.resolve(__dirname, `./public/assets/libs/${asset}`)
+                to:  path.resolve(__dirname, `./assets/libs/${asset}`)
             }))
         })
     ]

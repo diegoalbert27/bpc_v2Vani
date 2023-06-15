@@ -14,11 +14,11 @@ class baseController
         if ($layout) {
             $session_user = $helpers->getSession();
 
-            include_once '../app/Views/index.php';
+            include_once './app/Views/index.php';
             return;
         }
 
-        include_once '../app/Views/' . $view . '.php';
+        include_once './app/Views/' . $view . '.php';
     }
 
     public function redirect($controller, $action = '', $type = '', $notification = '', $data_for_get = [])

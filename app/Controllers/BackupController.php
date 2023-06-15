@@ -31,7 +31,7 @@ class BackupController extends baseController {
         $this->authentication($this->authentication->isAuth());
 
         try {
-            $file_path = __DIR__ . "/../../public/backup/";
+            $file_path = __DIR__ . "/../../backup/";
 
             if ( !is_dir($file_path) ) {
                 mkdir($file_path, 0777, true);
@@ -72,7 +72,7 @@ class BackupController extends baseController {
             return;
         }
 
-        $file_path = __DIR__ . "/../../public/backup/";
+        $file_path = __DIR__ . "/../../backup/";
 
         if ( !is_dir($file_path) ) {
             mkdir($file_path, 0777, true);

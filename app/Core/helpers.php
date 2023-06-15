@@ -220,7 +220,7 @@ class helpers {
      */
     public function uploadsFiles(string $folder, array $files)
     {
-        $file_path = __DIR__ . "/../../public/uploads/{$folder}/";
+        $file_path = __DIR__ . "/../../uploads/{$folder}/";
 
         if ( !is_dir($file_path) ) {
             mkdir($file_path, 0777, true);
@@ -254,7 +254,7 @@ class helpers {
      */
     public function removeUploadFile(string $folder, string $file)
     {
-        $file_path = __DIR__ . "/../../public/uploads/{$folder}/";
+        $file_path = __DIR__ . "/../../uploads/{$folder}/";
 
         if ( !is_dir($file_path) ) {
             return true;
