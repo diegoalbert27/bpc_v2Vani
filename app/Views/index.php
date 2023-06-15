@@ -37,11 +37,11 @@
             </div>
 
             <?php if ((int) $session_user->role->nivel === 10): ?>
-                <?php include_once '../app/Views/partials/SidebarAdmin.php' ?>
+                <?php include_once './app/Views/partials/SidebarAdmin.php' ?>
             <?php endif; ?>
 
             <?php if ((int) $session_user->role->nivel === 1 || (int) $session_user->role->nivel === 5): ?>
-                <?php include_once '../app/Views/partials/SidebarUsers.php' ?>
+                <?php include_once './app/Views/partials/SidebarUsers.php' ?>
             <?php endif; ?>
         </nav>
 
@@ -81,7 +81,7 @@
             </nav>
 
             <div class="m-4 pt-3">
-                <?php include '../app/Views/' . $view . '.php'; ?>
+                <?php include './app/Views/' . $view . '.php'; ?>
             </div>
         </div>
     </div>
