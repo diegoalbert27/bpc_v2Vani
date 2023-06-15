@@ -87,7 +87,7 @@ class FrontController
             $parameter_filter = [];
 
             foreach ($reflection_parameter as $parameter) {
-                if ($parameter->getType()->__toString() === $interfaces[0]) {
+                if ($parameter->getType()->getName() === $interfaces[0]) {
                     $parameter_filter[] = $parameter;
                 }
             }
@@ -95,7 +95,7 @@ class FrontController
             if (count($parameter_filter) > 0) {
                 $parameter = array_shift($parameter_filter);
 
-                $index_of = array_search($parameter->getType()->__toString(), $interfaces);
+                $index_of = array_search($parameter->getType()->getName(), $interfaces);
 
                 if (!$index_of) {
                     $params[] = $service;
