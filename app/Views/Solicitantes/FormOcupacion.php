@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Editar Informacion Personal De Ocupacion', 'Solicitantes/Personal') ?>
+<?php echo $helpers->getHeader('Editar Información Personal de Ocupación', 'Solicitantes/Personal') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 

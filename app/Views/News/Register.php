@@ -7,7 +7,7 @@
         <form action="<?php echo $helpers->generateUrl('news', 'add') ?>" method="POST">
             <div class="row p-2 mb-3">
                 <div class="col-md-12">
-                    <label class="form-label" for="title">Titulo</label>
+                    <label class="form-label" for="title">Título</label>
                     <input class="form-control" type="text" name="title" id="title" minlength="3" required>
                 </div>
             </div>

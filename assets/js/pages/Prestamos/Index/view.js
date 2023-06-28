@@ -40,7 +40,7 @@ export default class View {
                 labels: this.years,
                 datasets: [
                     {
-                        label: 'Prestamos',
+                        label: 'Préstamos',
                         data: this.prestamoStadistics,
                         fill: false,
                     }

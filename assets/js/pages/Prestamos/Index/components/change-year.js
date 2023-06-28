@@ -15,7 +15,7 @@ export default class ChangeYear {
             .join('')
 
         if (optionsTemplate === '') {
-            optionsTemplate = '<option>Sin Prestamos</option>'
+            optionsTemplate = '<option>Sin Préstamo</option>'
         }
 
         this.select.innerHTML = optionsTemplate

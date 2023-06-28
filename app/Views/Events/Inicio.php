@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Eventos', 'Libros/Inicio') ?>
+<?php echo $helpers->getHeader('Eventos', 'Eventos/Inicio') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 

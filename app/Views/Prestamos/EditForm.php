@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Gestion de prestamo', 'Prestamo/Gestion') ?>
+<?php echo $helpers->getHeader('Editar Información del Préstamo', 'Prestamo/Gestión') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 

@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Informacion Libro', 'Prestamos/Detalle') ?>
+<?php echo $helpers->getHeader('Información del Préstamo', 'Préstamos/Detalle') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 
@@ -13,7 +13,7 @@
             <div class="row mb-4">
                 <div class="col-md-6 col-sm-3">
                     <div class="d-flex">
-                        <h5 class="pe-3">Datos del prestamo</h5>
+                        <h5 class="pe-3">Datos del préstamo</h5>
                         <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('prestamos', 'editprestamo', ['id' => $prestamo->id_p]) ?>">
                             <span class="fas fa-pencil"></span>
                         </a>

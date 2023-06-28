@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Préstamo circulante', 'Prestamo/Inicio') ?>
+<?php echo $helpers->getHeader('Préstamo circulante', 'Préstamo/Inicio') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 

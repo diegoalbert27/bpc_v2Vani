@@ -24,7 +24,7 @@ class CategoryController extends baseController
 
         $this->view('Categorias/Inicio', [
             'categories' => $categories,
-            'title' => 'Categoria'
+            'title' => 'Categoría'
         ], true);
     }
 
@@ -74,7 +74,7 @@ class CategoryController extends baseController
             return;
         }
 
-        $this->redirect('category', 'index', 'success', 'La categoria ha sido registrado exitosamente');
+        $this->redirect('category', 'index', 'success', 'La categoría ha sido registrado exitosamente');
     }
 
     public function EditForm()
@@ -82,7 +82,7 @@ class CategoryController extends baseController
         $this->authentication($this->authentication->isAuth());
 
         if (!isset($_GET['id'])) {
-            $this->redirect('category', 'index', 'danger', 'La categoria ingresada no fue encontrado');
+            $this->redirect('category', 'index', 'danger', 'La categoría ingresada no fue encontrado');
             return;
         }
 
@@ -92,12 +92,12 @@ class CategoryController extends baseController
         $category_finded = $category_model->getByOne('id', $id_category);
 
         if ($category_finded === false) {
-            $this->redirect('category', 'index', 'danger', 'La categoria ingresada no fue encontrado');
+            $this->redirect('category', 'index', 'danger', 'La categoría ingresada no fue encontrado');
             return;
         }
 
         $this->view('Categorias/EditForm', [
-            'title' => 'Editar Categoria',
+            'title' => 'Editar Categoría',
             'category' => $category_finded,
         ], true);
     }
@@ -141,7 +141,7 @@ class CategoryController extends baseController
         $category_finded = $category_model->getByOne('id', $id_category);
 
         if ($category_finded === false) {
-            $this->redirect('category', 'index', 'danger', 'La categoria ingresada no fue encontrado');
+            $this->redirect('category', 'index', 'danger', 'La categoría ingresada no fue encontrado');
             return;
         }
 
@@ -149,7 +149,7 @@ class CategoryController extends baseController
 
         $category_model->update();
 
-        $this->redirect('category', 'index', 'success', "La categoria ha sido actualizada exitosamente");
+        $this->redirect('category', 'index', 'success', "La categoría ha sido actualizada exitosamente");
     }
 
     public function GetReportPdf()

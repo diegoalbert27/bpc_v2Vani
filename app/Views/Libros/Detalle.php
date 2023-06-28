@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Informacion Libro', 'Libro/Informacion') ?>
+<?php echo $helpers->getHeader('Información Libro', 'Libro/Información') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 

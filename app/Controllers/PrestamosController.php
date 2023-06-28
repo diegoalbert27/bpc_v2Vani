@@ -63,7 +63,7 @@ class PrestamosController extends baseController
             $prestamo->id_libro2 = $libro_model->getByOne('id_libro', $prestamo->id_libro2);
         }
 
-        $reponse = new Response(true, 'Prestamos', $prestamos);
+        $reponse = new Response(true, 'Préstamos', $prestamos);
 
         echo $this->json($reponse);
     }
@@ -73,7 +73,7 @@ class PrestamosController extends baseController
         $this->authentication($this->authentication->isAuth());
 
         if ( !isset($_GET['id']) ) {
-            $this->redirect('prestamos', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            $this->redirect('prestamos', 'index', 'danger', 'El préstamo ingresado no fue encontrado');
             return;
         }
 
@@ -83,7 +83,7 @@ class PrestamosController extends baseController
         $prestamo = $prestamo_model->getByOne('id_p', $id_prestamo);
 
         if ( !$prestamo ) {
-            $this->redirect('prestamos', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            $this->redirect('prestamos', 'index', 'danger', 'El préstamo ingresado no fue encontrado');
             return;
         }
 
@@ -95,7 +95,7 @@ class PrestamosController extends baseController
         $prestamo->id_libro2 = $libro_model->getByOne('id_libro', $prestamo->id_libro2);
 
         $this->view('Prestamos/Detail', [
-            'title' => 'Gestion de Prestamo',
+            'title' => 'Información del Préstamo',
             'prestamo' => $prestamo
         ], true);
     }
@@ -118,7 +118,7 @@ class PrestamosController extends baseController
         $libros_actived = [];
 
         foreach ($libros as $libro) {
-            if ($libro->estado_libro === 'Disponible para su lectura y prestamo') {
+            if ($libro->estado_libro === 'Disponible para su lectura y préstamo') {
                 $category = $category_model->getByOne('id', $libro->categoria);
 
                 if ($category) {
@@ -141,7 +141,7 @@ class PrestamosController extends baseController
         $this->authentication($this->authentication->isAuth());
 
         if ( !isset($_GET['id']) ) {
-            $this->redirect('prestamos', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            $this->redirect('prestamos', 'index', 'danger', 'El préstamo ingresado no fue encontrado');
             return;
         }
 
@@ -151,7 +151,7 @@ class PrestamosController extends baseController
         $prestamo = $prestamo_model->getByOne('id_p', $id_prestamo);
 
         if ( !$prestamo ) {
-            $this->redirect('prestamos', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            $this->redirect('prestamos', 'index', 'danger', 'El préstamo ingresado no fue encontrado');
             return;
         }
 
@@ -159,7 +159,7 @@ class PrestamosController extends baseController
         $prestamo->id_libro2 = $libro_model->getByOne('id_libro', $prestamo->id_libro2);
 
         $this->view('Prestamos/EditForm', [
-            'title' => 'Gestion de prestamo',
+            'title' => 'Información del préstamo',
             'prestamo' => $prestamo
         ], true);
     }
@@ -212,7 +212,7 @@ class PrestamosController extends baseController
         });
 
         if (count($prestamos_pendientes) >= 3) {
-            $response->message = 'El solicitante tiene prestamos pendientes, no puede realizar prestamos';
+            $response->message = 'El solicitante tiene préstamos pendientes, no puede realizar más préstamos';
             return $this->json($response);
         }
 
@@ -267,7 +267,7 @@ class PrestamosController extends baseController
 
         $user = $this->helpers->getSession();
 
-        $this->audit->create('Prestamo Circulante', 'Creacion de nuevo prestamo ' . $id_prestamo, $user->id, $this->helpers->getCurrentDateTime());
+        $this->audit->create('Préstamo Circulante', 'Creacion de nuevo préstamo ' . $id_prestamo, $user->id, $this->helpers->getCurrentDateTime());
 
         return $this->json($response);
     }
@@ -277,7 +277,7 @@ class PrestamosController extends baseController
         $this->authentication($this->authentication->isAuth());
 
         if ( !isset($_GET['id']) ) {
-            $this->redirect('prestamos', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            $this->redirect('prestamos', 'index', 'danger', 'El préstamo ingresado no fue encontrado');
             return;
         }
 
@@ -287,7 +287,7 @@ class PrestamosController extends baseController
         $prestamo = $prestamo_model->getByOne('id_p', $id_prestamo);
 
         if ( !$prestamo ) {
-            $this->redirect('prestamos', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            $this->redirect('prestamos', 'index', 'danger', 'El préstamo ingresado no fue encontrado');
             return;
         }
 
@@ -347,14 +347,14 @@ class PrestamosController extends baseController
         $prestamo_model = new Prestamo($edit_prestamo);
 
         if (!$prestamo_model->update()) {
-            return $this->redirect('prestamos', 'details', 'danger', "Ocurrio un error al editar el prestamo", [ 'id' => $id_prestamo ]);
+            return $this->redirect('prestamos', 'details', 'danger', "Ocurrio un error al editar el préstamo", [ 'id' => $id_prestamo ]);
         }
 
         $user = $this->helpers->getSession();
 
-        $this->audit->create('Prestamo Circulante', 'Estatus de prestamo ' . $prestamo->id_p . ' actualizado', $user->id, $this->helpers->getCurrentDateTime());
+        $this->audit->create('Préstamo Circulante', 'Estatus de préstamo ' . $prestamo->id_p . ' actualizado', $user->id, $this->helpers->getCurrentDateTime());
 
-        $this->redirect('prestamos', 'details', 'success', 'El prestamo ha sido actualizado satisfactoriamente', [ 'id' => $id_prestamo ]);
+        $this->redirect('prestamos', 'details', 'success', 'El préstamo ha sido actualizado satisfactoriamente', [ 'id' => $id_prestamo ]);
     }
 
     public function ReturnPrestamo()
@@ -391,7 +391,7 @@ class PrestamosController extends baseController
         $this->authentication($this->authentication->isAuth());
 
         if ( !isset($_GET['id']) ) {
-            $this->redirect('prestamos', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            $this->redirect('prestamos', 'index', 'danger', 'El préstamo ingresado no fue encontrado');
             return;
         }
 
@@ -401,7 +401,7 @@ class PrestamosController extends baseController
         $prestamo = $prestamo_model->getByOne('id_p', $id_prestamo);
 
         if ( !$prestamo ) {
-            $this->redirect('prestamos', 'index', 'danger', 'El prestamo ingresado no fue encontrado');
+            $this->redirect('prestamos', 'index', 'danger', 'El préstamo ingresado no fue encontrado');
             return;
         }
 
@@ -444,6 +444,6 @@ class PrestamosController extends baseController
 
         $this->audit->create('Prestamo Circulante', 'El prestamo ' . $prestamo->id_p . ' ha sido devuelto', $user->id, $this->helpers->getCurrentDateTime());
 
-        $this->redirect('prestamos', 'returnprestamo', 'success', 'El prestamo ha sido devuelto satisfactoriamente', [ 'id' => $id_prestamo ]);
+        $this->redirect('prestamos', 'returnprestamo', 'success', 'El préstamo ha sido devuelto satisfactoriamente', [ 'id' => $id_prestamo ]);
     }
 }

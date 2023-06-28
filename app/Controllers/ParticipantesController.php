@@ -95,7 +95,7 @@ class ParticipantesController extends baseController
         }
 
         $this->view('Participantes/EventoDetalle', [
-            'title' => 'Informacion de evento',
+            'title' => 'Información de evento',
             'event' => $event,
             'participants' => $participants,
             'is_participant' => $is_participant
@@ -142,7 +142,7 @@ class ParticipantesController extends baseController
             $this->redirect('participantes', 'eventdetail', 'danger', 'Ops! Ocurrio un problema inesperado', [ 'id' => $id_event ]);
         }
 
-        $this->redirect('participantes', 'eventdetail', 'success', 'Tu participacion ha sido agregada con exito', [ 'id' => $id_event ]);
+        $this->redirect('participantes', 'eventdetail', 'success', 'Tu participación ha sido agregada con éxito', [ 'id' => $id_event ]);
     }
 
     public function Remove()
@@ -168,7 +168,7 @@ class ParticipantesController extends baseController
             $this->redirect('participantes', 'eventdetail', 'danger', 'Ops! Ocurrio un problema inesperado', [ 'id' => $id_event ]);
         }
 
-        $this->redirect('participantes', 'eventdetail', 'success', 'Tu participacion ha sido cancelada con exito', [ 'id' => $id_event ]);
+        $this->redirect('participantes', 'eventdetail', 'success', 'Tu participación ha sido cancelada con éxito', [ 'id' => $id_event ]);
     }
 
     public function Info()

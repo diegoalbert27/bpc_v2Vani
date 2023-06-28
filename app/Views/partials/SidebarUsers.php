@@ -2,15 +2,15 @@
     <?php if ((int) $session_user->role->nivel === 5): ?>
         <li>
             <a href="#procesosSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between">
-                <span><span class="fas fa-rotate"></span> Prestamo circulante</span>
+                <span><span class="fas fa-rotate"></span> Préstamo circulante</span>
                 <span class="fal fa-plus"></span>
             </a>
             <ul class="collapse list-unstyled mt-1" id="procesosSubmenu">
                 <li>
-                    <a href="<?php echo $helpers->generateUrl('prestamos', 'generateprestamo') ?>">Prestamo de libros</a>
+                    <a href="<?php echo $helpers->generateUrl('prestamos', 'generateprestamo') ?>">Préstamo de libros</a>
                 </li>
                 <li>
-                    <a href="<?php echo $helpers->generateUrl('prestamos', 'returnprestamo') ?>">Devolucion de libros</a>
+                    <a href="<?php echo $helpers->generateUrl('prestamos', 'returnprestamo') ?>">Devolución de libros</a>
                 </li>
             </ul>
         </li>

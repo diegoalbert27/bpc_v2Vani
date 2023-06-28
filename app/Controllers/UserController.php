@@ -139,7 +139,7 @@ class UserController extends baseController
         }
 
         if (count($user_finded_by_phone) > 0) {
-            $this->redirect('user', 'index', 'danger', "El numero de telefono '{$phone}' no se encuentra disponible");
+            $this->redirect('user', 'index', 'danger', "El numero de teléfono '{$phone}' no se encuentra disponible");
             return;
         }
 
@@ -264,7 +264,7 @@ class UserController extends baseController
 
         $user_model->update();
 
-        $this->redirect('user', 'details', 'success', "El usuarios ha sido actualizado exitosamente", [ 'id' => $id_user ]);
+        $this->redirect('user', 'details', 'success', "El usuario ha sido actualizado exitosamente", [ 'id' => $id_user ]);
     }
 
     public function QuestionForm()
@@ -355,7 +355,7 @@ class UserController extends baseController
             }
         }
 
-        $this->redirect('user', 'details', 'success', "Las preguntas de segurida han sido registrado exitosamente", [ 'id' => $id_user ]);
+        $this->redirect('user', 'details', 'success', "Las preguntas de seguridad han sido registradas exitosamente", [ 'id' => $id_user ]);
     }
 
     public function EditQuestionForm()

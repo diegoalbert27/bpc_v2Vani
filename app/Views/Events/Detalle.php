@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Informacion Del Evento', 'Evento/Informacion') ?>
+<?php echo $helpers->getHeader('Información Del Evento', 'Evento/Información') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 
@@ -34,7 +34,7 @@
                     <span><?php echo count($participants) ?></span>
 
                     <?php if (count($participants) > 0): ?>
-                        <a class="link link-primary" href="<?php echo $helpers->generateUrl('participantes', 'info', [ 'id' => $event->id_event ]) ?>">Informacion</a>
+                        <a class="link link-primary" href="<?php echo $helpers->generateUrl('participantes', 'info', [ 'id' => $event->id_event ]) ?>">Información</a>
                     <?php endif; ?>
                 </div>
                 <div class="col-md-3">

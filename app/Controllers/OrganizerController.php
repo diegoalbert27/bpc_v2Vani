@@ -66,6 +66,6 @@ class OrganizerController extends baseController
             return $this->redirect('organizer', 'index', 'danger', 'Ops! Salio algo mal');
         }
 
-        $this->redirect('organizer', 'index', 'success', 'El organizador ha sido actualizado con exito');
+        $this->redirect('organizer', 'index', 'success', 'El organizador ha sido actualizado con éxito');
     }
 }

@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Informacion Solicitante', 'Solicitantes/Informacion') ?>
+<?php echo $helpers->getHeader('Información Solicitante', 'Solicitantes/Información') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 
@@ -12,7 +12,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" target="_blank" href="<?php echo $helpers->generateUrl('solicitante', 'getCarnet', [ 'id' => $solicitante->id_sol ]) ?>">Carnet</a></li>
-                    <li><a class="dropdown-item" target="_blank" href="<?php echo $helpers->generateUrl('solicitante', 'gethistorialprestamo', [ 'id' => $solicitante->id_sol ]) ?>">Historial de prestamos</a></li>
+                    <li><a class="dropdown-item" target="_blank" href="<?php echo $helpers->generateUrl('solicitante', 'gethistorialprestamo', [ 'id' => $solicitante->id_sol ]) ?>"> Historial de préstamos</a></li>
                 </ul>
             </div>
         </div>
@@ -22,7 +22,7 @@
             <div class="row mb-4">
                 <div class="col-md-6 col-sm-3">
                     <div class="d-flex">
-                        <h5 class="pe-3">Informacion Personal</h5>
+                        <h5 class="pe-3">Información Personal</h5>
                         <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('solicitante', 'formpersonal', ['id' => $solicitante->id_sol]) ?>">
                             <span class="fas fa-pencil"></span>
                         </a>
@@ -56,7 +56,7 @@
             <div class="row mb-4">
                 <div class="col-md-6 col-sm-3">
                     <div class="d-flex">
-                        <h5 class="pe-3">Informacion De Contacto</h5>
+                        <h5 class="pe-3">Información De Contacto</h5>
                         <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('solicitante', 'formcontact', ['id' => $solicitante->id_sol]) ?>">
                             <span class="fas fa-pencil"></span>
                         </a>
@@ -69,7 +69,7 @@
                     <span><?php echo $solicitante->dir_sol ?></span>
                 </div>
                 <div class="col-md-4 col-sm-3">
-                    <h6>Telefono:</h6>
+                    <h6>Teléfono:</h6>
                     <span><?php echo $solicitante->tlf_sol ?></span>
                 </div>
                 <div class="col-md-4 col-sm-3">
@@ -80,7 +80,7 @@
             <div class="row mb-4">
                 <div class="col-md-6 col-sm-3">
                     <div class="d-flex">
-                        <h5 class="pe-3">Informacion De Ocupacion</h5>
+                        <h5 class="pe-3">Información De Ocupación</h5>
                         <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('solicitante', 'formocupacion', ['id' => $solicitante->id_sol]) ?>">
                             <span class="fas fa-pencil"></span>
                         </a>

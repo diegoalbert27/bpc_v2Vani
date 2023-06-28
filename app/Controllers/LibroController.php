@@ -70,7 +70,7 @@ class LibroController extends baseController
         $libros_actived = [];
 
         foreach ($libros as $libro) {
-            if ($libro->estado_libro === 'Disponible para su lectura y prestamo') {
+            if ($libro->estado_libro === 'Disponible para su lectura y préstamo') {
                 $category = $category_model->getByOne('id', $libro->categoria);
 
                 if ($category) {
@@ -187,7 +187,7 @@ class LibroController extends baseController
 
         $this->audit->create('Libros', 'Creacion de nuevo libro ' . $id_libro, $user->id, $this->helpers->getCurrentDateTime());
 
-        $this->redirect('libro', 'detalle', 'success', 'El libro ha sido registrado satisfactoriamente', [ 'id' => $id_libro ]);
+        $this->redirect('libro', 'register', 'success', 'El libro ha sido registrado satisfactoriamente', [ 'id' => $id_libro ]);
     }
 
     public function Detalle()
@@ -211,7 +211,7 @@ class LibroController extends baseController
         $libro->cantidad = $inventario_model->getByOne('id_inv', $libro->cantidad);
 
         $this->view('Libros/Detalle', [
-            'title' => 'Informacion',
+            'title' => 'Información',
             'libro' => $libro
         ], true);
     }
@@ -242,7 +242,7 @@ class LibroController extends baseController
 
         $estado_libro = [
             'Disponible para su lectura',
-            'Disponible para su lectura y prestamo',
+            'Disponible para su lectura y préstamo',
             'No disponible'
         ];
 

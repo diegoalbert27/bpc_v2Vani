@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Servicio de préstamo circulante', 'Prestamos/Registro') ?>
+<?php echo $helpers->getHeader('Servicio de préstamo circulante', 'Préstamos/Registro') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 
@@ -65,7 +65,7 @@
             <div class="row mb-3">
                 <div class="col-md-12 text-end">
                     <a class="btn btn-link" href="<?php echo $helpers->generateUrl('prestamos', 'index') ?>">Volver</a>
-                    <button class="btn btn-primary" type="button" id="generate-prestamo">Generar Prestamo</button>
+                    <button class="btn btn-primary" type="button" id="generate-prestamo">Generar Préstamo</button>
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Cedula</th>
+                        <th>Cédula</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th></th>
@@ -129,8 +129,8 @@
                     <tr>
                         <th>#</th>
                         <th>Cota</th>
-                        <th>Titulo</th>
-                        <th>Categoria</th>
+                        <th>Título</th>
+                        <th>Categoría</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -160,8 +160,8 @@
     <div class="card-body">
         <div class="text-center p-4 my-3">
             <span class="fas fa-check fs-2 text-white bg-success p-4 rounded-circle shadow"></span>
-            <h4 class="card-title fw-normal mt-4">Prestamo Registado Exitosamente</h4>
-            <a class="link link-primary" href="<?php echo $helpers->generateUrl('prestamos', 'generateprestamo') ?>">Generar nuevo prestamo</a>
+            <h4 class="card-title fw-normal mt-4">Préstamo Registrado Exitosamente</h4>
+            <a class="link link-primary" href="<?php echo $helpers->generateUrl('prestamos', 'generateprestamo') ?>">Generar nuevo préstamo</a>
             <span>|</span>
             <a class="link link-primary" id="prestamoLink" href="">Visualizar nuevo registro</a>
         </div>

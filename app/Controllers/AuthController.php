@@ -167,7 +167,7 @@ class AuthController extends baseController
         }
 
         if (count($user_finded_by_phone) > 0) {
-            $this->redirect('auth', 'signup', 'danger', "El numero de telefono '{$phone}' no se encuentra disponible");
+            $this->redirect('auth', 'signup', 'danger', "El numero de teléfono '{$phone}' no se encuentra disponible");
             return;
         }
 

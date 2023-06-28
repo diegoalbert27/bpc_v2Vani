@@ -23,16 +23,16 @@
         </a>
         <ul class="collapse list-unstyled mt-1" id="procesosSubmenu">
             <li>
-                <a href="<?php echo $helpers->generateUrl('prestamos', 'generateprestamo') ?>">Prestamo de libros</a>
+                <a href="<?php echo $helpers->generateUrl('prestamos', 'generateprestamo') ?>">Préstamo de libros</a>
             </li>
             <li>
-                <a href="<?php echo $helpers->generateUrl('prestamos', 'returnprestamo') ?>">Devolucion de libros</a>
+                <a href="<?php echo $helpers->generateUrl('prestamos', 'returnprestamo') ?>">Devolución de libros</a>
             </li>
             <li>
                 <a href="<?php echo $helpers->generateUrl('event', 'register') ?>">Organización de Eventos</a>
             </li>
             <li>
-                <a href="<?php echo $helpers->generateUrl('participantes', 'index') ?>">Gestion de Eventos</a>
+                <a href="<?php echo $helpers->generateUrl('participantes', 'index') ?>">Gestión de Eventos</a>
             </li>
         </ul>
     </li>
@@ -49,7 +49,7 @@
                 <a href="<?php echo $helpers->generateUrl('libro', 'index') ?>">Libros</a>
             </li>
             <li>
-                <a href="<?php echo $helpers->generateUrl('prestamos', 'index') ?>">Prestamos</a>
+                <a href="<?php echo $helpers->generateUrl('prestamos', 'index') ?>">Préstamos</a>
             </li>
             <li>
                 <a href="<?php echo $helpers->generateUrl('event', 'index') ?>">Eventos</a>
@@ -72,7 +72,7 @@
                 <a href="<?php echo $helpers->generateUrl('category') ?>">Categorías</a>
             </li>
             <li>
-                <a href="<?php echo $helpers->generateUrl('audit') ?>">Auditoria</a>
+                <a href="<?php echo $helpers->generateUrl('audit') ?>">Auditoría</a>
             </li>
             <li>
                 <a href="<?php echo $helpers->generateUrl('user', 'details', [ 'id' => $session_user->id ]) ?>">Perfil</a>

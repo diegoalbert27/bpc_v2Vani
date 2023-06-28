@@ -12,7 +12,7 @@
                     <th>#</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
-                    <th>Cedula</th>
+                    <th>Cédula</th>
                     <th>Estado</th>
                     <th></th>
                 </thead>

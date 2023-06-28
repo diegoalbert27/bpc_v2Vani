@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Informacion del evento', 'Eventos/Informacion') ?>
+<?php echo $helpers->getHeader('Información del evento', 'Eventos/Información') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 
@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="text-center p-4 my-3">
                 <span class="fas fa-check fs-2 text-white bg-success p-4 rounded-circle shadow"></span>
-                <h4 class="card-title fw-normal mt-4">Evento Realizado con exito</h4>
+                <h4 class="card-title fw-normal mt-4">Evento Realizado con éxito</h4>
                 <a class="link link-primary" href="<?php echo $helpers->generateUrl('news', 'eventNewForm', [ 'id' => $event->id_event ]) ?>">Generar Noticia Del Evento Realizado</a>
             </div>
         </div>
@@ -57,7 +57,7 @@
 
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <h6>Informacion:</h6>
+                    <h6>Información:</h6>
                     <span><?php echo $event->info_event ?></span>
                 </div>
             </div>

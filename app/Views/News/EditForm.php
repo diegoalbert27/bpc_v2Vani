@@ -7,7 +7,7 @@
         <form action="<?php echo $helpers->generateUrl('news', 'edit', [ 'id' => $new->id_new ]) ?>" method="POST">
             <div class="row p-2 mb-3">
                 <div class="col-md-12">
-                    <label class="form-label" for="title">Titulo</label>
+                    <label class="form-label" for="title">Título</label>
                     <input class="form-control" type="text" name="title" id="title" minlength="3" value="<?php echo $new->title_new ?>" required>
                 </div>
             </div>

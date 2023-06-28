@@ -13,7 +13,7 @@
                     Datos Personales
                 </div>
                 <div class="border-end flex-fill p-3" id="barContact">
-                    Informacion de Contacto
+                    Información de Contacto
                 </div>
                 <div class="flex-fill p-3" id="barOcupacion">
                     Lugar de estudio o trabajo
@@ -59,7 +59,7 @@
                                 Debe ingresar valores numéricos.
                             </div>
                             <div class="text-danger pt-1 d-none" id="valid-repeat-cedula">
-                                La cedula ingresada no se encuentra disponible
+                                La cédula ingresada no se encuentra disponible
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12 mb-3">
@@ -179,7 +179,7 @@
                 <div class="text-center p-4 my-3">
                     <span class="fas fa-check fs-2 text-white bg-success p-4 rounded-circle shadow"></span>
                     <h4 class="card-title fw-normal mt-4">Solicitante Registado Exitosamente</h4>
-                    <a class="link link-primary" href="<?php $helpers->generateUrl('solicitante', 'register') ?>">Realizar nuevo registro</a>
+                    <a class="link link-primary" href="<?php echo $helpers->generateUrl('solicitante', 'register') ?>">Realizar nuevo registro</a>
                     <span>|</span>
                     <a class="link link-primary" id="solicitanteLink" href="">Visualizar nuevo registro</a>
                 </div>

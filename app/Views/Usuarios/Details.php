@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader("Datos del perfil", "Usuario/{$user->user}") ?>
+<?php echo $helpers->getHeader("Información del Perfil", "Usuario/{$user->user}") ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 

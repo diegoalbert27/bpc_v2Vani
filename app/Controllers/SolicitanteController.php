@@ -75,7 +75,7 @@ class SolicitanteController extends baseController
         $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
 
         $this->view('Solicitantes/Detalle', [
-            'title' => 'Informacion',
+            'title' => 'Información',
             'solicitante' => $solicitante
         ], true);
     }
@@ -138,7 +138,7 @@ class SolicitanteController extends baseController
         $solicitante_model = new Solicitante();
 
         if ( $solicitante_model->getByOne('ced_sol', $cedula) ) {
-            $response->message = "Cedula '{$cedula}' no se encuentra disponible";
+            $response->message = "Cédula '{$cedula}' no se encuentra disponible";
             return $this->json($response);
         }
 
@@ -225,7 +225,7 @@ class SolicitanteController extends baseController
         }
 
         $this->view('Solicitantes/FormPersonal', [
-            'title' => 'Editar Informacion Personal',
+            'title' => 'Editar Información Personal',
             'solicitante' => $solicitante,
             'sexos' => $sexos
         ], true);
@@ -284,7 +284,7 @@ class SolicitanteController extends baseController
         $state = $_POST['state'];
 
         if ( $solicitante_model->getByOne('ced_sol', $cedula) && (int) $cedula !== (int) $solicitante->ced_sol ) {
-            $this->redirect('solicitante', 'formpersonal', 'danger', "Cedula '{$cedula}' no se encuentra disponible", [ 'id' => $id_solicitante ]);
+            $this->redirect('solicitante', 'formpersonal', 'danger', "Cédula '{$cedula}' no se encuentra disponible", [ 'id' => $id_solicitante ]);
             return;
         }
 
@@ -327,7 +327,7 @@ class SolicitanteController extends baseController
         $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
 
         $this->view('Solicitantes/FormPersonalContact', [
-            'title' => 'Editar Informacion de Contacto',
+            'title' => 'Editar Información de Contacto',
             'solicitante' => $solicitante
         ], true);
     }
@@ -374,7 +374,7 @@ class SolicitanteController extends baseController
         $address = $_POST['address'];
 
         if ( $solicitante_model->getByOne('tlf_sol', $phone) && $phone !== $solicitante->tlf_sol ) {
-            $this->redirect('solicitante', 'formcontact', 'danger', "El numero de telefono '{$phone}' no se encuentra disponible", [ 'id' => $id_solicitante ]);
+            $this->redirect('solicitante', 'formcontact', 'danger', "El numero de teléfono '{$phone}' no se encuentra disponible", [ 'id' => $id_solicitante ]);
             return;
         }
 
@@ -426,7 +426,7 @@ class SolicitanteController extends baseController
         }
 
         $this->view('Solicitantes/FormOcupacion', [
-            'title' => 'Editar Informacion de Ocupacion',
+            'title' => 'Editar Información de Ocupación',
             'solicitante' => $solicitante,
             'ocupaciones' => $ocupaciones
         ], true);
@@ -487,9 +487,9 @@ class SolicitanteController extends baseController
 
         $user = $this->helpers->getSession();
 
-        $this->audit->create('Solicitante', 'Actualizacion de datos de ocupacion del solicitante', $user->id, $this->helpers->getCurrentDateTime());
+        $this->audit->create('Solicitante', 'Actualizacion de datos de ocupación del solicitante', $user->id, $this->helpers->getCurrentDateTime());
 
-        $this->redirect('solicitante', 'Detail', 'success', "Los datos de ocupacion del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
+        $this->redirect('solicitante', 'Detail', 'success', "Los datos de ocupación del solicitante han sido actualizado exitosamente", [ 'id' => $id_solicitante ]);
     }
 
     public function GetCarnet()

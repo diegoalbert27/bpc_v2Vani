@@ -23,7 +23,7 @@
             <table class="table">
                 <thead>
                     <th>Nombre</th>
-                    <th>Telefono</th>
+                    <th>Teléfono</th>
                     <th>Correo electrónico</th>
                 </thead>
                 <tbody>

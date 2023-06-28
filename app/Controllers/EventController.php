@@ -155,7 +155,7 @@ class EventController extends baseController
         $news_event = $news_model->getByOne('id_event', $event->id_event);
 
         $this->view('Events/Detalle', [
-            'title' => 'Informacion',
+            'title' => 'Información',
             'event' => $event,
             'participants' => $participants,
             'news_event' => $news_event
@@ -394,6 +394,6 @@ class EventController extends baseController
             return $this->redirect('participantes', 'eventdetail', 'danger', 'El estado del evento no pudo ser actualizado', [ 'id' => $id_event ]);
         }
 
-        return $this->redirect('participantes', 'eventdetail', 'success', 'El evento ha sido actualizado con exito', [ 'id' => $id_event, 'state' => $state_event ]);
+        return $this->redirect('participantes', 'eventdetail', 'success', 'El evento ha sido actualizado con éxito', [ 'id' => $id_event, 'state' => $state_event ]);
     }
 }

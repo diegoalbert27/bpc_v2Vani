@@ -23,7 +23,7 @@ class BackupController extends baseController {
         $backup_model = new Backup();
         $backup = $backup_model->getAll();
 
-        $this->view('Backup/Inicio', [ 'title' => 'Gestion de BD', 'backup' => $backup ], true);
+        $this->view('Backup/Inicio', [ 'title' => 'Gestión de BD', 'backup' => $backup ], true);
     }
 
     public function Export()
@@ -57,7 +57,7 @@ class BackupController extends baseController {
 
             $backup_model->save();
 
-            $this->redirect('backup', 'index', 'success', 'El respaldo se ha generado con exito');
+            $this->redirect('backup', 'index', 'success', 'El respaldo se ha generado con éxito');
         } catch (\Exception $e) {
             $this->redirect('backup', 'index', 'danger', 'Export failed with message: ' . $e->getMessage());
         }
@@ -92,7 +92,7 @@ class BackupController extends baseController {
 
             new Import($dump);
 
-            $this->redirect('backup', 'index', 'success', 'La importacion del respaldo se ha generado con exito');
+            $this->redirect('backup', 'index', 'success', 'La importacion del respaldo se ha generado con éxito');
         } catch (\Exception $e) {
             $this->redirect('backup', 'index', 'danger', 'Export failed with message: ' . $e->getMessage());
         }

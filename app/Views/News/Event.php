@@ -7,7 +7,7 @@
         <form action="<?php echo $helpers->generateUrl('news', 'addEventNew', [ 'id' => $event->id_event ]) ?>" method="POST" enctype="multipart/form-data">
             <div class="row p-2 mb-3">
                 <div class="col-md-12">
-                    <label class="form-label" for="title">Titulo</label>
+                    <label class="form-label" for="title">Título</label>
                     <input class="form-control" type="text" name="title" id="title" minlength="3" required value="<?php echo $event->title_event ?>">
                 </div>
             </div>

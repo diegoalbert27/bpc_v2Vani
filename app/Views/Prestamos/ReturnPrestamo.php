@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Préstamos pendientes por devolución', 'Prestamos/Devoluciones') ?>
+<?php echo $helpers->getHeader('Préstamos pendientes por devolución', 'Préstamos/Devoluciones') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 
@@ -37,7 +37,7 @@
 
             <div class="p-2 mb-3">
                 <button class="btn btn-primary return-prestamo" type="button" data-bs-toggle="modal" data-bs-target="#devolucionModal" data-prestamo="<?php echo $prestamo->id_p ?>">
-                    Prestamo Devuelto
+                    Préstamo Devuelto
                     <span class="fas fa-check"></span>
                 </button>
             </div>
@@ -51,14 +51,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Devolucion de prestamo</h5>
+        <h5 class="modal-title">Devolucion de préstamo</h5>
         <button class="btn-close" type="button"  data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Seguro que quiere devolver este prestamo?
+        ¿Seguro que quiere devolver este préstamo?
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" href="" id="ok-prestamo">Si, estoy seguro</a>
+        <a class="btn btn-primary" href="" id="ok-prestamo">Sí, estoy seguro</a>
       </div>
     </div>
   </div>

@@ -65,7 +65,7 @@ class NewsController extends baseController {
 
         $new_model->save();
 
-        $this->redirect('news', 'index', 'success', 'Noticia registrada con exito');
+        $this->redirect('news', 'index', 'success', 'Noticia registrada con éxito');
     }
 
     public function EditForm()
@@ -126,7 +126,7 @@ class NewsController extends baseController {
         $new_model = new News();
 
         if ($new_model->deleteBy('id_new', $id_new)) {
-            $this->redirect('news', 'index', 'danger', 'Noticia eliminada con exito');
+            $this->redirect('news', 'index', 'danger', 'Noticia eliminada con éxito');
         }
     }
 
@@ -151,7 +151,7 @@ class NewsController extends baseController {
         ]);
 
         if ($new_model->update()) {
-            $this->redirect('news', 'index', 'success', 'Noticia Actualizada con exito');
+            $this->redirect('news', 'index', 'success', 'Noticia Actualizada con éxito');
         }
     }
 
@@ -261,7 +261,7 @@ class NewsController extends baseController {
                 $news_image->save();
             }
 
-            $this->redirect('news', 'index', 'success', 'Noticia registrada con exito');
+            $this->redirect('news', 'index', 'success', 'Noticia registrada con éxito');
         } else {
             $this->redirect('news', 'eventNewForm', 'danger', 'Ups! hubo un error al registra la noticia', [ 'id' => $id_event ]);
         }
@@ -346,6 +346,6 @@ class NewsController extends baseController {
             $news_image->save();
         }
 
-        $this->redirect('news', 'detalle', 'success', 'Imagenes registradas con exito', [ 'id' => $id_new ]);
+        $this->redirect('news', 'detalle', 'success', 'Imagenes registradas con éxito', [ 'id' => $id_new ]);
     }
 }

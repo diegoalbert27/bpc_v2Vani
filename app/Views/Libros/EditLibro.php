@@ -1,4 +1,4 @@
-<?php echo $helpers->getHeader('Editar Informacion Del Libro', 'Libros/Editar') ?>
+<?php echo $helpers->getHeader('Editar Información del Libro', 'Libros/Editar') ?>
 
 <?php echo $helpers->getMessage($_GET) ?>
 
@@ -11,11 +11,11 @@
                     <input class="form-control" type="text" name="cota" id="cota" minlength="3" required value="<?php echo $libro->cota ?>">
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label" for="title">Titulo</label>
+                    <label class="form-label" for="title">Título</label>
                     <input class="form-control" type="text" name="title" id="title" minlength="3" required value="<?php echo $libro->titulo ?>">
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label" for="category">Categoria</label>
+                    <label class="form-label" for="category">Categoría</label>
                     <select class="form-select" name="category" id="category">
                         <?php foreach($categorias as $category): ?>
                             <option value="<?php echo $category->id ?>"><?php echo $category->name ?></option>
