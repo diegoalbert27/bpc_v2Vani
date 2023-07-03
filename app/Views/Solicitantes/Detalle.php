@@ -30,32 +30,36 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-4">
                     <h6>Cédula:</h6>
                     <span><?php echo $solicitante->ced_sol ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-4">
                     <h6>Edad:</h6>
                     <span><?php echo $solicitante->edad_sol ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-4">
                     <h6>Sexo:</h6>
                     <span><?php echo $solicitante->sex_sol ?></span>
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-4">
                     <h6>Carnet:</h6>
                     <span><?php echo $solicitante->carnet ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-4">
                     <h6>Estado:</h6>
                     <span><?php echo $helpers->isEnabled($solicitante->estado_s) ?></span>
                 </div>
+                <div class="col-md-4 col-4">
+                    <h6>Reputación:</h6>
+                    <span><?php echo $helpers->getReputation($reputation) ?></span>
+                </div>
             </div>
             <div class="row mb-4">
-                <div class="col-md-6 col-sm-3">
-                    <div class="d-flex">
+                <div class="col-md-6 col-12">
+                    <div class="d-flex align-items-baseline">
                         <h5 class="pe-3">Información De Contacto</h5>
                         <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('solicitante', 'formcontact', ['id' => $solicitante->id_sol]) ?>">
                             <span class="fas fa-pencil"></span>
@@ -64,22 +68,22 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-12 mb-3 mb-md-0">
                     <h6>Dirección:</h6>
                     <span><?php echo $solicitante->dir_sol ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-6">
                     <h6>Teléfono:</h6>
                     <span><?php echo $solicitante->tlf_sol ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-6">
                     <h6>Correo:</h6>
                     <span><?php echo $solicitante->corr_sol ?></span>
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col-md-6 col-sm-3">
-                    <div class="d-flex">
+                <div class="col-md-6 col-12">
+                    <div class="d-flex align-items-baseline">
                         <h5 class="pe-3">Información De Ocupación</h5>
                         <a class="btn btn-primary btn-sm" href="<?php echo $helpers->generateUrl('solicitante', 'formocupacion', ['id' => $solicitante->id_sol]) ?>">
                             <span class="fas fa-pencil"></span>
@@ -88,21 +92,21 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-6 mb-3 mb-md-0">
                     <h6>Ocupación:</h6>
                     <span><?php echo $solicitante->ocup_sol ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-6 mb-3  mb-md-0">
                     <h6>Institución:</h6>
                     <span><?php echo $solicitante->nom_inst ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-12 mb-3 mb-md-0">
                     <h6>Teléfono de la institución:</h6>
                     <span><?php echo $solicitante->tel_inst ?></span>
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-12">
                     <h6>Dirección de la institución:</h6>
                     <span><?php echo $solicitante->dir_inst ?></span>
                 </div>

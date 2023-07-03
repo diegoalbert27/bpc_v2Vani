@@ -97,6 +97,17 @@ class helpers {
         return '<span class="far fa-square"></span> Pendiente';
     }
 
+    public function generateStateCalification(int $calification)
+    {
+        $califications = [
+            '0' => '<span class="fas fa-minus"></span> Neutral',
+            '1' => '<span class="fas fa-check"></span> Positivo',
+            '-1' => '<span class="fas fa-circle-xmark"></span> Negativo'
+        ];
+
+        return $califications[$calification];
+    }
+
     public function getOptionStatePrestamo(int $status)
     {
         if ($status) {
@@ -185,6 +196,25 @@ class helpers {
         return "<option value=\"{$state}\">{$states[$state]}</option>" . implode('', $states_options);
     }
 
+    public function getCalificationsOptions($calification)
+    {
+        $califications = [
+            '0' => 'Neutral',
+            '1' => 'Positivo',
+            '-1' => 'Negativo',
+        ];
+
+        $califications_options = [];
+
+        foreach($califications as $key => $value) {
+            if ((int) $key !== (int) $calification) {
+                $califications_options[] = "<option value=\"{$key}\">{$value}</option>";
+            }
+        }
+
+        return "<option value=\"{$calification}\">{$califications[$calification]}</option>" . implode('', $califications_options);
+    }
+
     public function getCustomDate(string $date, string $format_date)
     {
         date_default_timezone_set('America/Caracas');
@@ -263,5 +293,15 @@ class helpers {
         $dir_file  = $file_path . $file;
 
         return unlink($dir_file);
+    }
+
+    function getReputation(int $reputation) {
+        $reputations = [
+            '0' => '&#128528; Normal',
+            '1' => '&#128512; Buena',
+            '-1' => '&#128545; Mala'
+        ];
+
+        return $reputations[$reputation];
     }
 }

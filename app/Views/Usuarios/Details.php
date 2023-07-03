@@ -9,15 +9,15 @@
         </div>
 
         <div class="row p-2">
-            <div class="col-4">
+            <div class="col-md-4 col-6 mb-3 mb-md-0">
                 <p><span class="fw-bold">Nombre Completo: </span></p>
                 <?php echo $user->user ?>
             </div>
-            <div class="col-4">
+            <div class="col-md-4 col-6">
                 <p><span class="fw-bold">Nombre de Usuario: </span></p>
                 <?php echo $user->username ?>
             </div>
-            <div class="col-4">
+            <div class="col-md-4 col-12">
                 <p><span class="fw-bold">Correo electrónico: </span></p>
                 <?php echo $user->email ?>
             </div>
@@ -40,7 +40,6 @@
             <?php if ((int) $session_user->role->nivel === 1 || (int) $session_user->role->nivel === 10 && (int) $user->role->nivel !== 5): ?>
                 <?php if ( !$is_organizer ): ?>
                     <a class="link-primary" href="<?php echo $helpers->generateUrl('user', 'TobeOrganizer', ['id' => $user->id ]) ?>">Registrar como organizador</a>
-                    <span>|</span>
                 <?php else: ?>
                     <div class="bg-light rounded w-50 m-auto p-2 border <?php echo $is_organizer->is_actived ? 'text-primary' : 'text-danger' ?>">
                         <span class="fas fa-<?php echo $is_organizer->is_actived ? 'check' : 'exclamation' ?>-circle"></span> <?php echo $is_organizer->is_actived ? 'Organizador Activo' : 'Organizador Inactivo' ?>
@@ -48,7 +47,9 @@
                 <?php endif; ?>
             <?php endif; ?>
 
-            <a class="link-primary" href="<?php echo $helpers->generateUrl('user', 'editquestionform', ['id' => $user->id ]) ?>">Administrar preguntas de seguridad</a>
+            <div class="mt-3 mt-md-1">
+                <a class="link-primary" href="<?php echo $helpers->generateUrl('user', 'editquestionform', ['id' => $user->id ]) ?>">Administrar preguntas de seguridad</a>
+            </div>
         </div>
     </div>
 </div>

@@ -21,15 +21,15 @@
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-3 col-6">
                     <h6>Tipo de evento:</h6>
                     <span><?php echo $event->type_event ?></span>
                 </div>
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-3 col-6 mb-3 mb-md-0">
                     <h6>Aforo:</h6>
                     <span><?php echo $event->participants_event ?? 0 ?></span>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-6">
                     <h6>Participantes:</h6>
                     <span><?php echo count($participants) ?></span>
 
@@ -37,7 +37,7 @@
                         <a class="link link-primary" href="<?php echo $helpers->generateUrl('participantes', 'info', [ 'id' => $event->id_event ]) ?>">Información</a>
                     <?php endif; ?>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-6">
                     <?php if ($news_event): ?>
                         <h6>Noticia:</h6>
                         <a class="link link-primary" href="<?php echo $helpers->generateUrl('news', 'detalle', [ 'id' => $news_event->id_new ]) ?>">Ver Noticia</a>
@@ -48,11 +48,11 @@
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col-md-3">
+                <div class="col-md-3 col-6">
                     <h6>Estado:</h6>
                     <span><?php echo $helpers->getStateEvent($event->state_event) ?></span>
                 </div>
-                <div class="col-md-9 col-sm-3">
+                <div class="col-md-9 col-6">
                     <h6>Lugar:</h6>
                     <span><?php echo $event->place_event ?></span>
                 </div>

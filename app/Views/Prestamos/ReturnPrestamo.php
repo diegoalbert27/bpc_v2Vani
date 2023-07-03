@@ -14,24 +14,45 @@
         <div class="card-body">
 
             <div class="row p-2 mb-3">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-6">
                     <div class="fw-bold mb-2">Solicitante</div>
                     <span><?php echo "{$prestamo->numero_carnet2->nom_sol} {$prestamo->numero_carnet2->ape_sol}" ?></span>
                 </div>
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-6">
                     <div class="fw-bold mb-2">Teléfono</div>
                     <span><?php echo $prestamo->numero_carnet2->tlf_sol ?></span>
                 </div>
             </div>
 
             <div class="row p-2 mb-3">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-6">
                     <div class="fw-bold mb-2">Libro</div>
                     <span><?php echo $prestamo->id_libro2->titulo ?></span>
                 </div>
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-6">
                     <div class="fw-bold mb-2">Email</div>
                     <span><?php echo $prestamo->numero_carnet2->corr_sol ?></span>
+                </div>
+            </div>
+
+            <div class="row p-2 mb-3">
+                <div class="col-md-6 col-12">
+                    <div class="fw-bold mb-3">Observación</div>
+                    <div class="d-flex justify-content-around mb-3">
+                        <button class="bg-white rounded-pill p-2 border-0 shadow btns-calification" data-type="positive" data-value="1">
+                            <span class="fas fa-check bg-success rounded-circle p-1 text-white"></span>
+                            <span class="text-success">Positiva</span>
+                        </button>
+                        <button class="bg-primary rounded-pill p-2 border-0 shadow btns-calification" data-type="neutral" data-value="0">
+                            <span class="fas fa-minus bg-white rounded-circle p-1 text-primary"></span>
+                            <span class="text-white">Neutral</span>
+                        </button>
+                        <button class="bg-white rounded-pill p-2 border-0 shadow btns-calification" data-type="negative" data-value="-1">
+                            <span class="fas fa-circle-xmark bg-danger rounded-circle p-1 text-white"></span>
+                            <span class="text-danger">Negativa</span>
+                        </button>
+                    </div>
+                    <textarea class="form-control" id="observation-return" rows="2"></textarea>
                 </div>
             </div>
 

@@ -5,7 +5,7 @@
 <div class="card shadow mt-4">
     <div class="card-body">
         <form action="<?php echo $helpers->generateUrl('prestamos', 'editStatus', [ 'id' => $prestamo->id_p ]) ?>" method="POST">
-            <div class="row p-2 mb-3">
+            <div class="row p-2 mb-0 mb-md-3">
                 <div class="col-md-3 col-sm-12 mb-3">
                     <label class="form-label" for="solicitante">Solicitante:</label>
                     <input class="form-control" type="text" id="solicitante" name="solicitante" value="<?php echo $prestamo->numero_carnet2 ?>" readonly>
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="row p-2 mb-3">
+            <div class="row p-2 mb-0 mb-md-2">
                 <div class="col-md-6 col-sm-12 mb-3">
                     <label class="form-label" for="fecha_entrega">Fecha de entrega:</label>
                     <input class="form-control" type="date" id="fecha_entrega" name="fecha_entrega" value="<?php echo $prestamo->fecha_entrega ?>" readonly>
@@ -33,7 +33,16 @@
                 </div>
             </div>
 
-            <div class="row p-2 mb-3">
+            <div class="row p-2 mb-0 mb-md-3">
+                <div class="col-md-12 col-sm-12">
+                    <label class="form-label" for="calification">Calificación:</label>
+                    <select class="form-select" id="calification" name="calification">
+                        <?php echo $helpers->getCalificationsOptions($prestamo->calificacion) ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row p-2 mb-0 mb-md-3">
                 <div class="col-md-12 col-sm-12 mb-3">
                     <label class="form-label" for="observaciones">Observaciones:</label>
                     <textarea class="form-control" id="observaciones" name="observaciones" rows="3"><?php echo $prestamo->observaciones_p ?></textarea>

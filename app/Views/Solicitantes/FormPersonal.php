@@ -5,32 +5,32 @@
 <div class="card shadow mt-4">
     <div class="card-body">
         <form action="<?php echo $helpers->generateUrl('solicitante', 'editpersonal') ?>" method="POST">
-            <div class="row p-2 mb-3">
-                <div class="col-md-2 col-sm-12 mb-3">
+            <div class="row p-2 mb-0 mb-md-3">
+                <div class="col-xl-2 col-12 mb-3">
                         <label class="form-label" for="carnet">Nro. Carnet:</label>
                         <input class="form-control" type="number" id="carnet" name="carnet" value="<?php echo $solicitante->carnet ?>" min="0" step="1" required>
                     </div>
-                <div class="col-md-5 col-sm-12 mb-3">
+                <div class="col-xl-5 col-6 mb-3">
                     <label class="form-label" for="names">Nombres:</label>
                     <input class="form-control" type="text" id="names" name="names" value="<?php echo $solicitante->nom_sol ?>" minlength="3" required>
                 </div>
-                <div class="col-md-5 col-sm-12 mb-3">
+                <div class="col-xl-5 col-6 mb-3">
                     <label class="form-label" for="lastNames">Apellidos:</label>
                     <input class="form-control" type="text" id="lastNames" name="lastNames" value="<?php echo $solicitante->ape_sol ?>" minlength="3" required>
                 </div>
             </div>
 
-            <div class="row p-2 mb-3">
-                <div class="col-md-2 col-sm-12 mb-3">
+            <div class="row p-2 mb-0 mb-md-3">
+                <div class="col-xl-2 col-12 mb-3">
                     <label class="form-label" for="cedula">Cédula de identidad:</label>
                     <input class="form-control" type="number" id="cedula" name="cedula" value="<?php echo $solicitante->ced_sol ?>" min="0" required>
                 </div>
-                <div class="col-md-3 col-sm-12 mb-3">
+                <div class="col-xl-3 col-6 mb-3">
                     <label class="form-label" for="edad">Edad:</label>
                     <input class="form-control" type="number" id="edad" name="edad" value="<?php echo $solicitante->edad_sol ?>" min="0" required>
                 </div>
 
-                <div class="col-md-3 col-sm-12">
+                <div class="col-xl-3 col-6">
                     <label class="form-label" for="sexo">Sexo:</label>
 
                     <select class="form-select" name="sexo" id="sexo">
@@ -40,7 +40,7 @@
                     </select>
                 </div>
 
-                <div class="col-md-4 col-sm-12">
+                <div class="col-xl-4 col-12">
                     <label class="form-label" for="state">Estado</label>
                     <select class="form-select form-control-user mb-3" name="state" id="state">
                         <?php echo $helpers->isEnabledOption($solicitante->estado_s) ?>

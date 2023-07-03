@@ -1,0 +1,5 @@
+@media (max-width: 575.98px) {
+    #registerForm > div > div > div{
+        font-size: .8rem !important;
+    }
+}

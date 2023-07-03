@@ -5,16 +5,16 @@
 <div class="card shadow mt-4">
     <div class="card-body">
     <form action="<?php echo $helpers->generateUrl('libro', 'edit', [ 'id' => $libro->id_libro ]) ?>" method="POST">
-            <div class="row p-2 mb-3">
-                <div class="col-md-3">
+            <div class="row p-2 mb-0 mb-md-3">
+                <div class="col-md-3 col-12 mb-2 mb-md-0">
                     <label class="form-label" for="cota">Cota</label>
                     <input class="form-control" type="text" name="cota" id="cota" minlength="3" required value="<?php echo $libro->cota ?>">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-6">
                     <label class="form-label" for="title">Título</label>
                     <input class="form-control" type="text" name="title" id="title" minlength="3" required value="<?php echo $libro->titulo ?>">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-6">
                     <label class="form-label" for="category">Categoría</label>
                     <select class="form-select" name="category" id="category">
                         <?php foreach($categorias as $category): ?>
@@ -24,12 +24,12 @@
                 </div>
             </div>
 
-            <div class="row p-2 mb-3">
-                <div class="col-md-6">
+            <div class="row p-2 mb-0 mb-md-3">
+                <div class="col-md-6 col-12 mb-2 mb-md-0">
                     <label class="form-label" for="autor">Autor</label>
                     <input class="form-control" type="text" name="autor" id="autor" minlength="3" required value="<?php echo $libro->autor ?>">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-12">
                     <label class="form-label" for="state">Estado</label>
                     <select class="form-select" name="state" id="state">
                         <?php foreach($estado_libro as $estado): ?>
@@ -46,6 +46,7 @@
             </div>
 
             <div class="p-2 text-end">
+                <a class="btn btn-link" href="<?php echo $helpers->generateUrl('libro', 'detalle', [ 'id' => $libro->id_libro ]) ?>">Volver</a>
                 <button class="btn btn-primary" type="submit">Editar Registro</button>
             </div>
         </form>

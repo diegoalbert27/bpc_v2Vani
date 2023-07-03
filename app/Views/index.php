@@ -22,6 +22,17 @@
     <link rel="stylesheet" href="./assets/css/sidebar.css">
 
     <link rel="stylesheet" href="./assets/css/fullcalendar-custom.css">
+
+    <?php
+        if (isset($_GET['controller'])) {
+            $controller = ucwords($_GET['controller']);
+            $path_css = "assets/css/pages/{$controller}.css";
+
+            if (file_exists($path_css)) {
+                printf('<link rel="stylesheet" href="%s">', $path_css);
+            }
+        }
+    ?>
 </head>
 <body class="bg-light">
 

@@ -252,7 +252,8 @@ class PrestamosController extends baseController
             'fecha_entrega' => $fecha_entrega,
             'fecha_devolucion' => $fecha_devolucion,
             'observaciones_p' => $observaciones,
-            'pendiente' => 0
+            'pendiente' => 0,
+            'calificacion' => 0
         ];
 
         $prestamo_model = new Prestamo($new_prestamo);
@@ -291,12 +292,13 @@ class PrestamosController extends baseController
             return;
         }
 
-        if (!isset($_POST['state']) && !isset($_POST['observaciones'])) {
+        if (!isset($_POST['state']) && !isset($_POST['observaciones']) && !isset($_POST['calification'])) {
             return $this->redirect('prestamos', 'editprestamo', 'danger', 'Los datos requeridos no fueron enviados', [ 'id' => $id_prestamo ]);
         }
 
         $state = (int) $_POST['state'];
         $observaciones = $_POST['observaciones'];
+        $calification = $_POST['calification'];
 
         $edit_prestamo = [
             'id_p' => $prestamo->id_p,
@@ -305,6 +307,7 @@ class PrestamosController extends baseController
             'fecha_entrega' => $prestamo->fecha_entrega,
             'fecha_devolucion' => $prestamo->fecha_devolucion,
             'observaciones_p' => $observaciones,
+            'calificacion' => $calification,
             'pendiente' => $state
         ];
 
@@ -395,7 +398,14 @@ class PrestamosController extends baseController
             return;
         }
 
+        if ( !isset($_GET['observation']) ) {
+            $this->redirect('prestamos', 'index', 'danger', 'La observación es requerida');
+            return;
+        }
+
         $id_prestamo = $_GET['id'];
+        $observation = $_GET['observation'];
+        $calification = $_GET['calification'];
 
         $prestamo_model = new Prestamo();
         $prestamo = $prestamo_model->getByOne('id_p', $id_prestamo);
@@ -410,9 +420,10 @@ class PrestamosController extends baseController
             'numero_carnet2' => $prestamo->numero_carnet2,
             'id_libro2' => $prestamo->id_libro2,
             'fecha_entrega' => $prestamo->fecha_entrega,
-            'fecha_devolucion' => $prestamo->fecha_devolucion,
-            'observaciones_p' => $prestamo->observaciones_p,
-            'pendiente' => 1
+            'fecha_devolucion' => $this->helpers->getCurrentDate(),
+            'observaciones_p' => $observation,
+            'pendiente' => 1,
+            'calificacion' => $calification
         ];
 
         $inventario_model = new Inventario();

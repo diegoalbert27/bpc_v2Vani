@@ -5,15 +5,15 @@
 <div class="card shadow mt-4">
     <div class="card-body">
         <form action="<?php echo $helpers->generateUrl('event', 'add') ?>" method="POST">
-            <div class="row p-2 mb-3">
+            <div class="row p-2 mb-0 mb-md-3">
                 <div class="col-md-12">
                     <label class="form-label" for="event_name">Nombre del evento:</label>
                     <input class="form-control" type="text" name="event_name" id="event_name" minlength="3" required>
                 </div>
             </div>
 
-            <div class="row p-2 mb-3">
-                <div class="col-md-6">
+            <div class="row p-2 mb-0 mb-md-3">
+                <div class="col-md-6 mb-3 mb-md-0">
                     <label class="form-label" for="organizer">Organizador:</label>
                     <select class="form-select" name="organizer" id="organizer">
                         <?php foreach($organizers as $organizer): ?>
@@ -22,7 +22,7 @@
                     </select>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 mb-3 mb-md-0">
                     <label class="form-label" for="event_type">Tipo:</label>
                     <select class="form-select" name="event_type" id="event_type">
                         <option value="Limitado">Limitado</option>
@@ -30,19 +30,19 @@
                     </select>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 mb-3 mb-md-0">
                     <label class="form-label" for="aforo">Aforo:</label>
                     <input class="form-control" type="number" name="aforo" id="aforo" required min="0" value="0">
                 </div>
             </div>
 
-            <div class="row p-2 mb-3">
-                <div class="col-md-3">
+            <div class="row p-2 mb-0 mb-md-3">
+                <div class="col-md-3 mb-3 mb-md-0">
                     <label class="form-label" for="event_date">Fecha:</label>
                     <input class="form-control" type="date" name="event_date" id="event_date" min="<?php echo $helpers->getCurrentDate(1) ?>"" value="<?php echo $helpers->getCurrentDate(1) ?>">
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 mb-3 mb-md-0">
                     <label class="form-label" for="event_time">Hora:</label>
                     <input class="form-control" type="time" name="event_time" id="event_time" value="06:00">
                 </div>

@@ -74,9 +74,31 @@ class SolicitanteController extends baseController
         $solicitante_model = new Solicitante();
         $solicitante = $solicitante_model->getByOne('id_sol', $id_solicitante);
 
+        $reputation = 0;
+
+        $prestamo_model = new Prestamo();
+        $prestamos = $prestamo_model->getBy('numero_carnet2', $solicitante->id_sol);
+
+        $total_calification_prestamos = 0;
+
+        if (count($prestamos) > 0) {
+            foreach ($prestamos as $prestamo) {
+                $total_calification_prestamos += $prestamo->calificacion;
+            }
+
+            if ($total_calification_prestamos < 0) {
+                $reputation = -1;
+            }
+
+            if ($total_calification_prestamos > 0) {
+                $reputation = 1;
+            }
+        }
+
         $this->view('Solicitantes/Detalle', [
             'title' => 'Información',
-            'solicitante' => $solicitante
+            'solicitante' => $solicitante,
+            'reputation' => $reputation
         ], true);
     }
 

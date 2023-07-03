@@ -18,7 +18,9 @@
                 <tbody>
                     <?php foreach($prestamos as $prestamo): ?>
                         <tr>
-                            <th><?php echo $prestamo->numero_carnet2->id_sol ?></th>
+                            <th>
+                                <a class="link link-primary" href="<?php echo $helpers->generateUrl('solicitante', 'detail', [ 'id' => $prestamo->numero_carnet2->id_sol ]) ?>"><?php echo $prestamo->numero_carnet2->id_sol ?></a>
+                            </th>
                             <td><?php echo $prestamo->fecha_entrega ?></td>
                             <td><?php echo $prestamo->fecha_devolucion ?></td>
                             <td>

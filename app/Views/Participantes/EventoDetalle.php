@@ -16,13 +16,7 @@
 
 <div class="card shadow mt-4 <?php echo isset($_GET['state']) && (int) $_GET['state'] === 1 ? 'd-none' : '' ?>">
     <div class="card-header bg-white">
-        <div class="d-flex">
-            <h5 class="m-0 fw-bold container py-1"><?php echo "{$event->title_event} - {$event->date_realized_event} - {$event->time}" ?></h5>
-
-            <a class="btn btn-primary d-none" id="save-state-event" href="<?php echo $helpers->generateUrl('event', 'management', [ 'id' => $event->id_event ]) ?>">
-                <span class="fas fa-floppy-disk"></span>
-            </a>
-        </div>
+        <h5 class="m-0 fw-bold container py-1"><?php echo "{$event->title_event} - {$event->date_realized_event} - {$event->time}" ?></h5>
     </div>
     <div class="card-body">
         <div class="container mt-2">
@@ -36,20 +30,25 @@
                     <?php endif; ?>
                 </div>
                 <?php if ((int) $session_user->role->nivel === 10): ?>
-                    <div class="col-md-4">
-                        <h6>Estado del Evento:</h6>
-                        <select class="form-select" name="state_event" id="state_event">
-                            <?php echo $helpers->getStateEventOption($event->state_event) ?>
-                        </select>
+                    <div class="col-md-4 d-flex align-items-baseline">
+                        <div class="me-3">
+                            <h6>Estado del Evento:</h6>
+                            <select class="form-select" name="state_event" id="state_event">
+                                <?php echo $helpers->getStateEventOption($event->state_event) ?>
+                            </select>
+                        </div>
+                        <a class="btn btn-primary d-none align-self-end" id="save-state-event" href="<?php echo $helpers->generateUrl('event', 'management', [ 'id' => $event->id_event ]) ?>">
+                            <span class="fas fa-floppy-disk"></span>
+                        </a>
                     </div>
                 <?php endif; ?>
             </div>
-            <div class="row mb-5">
-                <div class="col-md-2 col-sm-3">
+            <div class="row mb-0 mb-md-5">
+                <div class="col-md-2 col-6">
                     <h6>Tipo de evento:</h6>
                     <span><?php echo $event->type_event ?></span>
                 </div>
-                <div class="col-md-10 col-sm-3">
+                <div class="col-md-10 col-6">
                     <h6>Lugar:</h6>
                     <span><?php echo $event->place_event ?></span>
                 </div>

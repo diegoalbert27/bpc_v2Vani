@@ -77,6 +77,8 @@ export default class View {
             const events = await this.getAllEvents()
             const event = events.find(event => Number(event.id_event) === Number(eventId))
 
+            if (event === undefined) continue;
+
             const dateRealizedEvent = new Date(event.date_realized_event)
             const eventMonth = dateRealizedEvent.getUTCMonth()
             const eventYear = dateRealizedEvent.getUTCFullYear()

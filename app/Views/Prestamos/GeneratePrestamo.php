@@ -14,13 +14,13 @@
 
                 <label class="form-label" for="solicitante_cedula">Solicitante:</label>
 
-                <div class="col-md-4">
+                <div class="col-md-4 col-4">
                     <input class="form-control" type="text" id="solicitante_cedula" name="solicitante_cedula">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-5">
                     <input class="form-control d-none" type="text" id="solicitante_name" readonly>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-2">
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#solicitantes-modal">
                         <span class="fas fa-user-plus"></span>
                     </button>
@@ -31,13 +31,13 @@
 
                 <label class="form-label" for="libro">Libro:</label>
 
-                <div class="col-md-4">
+                <div class="col-md-4 col-4">
                     <input class="form-control" type="text" id="libro" name="libro">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-5">
                     <input class="form-control d-none" type="text" id="libro_title" readonly>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-2">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#libros-modal">
                         <span class="fas fa-book"></span>
                     </button>
@@ -45,11 +45,11 @@
             </div>
 
             <div class="row mb-3">
-                <div class="col-md-6">
+                <div class="col-md-6 col-12 mb-3 mb-md-0">
                     <label class="form-label" for="fecha_entrega">Fecha de entrega:</label>
                     <input class="form-control" type="date" id="fecha_entrega" name="fecha_entrega" min="<?php echo $helpers->getCurrentDate() ?>" max="<?php echo $helpers->getCurrentDate() ?>" value="<?php echo $helpers->getCurrentDate() ?>" readonly>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-12">
                     <label class="form-label" for="fecha_devolucion">Fecha de devolución:</label>
                     <input class="form-control" type="date" id="fecha_devolucion" name="fecha_devolucion" min="<?php echo $helpers->getCurrentDate(1) ?>" value="<?php echo $helpers->getCurrentDate(1) ?>">
                 </div>

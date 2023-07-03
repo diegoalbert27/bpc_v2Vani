@@ -18,17 +18,17 @@
     </div>
     <div class="card-body">
         <div class="container mt-2">
-            <div class="row mb-5">
-                <div class="col-md-6 col-sm-12">
+            <div class="row mb-3 mb-md-5">
+                <div class="col-md-6 col-6">
                     <h6>Autor:</h6>
                     <span><?php echo $new->author_new ?></span>
                 </div>
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-6">
                     <h6>Fecha:</h6>
                     <span><?php echo $new->date_new ?></span>
                 </div>
             </div>
-            <div class="row mb-4">
+            <div class="row mb-0 mb-md-4">
                 <div class="col-md-12">
                     <h6>Contenido:</h6>
                     <span><?php echo $new->content_new ?></span>

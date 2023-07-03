@@ -36,6 +36,6 @@ class Authentication implements InterfaceAuthentication
             return $_SESSION['user'];
         }
 
-        return new stdClass();
+        return null;
     }
 }

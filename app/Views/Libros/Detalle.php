@@ -21,7 +21,7 @@
     <div class="card-body">
         <div class="container mt-2">
             <div class="row mb-4">
-                <div class="col-md-6 col-sm-3">
+                <div class="col-md-6 col-12">
                     <div class="d-flex">
                         <h5 class="pe-3">Datos del libro</h5>
                         <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
@@ -33,27 +33,27 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-4">
                     <h6>Autor:</h6>
                     <span><?php echo $libro->autor ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-4">
                     <h6>Categoría:</h6>
                     <span><?php echo $libro->categoria->name ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-4">
                     <h6>Estado:</h6>
                     <span><?php echo $libro->estado_libro ?></span>
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col-md-12">
+                <div class="col-md-12 col-12">
                     <h6>Sinopsis:</h6>
                     <span><?php echo $libro->sinopsis ?></span>
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col-md-6 col-sm-3">
+                <div class="col-md-6 col-12">
                     <div class="d-flex">
                         <h5 class="pe-3">Cantidad</h5>
                         <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
@@ -65,15 +65,15 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-4">
                     <h6>Cantidad total:</h6>
                     <span><?php echo $libro->cantidad->total_inv ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-4">
                     <h6>Cantidad actual:</h6>
                     <span><?php echo $libro->cantidad->cant_inv ?></span>
                 </div>
-                <div class="col-md-4 col-sm-3">
+                <div class="col-md-4 col-4">
                     <h6>Prestados:</h6>
                     <span><?php echo $libro->cantidad->resto_inv ?></span>
                 </div>

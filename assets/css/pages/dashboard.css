@@ -1,0 +1,5 @@
+@media (max-width: 575.98px) {
+    .onboarding div > article > h1 {
+        font-size: .8rem !important;
+    }
+}

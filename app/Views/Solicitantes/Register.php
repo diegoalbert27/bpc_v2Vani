@@ -9,13 +9,13 @@
     <div id="registerForm">
         <div class="col-md-12 col-sm-12 mb-4">
             <div class="d-flex mx-1 border shadow rounded bg-white text-center">
-                <div class="border-end flex-fill p-3 bg-primary shadow text-light rounded-start" id="barDatePersonal">
+                <div class="border-end flex-fill p-2 p-md-3 bg-primary shadow text-light rounded-start" id="barDatePersonal">
                     Datos Personales
                 </div>
-                <div class="border-end flex-fill p-3" id="barContact">
+                <div class="border-end flex-fill p-2 p-md-3" id="barContact">
                     Información de Contacto
                 </div>
-                <div class="flex-fill p-3" id="barOcupacion">
+                <div class="flex-fill p-2 p-md-3" id="barOcupacion">
                     Lugar de estudio o trabajo
                 </div>
             </div>
@@ -24,7 +24,7 @@
         <div class="col-md-12 col-sm-12" id="datePersonalForm">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="row p-2 mb-3">
+                    <div class="row p-2 mb-0 mb-sm-3">
                         <div class="col-md-4 col-sm-12 mb-3">
                             <label class="form-label" for="carnet">Nro. Carnet:</label>
                             <input class="form-control" type="text" id="carnet" name="carnet">
@@ -91,7 +91,7 @@
         <div class="col-md-12 col-sm-12 d-none" id="contactForm">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="row p-2 mb-3">
+                    <div class="row p-2 mb-0 mb-sm-3">
                         <div class="col-md-6 col-sm-12 mb-3">
                             <label class="form-label" for="phone">Teléfono:</label>
                             <input class="form-control" type="tel" id="phone" name="phone">
@@ -129,7 +129,7 @@
         <div class="col-md-12 col-sm-12 d-none" id="ocupacionForm">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="row p-2 mb-3">
+                    <div class="row p-2 mb-0 mb-sm-3">
                         <div class="col-md-6 col-sm-12 mb-3">
                             <label class="form-label" for="ocupacion">Ocupación:</label>
                             <select class="form-select" name="ocupacion" id="ocupacion">

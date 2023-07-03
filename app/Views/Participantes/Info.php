@@ -29,7 +29,11 @@
                 <tbody>
                     <?php foreach($participants as $participant): ?>
                         <tr>
-                            <th><?php echo $participant->id_user->user ?></th>
+                            <th>
+                                <a class="link link-primary" href="<?php echo $helpers->generateUrl('user', 'details', [ 'id' => $participant->id_user->id ]) ?>">
+                                    <?php echo $participant->id_user->user ?>
+                                </a>
+                            </th>
                             <td><?php echo $participant->id_user->phone ?></td>
                             <td><?php echo $participant->id_user->email ?></td>
                         </tr>

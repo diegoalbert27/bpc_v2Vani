@@ -22,12 +22,12 @@
             <div class="card shadow defaul-events mb-3 d-none" id="<?php echo $event->id_event ?>">
                 <div class="card-body">
                     <div class="row px-2">
-                        <div class="col-md-2 fw-bold">
+                        <div class="col-xl-2 col-md-4 col-3 fw-bold">
                             <h3 class="mb-0"><?php echo $helpers->getCustomDate($event->date_realized_event, 'd') ?></h3>
                             <p class="mb-0 text-secondary">Hora:</p>
                             <h6 class="mt-0 fw-bold"><?php echo $helpers->getCustomDate($event->time, 'h:s') ?></h6>
                         </div>
-                        <div class="col">
+                        <div class="col-md col-5">
                             <h5 class="fw-bold"><?php echo $event->title_event ?></h5>
                             <p><?php echo $event->place_event ?></p>
 
@@ -40,7 +40,7 @@
                             <?php endif; ?>
                         </div>
                         <?php if ((int) $session_user->role->nivel === 10): ?>
-                            <div class="col">
+                            <div class="col-md col-4">
                                 <div class="pb-1">
                                     <span class="fw-bold fs-5"><?php echo $helpers->getStateEvent($event->state_event) ?></span>
                                 </div>
