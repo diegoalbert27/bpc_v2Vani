@@ -2,6 +2,13 @@
 
 <?php echo $helpers->getMessage($_GET) ?>
 
+
+<?php if (count($prestamos) === 0): ?>
+    <div class="alert alert-info mt-3">
+        Sin Préstamos Pendientes
+    </div>
+<?php endif; ?>
+
 <?php foreach($prestamos as $prestamo): ?>
     <div class="card shadow mt-4 mb-3">
         <div class="card-header bg-white">

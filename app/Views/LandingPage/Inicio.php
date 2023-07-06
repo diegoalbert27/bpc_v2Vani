@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -29,6 +29,7 @@
         <link href="assets/css/landing-page.css" rel="stylesheet" />
     </head>
     <body id="page-top">
+
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
@@ -44,6 +45,7 @@
                 </div>
             </div>
         </nav>
+
         <!-- Masthead-->
         <header class="masthead">
             <div class="container px-4 px-lg-5 h-100">
@@ -60,6 +62,7 @@
                 </div>
             </div>
         </header>
+
         <!-- About-->
         <section class="page-section bg-dark" id="about">
             <div class="container px-4 px-lg-5">
@@ -72,6 +75,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container px-4 px-lg-5">
@@ -102,27 +106,50 @@
                 </div>
             </div>
         </section>
+
         <!-- Books-->
         <section class="page-section bg-dark" id="books">
             <div class="container px-4 px-lg-5">
                 <h2 class="text-center  text-white mt-0">Últimos libros</h2>
                 <hr class="divider divider-light" />
-                <div class="row gx-4 gx-lg-5">
-                <?php foreach($libros as $libro): ?>
-                    <div class="col-lg-3 col-md-4 text-center">
-                        <div class="mt-5">
-                            <div class="mb-3"><i class="fa-solid fa-book text-white fs-1"></i></div>
-                            <h3 class="h4 mb-2 text-white"><?php echo $libro->titulo ?></h3>
-                            <p class="text-muted mb-0"><?php echo $libro->autor ?></p>
-                        </div>
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <?php for ($row = 1; $row <= count($libros); $row++): ?>
+                            <?php if ((($row + 1) % 4) === 0): ?>
+                                <div class="carousel-item <?php echo ($row + 1) === 4 ? 'active' : '' ?>">
+                                    <div class="row gx-4 gx-lg-5">
+                                        <?php for ($index = (($row + 1) - 4); $index <= $row; $index++): ?>
+                                            <?php if (isset($libros[$index])): ?>
+                                                <div class="col-lg-3 col-md-4 text-center">
+                                                    <div class="mt-5">
+                                                        <div class="mb-3">
+                                                            <span class="fa-solid fa-book text-white fs-1"></span>
+                                                        </div>
+                                                        <h3 class="h4 mb-2 text-white"><?php echo $libros[$index]->titulo ?></h3>
+                                                        <p class="text-muted mb-0"><?php echo $libros[$index]->autor ?></p>
+                                                    </div>
+                                                </div>
+                                            <?php endif ?>
+                                        <?php endfor; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endfor; ?>
                     </div>
-                    <?php endforeach; ?>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </section>
+
         <!-- Events-->
         <section class="page-section" id="events">
-
             <div class="container px-4 px-lg-5">
                 <h2 class="text-center mt-0">Próximos eventos</h2>
                 <hr class="divider divider-dark" />
@@ -188,6 +215,7 @@
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
         <!-- SimpleLightbox plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
 
@@ -199,10 +227,5 @@
 
         <!-- Core theme JS-->
         <script src="assets/js/landing-page.js" type="module"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> -->
     </body>
 </html>

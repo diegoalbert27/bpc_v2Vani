@@ -14,7 +14,7 @@ class HomeController  extends baseController
         $show_books = [];
 
         foreach ($libros as $key => $libro) {
-            if ($key <= 7) {
+            if ($key <= 14) {
                 $show_books[] = $libro;
             }
         }
