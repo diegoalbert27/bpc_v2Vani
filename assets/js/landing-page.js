@@ -10,8 +10,6 @@
 import ViewCalendar from './pages/Participantes/Index/view.js'
 
 window.addEventListener('DOMContentLoaded', event => {
-    new ViewCalendar()
-
     // Navbar shrink function
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');

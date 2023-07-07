@@ -36,4 +36,23 @@ class HomeController  extends baseController
             'events_pendientes' => $events_pendientes
         ]);
     }
+
+    public function Events()
+    {
+        $event_model = new Event();
+        $events = $event_model->getAll();
+
+        $events_pendientes = array_filter($events, function($event) {
+            return (int) $event->state_event === 2;
+        });
+
+        usort($events_pendientes, function($a, $b) {
+            return strtotime($a->date_realized_event) - strtotime($b->date_realized_event);
+        });
+
+        $this->view('LandingPage/Eventos', [
+            'title' => 'Eventos',
+            'events_pendientes' => $events_pendientes
+        ]);
+    }
 }

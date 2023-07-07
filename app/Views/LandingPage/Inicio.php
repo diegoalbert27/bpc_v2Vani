@@ -10,41 +10,12 @@
 
         <title>Biblioteca Agustín Codazzi</title>
 
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/img/icono.jpg" />
-
-        <!-- Font Awesome CDN -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-        <!-- Bootstrap Icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-
-        <!-- SimpleLightbox plugin CSS-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="assets/css/landing-page.css" rel="stylesheet" />
+        <!-- Css Libs -->
+        <?php include_once './app/Views/LandingPage/partials/Head.php'; ?>
     </head>
     <body id="page-top">
-
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Inicio</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#about">Nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#books">Libros</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#events">Eventos</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <?php include_once './app/Views/LandingPage/partials/Navigation.php'; ?>
 
         <!-- Masthead-->
         <header class="masthead">
@@ -148,82 +119,11 @@
             </div>
         </section>
 
-        <!-- Events-->
-        <section class="page-section" id="events">
-            <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">Próximos eventos</h2>
-                <hr class="divider divider-dark" />
-                <div class="gx-4 gx-lg-5">
-                    <div class="row mt-4">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="card shadow mt-3">
-                                <div class="card-body">
-                                    <div id="calendar"></div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Footer -->
+        <?php include_once './app/Views/LandingPage/partials/Footer.php'; ?>
 
-                        <div class="col-md-12 col-sm-12">
-                            <div class="card shadow mb-3 d-none mt-2" id="not-event">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title">No hay ningun evento en esta fecha</h6>
-                                    <button class="btn btn-link p-0" id="view-defaul-events">Ver los eventos disponibles</button>
-                                </div>
-                            </div>
-
-                            <div class="card shadow mb-3 d-none mt-2" id="not-event-month">
-                                <div class="card-body text-center">
-                                    <h6 class="card-title">No hay ningún evento en este mes</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <?php foreach($events_pendientes as $event): ?>
-                            <div class="col-md-6">
-                                <div class="card shadow defaul-events mb-3" id="<?php echo $event->id_event ?>">
-                                    <div class="card-body">
-                                        <div class="row px-2">
-                                            <div class="col-md-2 fw-bold">
-                                                <h3 class="mb-0"><?php echo $helpers->getCustomDate($event->date_realized_event, 'd') ?></h3>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <p class="mb-0 text-secondary">Fecha:</p>
-                                                <h6 class="mt-0 fw-bold"><?php echo $helpers->getCustomDate($event->date_realized_event, 'Y-m') ?></h6>
-
-                                                <p class="mb-0 text-secondary">Hora:</p>
-                                                <h6 class="mt-0 fw-bold"><?php echo $helpers->getCustomDate($event->time, 'h:s') ?></h6>
-                                            </div>
-                                            <div class="col">
-                                                <h5 class="fw-bold"><?php echo $event->title_event ?></h5>
-                                                <p><?php echo $event->place_event ?></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer-->
-        <footer class="bg-light py-5">
-            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Biblioteca Pública Central "Agustín Codazzi"</div></div>
-        </footer>
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-        <!-- SimpleLightbox plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-
-        <!-- AXIOS -->
-        <script src="assets/libs/axios/axios.min.js"></script>
-
-        <!-- Fullcalendar -->
-        <script src="assets/libs/fullcalendar/index.global.min.js"></script>
+        <!-- Scripts -->
+        <?php include_once './app/Views/LandingPage/partials/Scripts.php'; ?>
 
         <!-- Core theme JS-->
         <script src="assets/js/landing-page.js" type="module"></script>
