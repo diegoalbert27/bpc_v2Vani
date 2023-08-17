@@ -126,6 +126,6 @@
         <?php include_once './app/Views/LandingPage/partials/Scripts.php'; ?>
 
         <!-- Core theme JS-->
-        <script src="assets/js/landing-page.js" type="module"></script>
+        <script src="assets/js/landing-page.js" type="module" defer></script>
     </body>
 </html>
