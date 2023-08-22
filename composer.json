@@ -17,6 +17,7 @@
     ],
     "require": {
         "fpdf/fpdf": "1.85",
-        "rah/danpu": "^2.7"
+        "rah/danpu": "^2.7",
+        "fakerphp/faker": "^1.23"
     }
 }
