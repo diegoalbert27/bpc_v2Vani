@@ -54,6 +54,9 @@ class baseController
     public function authentication($is_auth)
     {
         if (!$is_auth) {
+            session_unset();
+            session_destroy();
+
             $this->redirect('auth', 'login');
         }
     }
