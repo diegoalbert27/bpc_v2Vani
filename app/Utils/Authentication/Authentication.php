@@ -23,9 +23,7 @@ class Authentication implements InterfaceAuthentication
     {
         session_start();
 
-        $request_origin_ip = getenv("REMOTE_ADDR");
-
-        if (isset($_SESSION['user']) && ($_SESSION['user']->origin_ip === $request_origin_ip)) {
+        if (isset($_SESSION['user'])) {
             return true;
         }
 
