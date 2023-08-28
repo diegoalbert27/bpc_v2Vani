@@ -42,7 +42,7 @@ class Prestamo extends baseModel
         $stmt->bindParam(':fecha_entrega', $this->fecha_entrega);
         $stmt->bindParam(':fecha_devolucion', $this->fecha_devolucion);
         $stmt->bindParam(':observaciones_p', $this->observaciones_p);
-        $stmt->bindParam(':pendiente', $this->pendiente);
+        $stmt->bindParam(':calificacion', $this->pendiente);
         $stmt->bindParam(':pendiente', $this->calificacion);
 
         return $stmt->execute();
