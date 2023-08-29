@@ -6,9 +6,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/index.php#about">Nosotros</a></li>
-                <li class="nav-item"><a class="nav-link" href="/index.php#services">Servicios</a></li>
-                <li class="nav-item"><a class="nav-link" href="/index.php#books">Libros</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">Nosotros</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link" href="#books">Libros</a></li>
                 <!-- <li class="nav-item"><a class="nav-link" href="#events">Eventos</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="<?php echo $helpers->generateUrl('home', 'events') ?>">Eventos</a></li>
             </ul>
