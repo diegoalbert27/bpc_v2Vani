@@ -86,6 +86,6 @@
         </ul>
     </li>
     <li>
-        <a href="assets/docs/manual-administrador.pdf">Ayuda</a>
+        <a href="assets/docs/Manual de usuario 4.0 (Administrador).pdf" target="_blank">Ayuda</a>
     </li>
 </ul>

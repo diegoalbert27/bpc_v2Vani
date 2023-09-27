@@ -57,13 +57,13 @@
 
     <?php if ((int) $session_user->role->nivel === 1): ?>
         <li>
-            <a href="assets/docs/2.pdf"><span class="far fa-circle-question"></span> Ayuda</a>
+            <a href="assets/docs/Manual de usuario 4.0 (Lector).pdf" target="_blank"><span class="far fa-circle-question"></span> Ayuda</a>
         </li>
     <?php endif; ?>
 
     <?php if ((int) $session_user->role->nivel === 5): ?>
         <li>
-            <a href="assets/docs/3.pdf"><span class="far fa-circle-question"></span> Ayuda</a>
+            <a href="assets/docs/Manual de usuario 4.0 (Bibliotecaria).pdf" target="_blank"><span class="far fa-circle-question"></span> Ayuda</a>
         </li>
     <?php endif; ?>
 </ul>
