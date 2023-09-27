@@ -7,19 +7,19 @@
 
         <?php if ((int) $session_user->role->nivel === 10 || (int) $session_user->role->nivel === 5): ?>
             <section class="onboarding container row">
-                <div class="col d-flex align-items-start d-md-inline">
+                <div class="col-6 d-md-inline">
                     <article class="bg-white shadow-sm rounded p-3 mt-3 me-2 me-md-0">
-                        <h1 class="text-primary fs-5 fw-bold">CANTIDAD TOTAL DE LIBROS</h1>
+                        <h1 class="text-primary fs-5">CANT. TOTAL DE LIBROS</h1>
                         <h2><?php echo $total_libros ?></h2>
                     </article>
 
                     <article class="bg-white shadow-sm rounded p-3 mt-3 me-2 me-md-0">
-                        <h1 class="text-primary fs-5 fw-bold">CANTIDAD ACTUAL DE LIBROS</h1>
+                        <h1 class="text-primary fs-5">CANT. ACTUAL DE LIBROS</h1>
                         <h2><?php echo $total_libros_actual ?></h2>
                     </article>
 
                     <article class="bg-white shadow-sm rounded p-3 mt-3 me-2 me-md-0">
-                        <h1 class="text-primary fs-5 fw-bold">LIBROS PRÉSTADOS</h1>
+                        <h1 class="text-primary fs-5">LIBROS PRÉSTADOS</h1>
                         <h2><?php echo $total_libros_prestado ?></h2>
                     </article>
                 </div>
