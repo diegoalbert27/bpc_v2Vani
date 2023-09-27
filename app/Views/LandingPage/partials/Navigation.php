@@ -9,7 +9,6 @@
                 <li class="nav-item"><a class="nav-link" href="#about">Nosotros</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
                 <li class="nav-item"><a class="nav-link" href="#books">Libros</a></li>
-                <!-- <li class="nav-item"><a class="nav-link" href="#events">Eventos</a></li> -->
                 <li class="nav-item"><a class="nav-link" href="<?php echo $helpers->generateUrl('home', 'events') ?>">Eventos</a></li>
             </ul>
         </div>
