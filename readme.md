@@ -1,5 +1,7 @@
 ## Sistema del prestamo circulante de una biblioteca 📚
 
+![BPC](assets/img/bpc.png)
+
 ### Funcionalidades
 - Gestion de usuarios y cuentas
 - Administacion de solicitantes
@@ -7,8 +9,6 @@
 - Prestamo y Devolucion de libros
 - Manejo de eventos y organizadores
 - Auditorias y control de acceso
-
-![BPC](assets\img\bpc.png)
 
 ### Requerimientos
 - PHP 7.1
@@ -34,7 +34,7 @@ npm install
 #### Importacion de base de datos
 - Nombre para base de datos base de datos `bpcac_v2`
 - bpcac_v2.sql
-- app\Utils\Database.php con sus credenciales
+- app/Utils/Database.php con sus credenciales
 
 LICENSE MIT
 
