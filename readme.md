@@ -8,7 +8,7 @@
 - Manejo de eventos y organizadores
 - Auditorias y control de acceso
 
-![BPC](assets\img\bpc.png)
+![BPC](assets/img/bpc.png)
 
 ### Requerimientos
 - PHP 7.1
