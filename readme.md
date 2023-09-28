@@ -34,7 +34,7 @@ npm install
 #### Importacion de base de datos
 - Nombre para base de datos base de datos `bpcac_v2`
 - bpcac_v2.sql
-- app\Utils\Database.php con sus credenciales
+- app/Utils/Database.php con sus credenciales
 
 LICENSE MIT
 
