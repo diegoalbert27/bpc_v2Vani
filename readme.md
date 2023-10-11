@@ -1,12 +1,12 @@
-## Sistema del prestamo circulante de una biblioteca 📚
+## Sistema del préstamo circulante de una biblioteca 📚
 
 ![BPC](assets/img/bpc.png)
 
 ### Funcionalidades
-- Gestion de usuarios y cuentas
-- Administacion de solicitantes
-- Gestion e inventario de libros
-- Prestamo y Devolucion de libros
+- Gestión de usuarios y cuentas
+- Administración de solicitantes
+- Gestión e inventario de libros
+- Préstamo y Devolución de libros
 - Manejo de eventos y organizadores
 - Auditorias y control de acceso
 
@@ -17,7 +17,7 @@
 - MySQL
 
 ### Instalación
-#### Clonar codigo fuente
+#### Clonar código fuente
 ```bash
 git https://github.com/diegoalbert27/bpc_v2Vani.git
 ```
@@ -31,7 +31,7 @@ composer install
 npm install
 ```
 
-#### Importacion de base de datos
+#### Importación de base de datos
 - Nombre para base de datos base de datos `bpcac_v2`
 - bpcac_v2.sql
 - app/Utils/Database.php con sus credenciales
