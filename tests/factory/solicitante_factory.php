@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Solicitante;
 use Faker\Factory;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -12,20 +13,9 @@ $sexes = [
     'Otros'
 ];
 
-$numbers_unique = [];
-
 function getNumberUnique() : int {
-    global $faker;
-    global $numbers_unique;
-
-    $number = null;
-
-    do {
-        $number = $faker->randomNumber(4, true);
-    } while(array_search($number, $numbers_unique));
-
-    array_push($numbers_unique, $number);
-
+    $solicitante = new Solicitante();
+    $number = count($solicitante->getAll()) + 1000;
     return $number;
 }
 
