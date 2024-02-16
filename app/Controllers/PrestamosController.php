@@ -131,8 +131,8 @@ class PrestamosController extends baseController
 
         $this->view('Prestamos/GeneratePrestamo', [
             'title' => 'Registra Prestamo',
-            'solicitantes' => $solicitantes,
-            'libros' => $libros_actived
+            // 'solicitantes' => $solicitantes,
+            // 'libros' => $libros_actived
         ], true);
     }
 
