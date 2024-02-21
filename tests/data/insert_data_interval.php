@@ -9,9 +9,13 @@ require_once '../factory/solicitante_factory.php';
 
 if (isset($_GET['send'])) {
     if ($_GET['send'] === 'ok') {
-        $results = factory(Solicitante::class, $placeholder, 100);
-        echo json_encode($results);
-        exit();
+        try {
+            $results = factory(Solicitante::class, $placeholder, 5000);
+            echo json_encode($results);
+            exit();
+        } catch(Exception $err) {
+            echo json_encode($err);
+        }
     }
 }
 
@@ -86,9 +90,10 @@ if (isset($_GET['send'])) {
                     tbody.innerHTML += rows
                     span.innerText = Number(span.innerText) + data.length
                 })
+                .catch(err => console.log(err))
         }
 
-        setTimeout(() => sendSolicitante(), 5000)
+        setTimeout(() => sendSolicitante(), 3000)
     </script>
 </body>
 

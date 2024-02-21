@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="./assets/libs/font-awesome/all.min.css">
 
     <!-- Datatables -->
-    <link rel="stylesheet" href="./assets/libs/datatables/css/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="./assets/libs/datatables/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap5.min.css">
 
     <!-- BOOTSTRAP AND CUSTOM CSS -->
     <link rel="stylesheet" href="./assets/libs/bootstrap/css/bootstrap.min.css">
@@ -103,7 +104,11 @@
 
     <!-- Datateble and Jquery -->
     <script src="./assets/libs/jquery/jquery.min.js"></script>
-    <script src="./assets/libs/datatables/js/jquery.datatables.min.js"></script>
+    <!-- <script src="./assets/libs/datatables/js/jquery.datatables.min.js"></script> -->
+
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.min.js"></script>
+
 
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/datatables.js"></script>

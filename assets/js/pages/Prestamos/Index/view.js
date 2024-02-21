@@ -53,6 +53,8 @@ export default class View {
         let years = this.prestamos
             .map(prestamo => new Date(prestamo.fecha_entrega).getUTCFullYear())
 
+        years.push(this.currentDate.getUTCFullYear())
+
         years = [...new Set(years)].sort((a, b) => b - a)
 
         this.changeYear.insertOption(years)

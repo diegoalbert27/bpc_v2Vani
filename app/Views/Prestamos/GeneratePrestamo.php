@@ -20,11 +20,11 @@
                 <div class="col-md-6 col-5">
                     <input class="form-control d-none" type="text" id="solicitante_name" readonly>
                 </div>
-                <div class="col-md-2 col-2">
+                <!-- <div class="col-md-2 col-2">
                     <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#solicitantes-modal">
                         <span class="fas fa-user-plus"></span>
                     </button>
-                </div>
+                </div> -->
             </div>
 
             <div class="row mb-3">
@@ -37,11 +37,11 @@
                 <div class="col-md-6 col-5">
                     <input class="form-control d-none" type="text" id="libro_title" readonly>
                 </div>
-                <div class="col-md-2 col-2">
+                <!-- <div class="col-md-2 col-2">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#libros-modal">
                         <span class="fas fa-book"></span>
                     </button>
-                </div>
+                </div> -->
             </div>
 
             <div class="row mb-3">
@@ -73,7 +73,7 @@
 </div>
 
 <!-- Modal Solicitantes -->
-<div class="modal modal-lg fade" id="solicitantes-modal" tabindex="-1" aria-hidden="true">
+<!-- <div class="modal modal-lg fade" id="solicitantes-modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -112,10 +112,10 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Modal Libros -->
-<div class="modal modal-lg fade" id="libros-modal" tabindex="-1" aria-hidden="true">
+<!-- <div class="modal modal-lg fade" id="libros-modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -154,7 +154,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="card shadow d-none" id="prestamoChecked">
     <div class="card-body">
